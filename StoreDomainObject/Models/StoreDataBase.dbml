@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="pankoves" EntityNamespace="StoreDomainObject" Class="StoreDataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=mssql6.gear.host;Initial Catalog=pankoves;Persist Security Info=True;User ID=pankoves" SettingsObjectName="StoreDomainObject.Properties.Settings" SettingsPropertyName="pankovesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="lk.Settings" Member="Settings">
+    <Type Name="Settings">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="value" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="lk.UsersView" Member="UsersView">
+    <Type Name="UsersView">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="emailConfirmed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="phoneNumber" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="dateRegistration" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="generateToken" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dateConfirmation" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="store.GoodTypes" Member="GoodTypes">
+    <Type Name="GoodTypes">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="info" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="imageUrl" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="GoodTypes_Goods" Member="Goods" ThisKey="id" OtherKey="typeId" Type="Goods" />
+    </Type>
+  </Table>
+  <Table Name="store.SupplyView" Member="SupplyView">
+    <Type Name="SupplyView">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="providerId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="shopId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="adress" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="timeOpen" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="timeClose" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="shopPhone" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="goodName" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="count" Type="System.Decimal" DbType="Decimal(5,3)" CanBeNull="true" />
+      <Column Name="typeId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="goodInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="typeName" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="info" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="store.GoodsView" Member="GoodsView">
+    <Type Name="GoodsView">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="typeId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="info" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="imageUrl" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="discount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="typeName" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="typeInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="store.Goods" Member="Goods">
+    <Type Name="Goods">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="typeId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="info" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="imageUrl" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="discount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="fullInfo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Goods_FeedBacks" Member="FeedBacks" ThisKey="id" OtherKey="goodId" Type="FeedBacks" />
+      <Association Name="GoodTypes_Goods" Member="GoodTypes" ThisKey="typeId" OtherKey="id" Type="GoodTypes" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="lk.FeedBacks" Member="FeedBacks">
+    <Type Name="FeedBacks">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="mark" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="message" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Goods_FeedBacks" Member="Goods" ThisKey="goodId" OtherKey="id" Type="Goods" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="lk.ChangePassword" Method="ChangePassword">
+    <Parameter Name="token" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="newHashPassword" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.GenerateToken" Method="GenerateToken">
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="token" Type="System.Guid" DbType="UniqueIdentifier" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.SetUserConfirmed" Method="SetUserConfirmed">
+    <Parameter Name="token" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.IsLogin" Method="IsLogin" IsComposable="true">
+    <Parameter Name="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="hashPassword" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int64" />
+  </Function>
+  <Function Name="lk.RegisterUser" Method="RegisterUser">
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="passwordHash" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="phoneNumber" Type="System.String" DbType="NVarChar(128)" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(128)" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Parameter Name="message" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.AddNowWatching" Method="AddNowWatching">
+    <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="store.GetFullInfo" Method="GetFullInfo" IsComposable="true">
+    <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="lk.GetNowWatching" Method="GetNowWatching" IsComposable="true">
+    <ElementType Name="GetNowWatchingResult">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="typeId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="info" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="imageUrl" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="discount" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="typeName" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="typeInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="lk.LeaveFeedback" Method="LeaveFeedback">
+    <Parameter Name="mark" Type="System.Int32" DbType="Int" />
+    <Parameter Name="message" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
