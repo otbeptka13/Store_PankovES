@@ -1,0 +1,8 @@
+CREATE TABLE [lk].[Roles]
+(
+[id] [bigint] NOT NULL IDENTITY(1, 1),
+[name] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+GO
+ALTER TABLE [lk].[Roles] ADD CONSTRAINT [PK__Roles__3213E83F3F5409BA] PRIMARY KEY CLUSTERED  ([id])
+GO
