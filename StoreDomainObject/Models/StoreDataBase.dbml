@@ -64,6 +64,8 @@
       <Association Name="Goods_FeedBacks" Member="FeedBacks" ThisKey="id" OtherKey="goodId" Type="FeedBacks" />
       <Association Name="Goods_WishList" Member="WishList" ThisKey="id" OtherKey="goodId" Type="WishList" />
       <Association Name="Goods_GoodProperties" Member="GoodProperties" ThisKey="id" OtherKey="goodId" Type="GoodProperties" />
+      <Association Name="Goods_WatchedGood" Member="WatchedGood" ThisKey="id" OtherKey="goodId" Type="WatchedGood" />
+      <Association Name="Goods_Basket" Member="Basket" ThisKey="id" OtherKey="goodId" Type="Basket" />
       <Association Name="GoodTypes_Goods" Member="GoodTypes" ThisKey="typeId" OtherKey="id" Type="GoodTypes" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -76,6 +78,7 @@
       <Column Name="created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="Goods_FeedBacks" Member="Goods" ThisKey="goodId" OtherKey="id" Type="Goods" IsForeignKey="true" />
+      <Association Name="Users_FeedBacks" Member="Users" ThisKey="userId" OtherKey="id" Type="Users" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="lk.WishList" Member="WishList">
@@ -84,6 +87,7 @@
       <Column Name="userId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="Goods_WishList" Member="Goods" ThisKey="goodId" OtherKey="id" Type="Goods" IsForeignKey="true" />
+      <Association Name="Users_WishList" Member="Users" ThisKey="userId" OtherKey="id" Type="Users" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="store.GoodProperties" Member="GoodProperties">
@@ -107,6 +111,58 @@
       <Column Name="typeName" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
       <Column Name="typeInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="mark" Type="System.Decimal" DbType="Decimal(5,1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="lk.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="emailConfirmed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="passwordHash" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="phoneNumber" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="dateRegistration" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="generateToken" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dateConfirmation" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="Users_FeedBacks" Member="FeedBacks" ThisKey="id" OtherKey="userId" Type="FeedBacks" />
+      <Association Name="Users_WishList" Member="WishList" ThisKey="id" OtherKey="userId" Type="WishList" />
+      <Association Name="Users_UserRoles" Member="UserRoles" ThisKey="id" OtherKey="userId" Type="UserRoles" />
+      <Association Name="Users_WatchedGood" Member="WatchedGood" ThisKey="id" OtherKey="userId" Type="WatchedGood" />
+      <Association Name="Users_Basket" Member="Basket" ThisKey="id" OtherKey="userId" Type="Basket" />
+    </Type>
+  </Table>
+  <Table Name="lk.UserRoles" Member="UserRoles">
+    <Type Name="UserRoles">
+      <Column Name="userId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="roleId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Users_UserRoles" Member="Users" ThisKey="userId" OtherKey="id" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="lk.WatchedGood" Member="WatchedGood">
+    <Type Name="WatchedGood">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Goods_WatchedGood" Member="Goods" ThisKey="goodId" OtherKey="id" Type="Goods" IsForeignKey="true" />
+      <Association Name="Users_WatchedGood" Member="Users" ThisKey="userId" OtherKey="id" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="lk.Basket" Member="Basket">
+    <Type Name="Basket">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="packId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="userId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="summOne" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="count" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="transactionNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="datePay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="summTotal" Type="System.Decimal" DbType="Decimal(18,2)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Goods_Basket" Member="Goods" ThisKey="goodId" OtherKey="id" Type="Goods" IsForeignKey="true" />
+      <Association Name="Users_Basket" Member="Users" ThisKey="userId" OtherKey="id" Type="Users" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="lk.ChangePassword" Method="ChangePassword">
@@ -139,10 +195,6 @@
     <Parameter Name="message" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="lk.AddNowWatching" Method="AddNowWatching">
-    <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="store.GetFullInfo" Method="GetFullInfo" IsComposable="true">
     <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
     <Return Type="System.String" />
@@ -165,6 +217,26 @@
     <Parameter Name="message" Type="System.String" DbType="NVarChar(MAX)" />
     <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
     <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.AddNowWatching" Method="AddNowWatching">
+    <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.Pay" Method="Pay">
+    <Parameter Name="packId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="countInBasket" Type="System.Int32" DbType="Int" />
+    <Parameter Name="payDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="transactionNumber" Type="System.String" DbType="VarChar(50)" />
+  </Function>
+  <Function Name="lk.AddBasket" Method="AddBasket">
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="count" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="isFastPay" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="packId" Type="System.Int64" DbType="BigInt" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

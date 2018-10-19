@@ -96,7 +96,6 @@ namespace StoreDomainObject.Code
                     id = s.id
                 }).ToList();
                 good.goodProperties = goodProperties;
-                db.AddNowWatching(goodId);
                 return good;
             }
         }
