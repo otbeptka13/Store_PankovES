@@ -3,3 +3,5 @@ StoreDomainObject.Tests/obj/
 StoreDomainObject/bin/Debug/StoreDomainObject.pdb
 StoreDomainObject.Tests/bin/
 StoreDomainObject/bin/
+/Web/obj/Debug
+/Web/bin
