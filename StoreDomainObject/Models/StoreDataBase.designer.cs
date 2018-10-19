@@ -261,17 +261,25 @@ namespace StoreDomainObject
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="lk.Pay")]
-		public void Pay([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> packId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> countInBasket, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> payDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string transactionNumber)
-		{
-			this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), packId, userId, countInBasket, payDate, transactionNumber);
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="lk.AddBasket")]
-		public int AddBasket([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> goodId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(18,2)")] System.Nullable<decimal> count, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> isFastPay, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] ref System.Nullable<long> packId)
+		public int AddBasket([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> goodId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(18,3)")] System.Nullable<decimal> count, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> isFastPay, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] ref System.Nullable<long> packId)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, goodId, count, isFastPay, packId);
 			packId = ((System.Nullable<long>)(result.GetParameterValue(4)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="lk.SetDeliverly")]
+		public int SetDeliverly([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> packId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), packId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="lk.Pay")]
+		public int Pay([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> packId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> countInBasket, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> payDate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string transactionNumber, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(18,2)")] System.Nullable<decimal> totalSumm)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), packId, userId, countInBasket, payDate, transactionNumber, totalSumm);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -3036,7 +3044,7 @@ namespace StoreDomainObject
 		
 		private System.Nullable<decimal> _summOne;
 		
-		private decimal _count;
+		private System.Nullable<decimal> _count;
 		
 		private byte _status;
 		
@@ -3045,6 +3053,8 @@ namespace StoreDomainObject
 		private string _transactionNumber;
 		
 		private System.Nullable<System.DateTime> _datePay;
+		
+		private bool _isFastPay;
 		
 		private System.Nullable<decimal> _summTotal;
 		
@@ -3066,7 +3076,7 @@ namespace StoreDomainObject
     partial void OncreatedChanged();
     partial void OnsummOneChanging(System.Nullable<decimal> value);
     partial void OnsummOneChanged();
-    partial void OncountChanging(decimal value);
+    partial void OncountChanging(System.Nullable<decimal> value);
     partial void OncountChanged();
     partial void OnstatusChanging(byte value);
     partial void OnstatusChanged();
@@ -3076,6 +3086,8 @@ namespace StoreDomainObject
     partial void OntransactionNumberChanged();
     partial void OndatePayChanging(System.Nullable<System.DateTime> value);
     partial void OndatePayChanged();
+    partial void OnisFastPayChanging(bool value);
+    partial void OnisFastPayChanged();
     partial void OnsummTotalChanging(System.Nullable<decimal> value);
     partial void OnsummTotalChanged();
     #endregion
@@ -3191,8 +3203,8 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_count", DbType="Decimal(18,2) NOT NULL")]
-		public decimal count
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_count", DbType="Decimal(18,3)")]
+		public System.Nullable<decimal> count
 		{
 			get
 			{
@@ -3291,6 +3303,26 @@ namespace StoreDomainObject
 					this._datePay = value;
 					this.SendPropertyChanged("datePay");
 					this.OndatePayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isFastPay", DbType="Bit NOT NULL")]
+		public bool isFastPay
+		{
+			get
+			{
+				return this._isFastPay;
+			}
+			set
+			{
+				if ((this._isFastPay != value))
+				{
+					this.OnisFastPayChanging(value);
+					this.SendPropertyChanging();
+					this._isFastPay = value;
+					this.SendPropertyChanged("isFastPay");
+					this.OnisFastPayChanged();
 				}
 			}
 		}

@@ -12,6 +12,7 @@ namespace StoreDomainObject
         public int countInBasket { get; set; } //for validate
         public DateTime payDate { get; set; }
         public string transactionNumber { get; set; }
+        public decimal totalSumm { get; set; }
     }
     public class AddBasketModel
     {

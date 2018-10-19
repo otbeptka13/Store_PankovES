@@ -30,11 +30,9 @@ namespace StoreDomainObject.Tests
                 info = "info" + Guid.NewGuid().ToString(),
                 name = "name" + Guid.NewGuid().ToString().Substring(0, 10)
             };
-            odmen.CreateGroup(newGroup);
-            var createdGroup = store.GetGroups().FirstOrDefault(s=>s.name == newGroup.name 
-                                    &&  s.info == newGroup.info && s.imageUrl ==newGroup.imageUrl);
-            // TODO: Add your test code here
-            Assert.IsNotNull(createdGroup);
+            var id = odmen.CreateGroup(newGroup);
+            
+            Assert.IsTrue(id > 0);
         }
         [Test]
         public void TestDeleteGroup()
@@ -95,12 +93,28 @@ namespace StoreDomainObject.Tests
                 price = 123.44M,
                 fullInfo = Guid.NewGuid().ToString() + Guid.NewGuid().ToString()
             };
-            odmen.CreateGood(newGood);
-            var createdGood = store.GetGoodsByGroup(groupId).FirstOrDefault(s => s.name == newGood.name
-                                    && s.info == newGood.info && s.imageUrl == newGood.imageUrl
-                                    && s.price == newGood.price && s.discount == newGood.discount);
-            // TODO: Add your test code here
-            Assert.IsNotNull(createdGood);
+            var id = odmen.CreateGood(newGood);
+            var property = new GoodProperty
+            {
+                goodId = id,
+                name = "name" + Guid.NewGuid(),
+                value = "value" + Guid.NewGuid()
+            };
+            var properties = new List<GoodProperty> {new GoodProperty
+            {
+                goodId = id,
+                name = "name" + Guid.NewGuid(),
+                value = "value" + Guid.NewGuid()
+            },new GoodProperty
+            {
+                goodId = id,
+                name = "name" + Guid.NewGuid(),
+                value = "value" + Guid.NewGuid()
+            }
+            };
+            var propertyid = odmen.CreateGoodProperty(property);
+            odmen.CreateGoodProperties(properties);
+            Assert.IsTrue(id > 0 && propertyid > 0 && property.id > 0  && !properties.Any(s=> s.id == 0));
         }
         [Test]
         public void TestDeleteGood()
@@ -117,7 +131,7 @@ namespace StoreDomainObject.Tests
             foreach (var goodForDel in goods)
                 odmen.DeleteGood(goodForDel.id);
 
-            var deleted = store.GetGroups().FirstOrDefault(s => s.name.Contains("name"));
+            var deleted = store.GetAllGoods().FirstOrDefault(s => s.name.Contains("name"));
             // TODO: Add your test code here
             Assert.IsNull(deleted);
         }

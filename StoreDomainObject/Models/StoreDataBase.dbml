@@ -155,11 +155,12 @@
       <Column Name="userId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="summOne" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="count" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="count" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
       <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="goodId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="transactionNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="datePay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isFastPay" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="summTotal" Type="System.Decimal" DbType="Decimal(18,2)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="Goods_Basket" Member="Goods" ThisKey="goodId" OtherKey="id" Type="Goods" IsForeignKey="true" />
       <Association Name="Users_Basket" Member="Users" ThisKey="userId" OtherKey="id" Type="Users" IsForeignKey="true" />
@@ -224,19 +225,25 @@
     <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="lk.Pay" Method="Pay">
-    <Parameter Name="packId" Type="System.Int64" DbType="BigInt" />
-    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
-    <Parameter Name="countInBasket" Type="System.Int32" DbType="Int" />
-    <Parameter Name="payDate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="transactionNumber" Type="System.String" DbType="VarChar(50)" />
-  </Function>
   <Function Name="lk.AddBasket" Method="AddBasket">
     <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
     <Parameter Name="goodId" Type="System.Int64" DbType="BigInt" />
     <Parameter Name="count" Type="System.Decimal" DbType="Decimal(18,2)" />
     <Parameter Name="isFastPay" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="packId" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.SetDeliverly" Method="SetDeliverly">
+    <Parameter Name="packId" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="lk.Pay" Method="Pay">
+    <Parameter Name="packId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="countInBasket" Type="System.Int32" DbType="Int" />
+    <Parameter Name="payDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="transactionNumber" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="totalSumm" Type="System.Decimal" DbType="Decimal(18,2)" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

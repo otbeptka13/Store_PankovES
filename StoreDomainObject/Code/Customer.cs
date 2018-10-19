@@ -18,7 +18,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                db.LeaveFeedback(feedBack.mark, feedBack.message,feedBack.goodId, userId);
+                db.LeaveFeedback(feedBack.mark, feedBack.message, feedBack.goodId, userId);
             }
         }
 
@@ -26,9 +26,9 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var result = new  ResultAddBasket();
+                var result = new ResultAddBasket();
                 long? packId = 0;
-                db.AddBasket(this.userId,model.goodId, model.count, model.isFastPay, ref packId);
+                db.AddBasket(this.userId, model.goodId, model.count, model.isFastPay, ref packId);
                 result.packId = packId ?? 0;
                 return result;
             }
@@ -39,8 +39,11 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 var element = db.Basket.FirstOrDefault(s => s.id == basketId && s.status == 1);
-                element.status = 100;
-                db.SubmitChanges();
+                if (element != null)
+                {
+                    element.status = 100;
+                    db.SubmitChanges();
+                }
             }
         }
 
@@ -48,7 +51,15 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                db.Pay(modelPay.packId,this.userId,modelPay.countInBasket,modelPay.payDate, modelPay.transactionNumber);
+                db.Pay(modelPay.packId, this.userId, modelPay.countInBasket, modelPay.payDate, modelPay.transactionNumber, Math.Round(modelPay.totalSumm,2));
+            }
+        }
+
+        internal List<Basket> GetBasket()
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                return db.Basket.Where(s => s.userId == this.userId && s.status == 1 && !s.isFastPay).ToList() ?? new List<Basket>();
             }
         }
 
@@ -56,7 +67,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                return db.Basket.Where(s => s.userId == this.userId && s.status == 2).ToList();
+                return db.Basket.Where(s => s.userId == this.userId && s.status == 2).ToList() ?? new List<Basket>();
             }
         }
 
@@ -64,7 +75,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                return db.Basket.Where(s => s.userId == this.userId && s.status == 5).ToList();
+                return db.Basket.Where(s => s.userId == this.userId && s.status == 5).ToList() ?? new List<Basket>();
             }
         }
 
@@ -72,15 +83,16 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var elements = db.Basket.Where(s => s.userId == this.userId && s.status == 1);
+                var elements = db.Basket.Where(s => s.userId == this.userId && s.status == 1 && !s.isFastPay);
                 if (elements?.Count() > 0)
                 {
                     foreach (var item in elements)
                     {
                         item.status = 100;
                     }
+                    db.SubmitChanges();
                 }
-                db.SubmitChanges();
+
             }
         }
 
@@ -88,30 +100,57 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var wishGood = new WishList
+                var element = db.WishList.FirstOrDefault(s => s.userId == this.userId && s.goodId == goodId);
+                if (element == null)
                 {
-                    goodId = goodId,
-                    userId = this.userId
-                };
-                db.WishList.InsertOnSubmit(wishGood);
-                db.SubmitChanges();
+                    var wishGood = new WishList
+                    {
+                        goodId = goodId,
+                        userId = this.userId
+                    };
+                    db.WishList.InsertOnSubmit(wishGood);
+                    db.SubmitChanges();
+                }
             }
         }
-
+        internal void ClearWishList()
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var elements = db.WishList.Where(s => s.userId == this.userId);
+                if (elements?.Count() > 0)
+                {
+                    db.WishList.DeleteAllOnSubmit(elements);
+                    db.SubmitChanges();
+                }
+            }
+        }
+        internal void DeleteWishList(long goodId)
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var element = db.WishList.FirstOrDefault(s => s.userId == this.userId && s.goodId == goodId);
+                if (element != null)
+                {
+                    db.WishList.DeleteOnSubmit(element);
+                    db.SubmitChanges();
+                }
+            }
+        }
         internal List<Good> GetWishList()
         {
             using (var db = Base.storeDataBaseContext)
             {
                 return db.WishList.Where(s => s.userId == this.userId)
-                    ?.Join(db.GoodsView, w => w.goodId, g => g.id, (w, g) => Good.FromBDObjectView(g))?.ToList();
+                    ?.Join(db.GoodsView, w => w.goodId, g => g.id, (w, g) => Good.FromBDObjectView(g))?.ToList() ?? new List<Good>();
             }
         }
         internal void SetThatWatching(long goodId)
         {
-            
+
             using (var db = Base.storeDataBaseContext)
             {
-                db.AddNowWatching(goodId, this.userId); 
+                db.AddNowWatching(goodId, this.userId);
             }
         }
     }

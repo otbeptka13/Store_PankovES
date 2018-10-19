@@ -9,51 +9,55 @@ namespace StoreDomainObject
 {
     public class OdmenAction
     {
-        public void CreateGroup(GoodGroup group)
+        private Odmen odmen;
+        public OdmenAction()
         {
-            var odmen = new Odmen();
-            odmen.CreateGroup(group);
+            odmen = new Odmen();
+        }
+        public long CreateGroup(GoodGroup group)
+        {
+            return this.odmen.CreateGroup(group);
         }
         public void DeleteGroup(long groupId)
         {
-            var odmen = new Odmen();
-            odmen.DeleteGroup(groupId);
+            this.odmen.DeleteGroup(groupId);
         }
         public void ChangeGroup(GoodGroup group)
         {
-            var odmen = new Odmen();
-            odmen.ChangeGroup(group);
+            this.odmen.ChangeGroup(group);
         }
 
-        public void CreateGood(Good good)
+        public long CreateGood(Good good)
         {
-            var odmen = new Odmen();
-            odmen.CreateGood(good);
+            return this.odmen.CreateGood(good);
         }
         public void DeleteGood(long goodId)
         {
-            var odmen = new Odmen();
-            odmen.DeleteGood(goodId);
+            this.odmen.DeleteGood(goodId);
         }
         public void ChangeGood(Good good)
         {
-            var odmen = new Odmen();
-            odmen.ChangeGood(good);
+            this.odmen.ChangeGood(good);
         }
-        public void CreateGoodProperty(GoodProperty goodProperty)
+        public long CreateGoodProperty(GoodProperty goodProperty)
         {
-            var odmen = new Odmen();
-            odmen.CreateGoodProperty(goodProperty);
+            return this.odmen.CreateGoodProperty(goodProperty);
+        }
+        public void CreateGoodProperties(List<GoodProperty> goodProperty)
+        {
+            this.odmen.CreateGoodProperties(goodProperty);
         }
         public void DeleteGoodProperty(long goodPropertyId)
         {
-            var odmen = new Odmen();
-            odmen.DeleteGoodProperty(goodPropertyId);
+            this.odmen.DeleteGoodProperty(goodPropertyId);
         }
         public void ChangeGoodProperty(GoodProperty goodProperty)
         {
-            var odmen = new Odmen();
-            odmen.ChangeGoodProperty(goodProperty);
+            this.odmen.ChangeGoodProperty(goodProperty);
+        }
+        public void SetDeliverly(long packId)
+        {
+            this.odmen.SetDeliverly(packId);
         }
 
     }

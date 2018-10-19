@@ -21,6 +21,10 @@ namespace StoreDomainObject
         {
             return this.customer.AddBasket(model);
         }
+        public List<Basket> GetBasket()
+        {
+            return this.customer.GetBasket();
+        }
         public void DelBasket(long basketId)
         {
             customer.DelBasket(basketId);
@@ -56,6 +60,14 @@ namespace StoreDomainObject
         public void SetThatWatching(long goodId)
         {
             this.customer.SetThatWatching(goodId);
+        }
+        public void ClearWishList()
+        {
+            this.customer.ClearWishList();
+        }
+        public void DeleteWishList(long goodId)
+        {
+            this.customer.DeleteWishList(goodId);
         }
     }
 }
