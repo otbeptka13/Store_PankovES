@@ -12,7 +12,7 @@ namespace StoreDomainObject.Tests
     [TestFixture(Description = "OdmenActionTest")]
     public class OdmenActionTest
     {
-        [PreTest]
+        [PreTest][SetUp]
         public void InitTest()
         {
             StoreDomainObject.GlobalSettings.connectionString = "Data Source=mssql6.gear.host;Initial Catalog=pankoves;Persist Security Info=True;User ID=pankoves;Password=f,shdfku";
@@ -20,7 +20,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestCreateGroup()
         {
-            InitTest();
+            
             var odmen = new OdmenAction();
             var store = new StoreAction();
 
@@ -39,7 +39,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestDeleteGroup()
         {
-            InitTest();
+            
             var odmen = new OdmenAction();
             var store = new StoreAction();
             var groupsForDel = store.GetGroups().Where(s => s.name.Contains("name"));
@@ -59,7 +59,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestUpdateGroup()
         {
-            InitTest();
+            
             var odmen = new OdmenAction();
             var store = new StoreAction();
             var groupUpdate = store.GetGroups().FirstOrDefault(s => s.name.Contains("name"));
@@ -81,7 +81,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestCreateGood()
         {
-            InitTest();
+            
             var odmen = new OdmenAction();
             var store = new StoreAction();
             var groupId = store.GetGroups().FirstOrDefault().id;
@@ -105,7 +105,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestDeleteGood()
         {
-            InitTest();
+            
             var odmen = new OdmenAction();
             var store = new StoreAction();
             var goods = store.GetAllGoods().Where(s => s.name.Contains("name"));
@@ -124,7 +124,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestUpdateGood()
         {
-            InitTest();
+            
             var odmen = new OdmenAction();
             var store = new StoreAction();
             var goodUpdate = store.GetAllGoods().FirstOrDefault(s => s.name.Contains("name"));

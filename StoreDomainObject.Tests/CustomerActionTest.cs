@@ -12,7 +12,7 @@ namespace StoreDomainObject.Tests
     [TestFixture(Description = "CustomerActionTest")]
     public class CustomerActionTes
     {
-        [PreTest]
+        [PreTest][SetUp]
         public void InitTest()
         {
             StoreDomainObject.GlobalSettings.connectionString = "Data Source=mssql6.gear.host;Initial Catalog=pankoves;Persist Security Info=True;User ID=pankoves;Password=f,shdfku";
@@ -20,14 +20,13 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestLeaveFeadback_IsNotNull()
         {
-            InitTest();
-            var customer = new CustomerAction();
+            
+            var customer = new CustomerAction(8);
             var store = new StoreAction();
 
             var feedback = new FeedBack
             {
                 goodId = store.GetAllGoods().First().id,
-                userId = 8,
                 mark = 3,
                 message = Guid.NewGuid().ToString()
             };

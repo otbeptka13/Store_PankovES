@@ -12,7 +12,7 @@ namespace StoreDomainObject.Tests
     [TestFixture(Description = "StoreActionTest")]
     public class StoreActionTest
     {
-        [PreTest]
+        [PreTest][SetUp]
         public void InitTest()
         {
             StoreDomainObject.GlobalSettings.connectionString = "Data Source=mssql6.gear.host;Initial Catalog=pankoves;Persist Security Info=True;User ID=pankoves;Password=f,shdfku";
@@ -20,7 +20,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestGetGroups_CountNotNull()
         {
-            InitTest();
+            
             var storeAction = new StoreAction();
             var result = storeAction.GetGroups();
             // TODO: Add your test code here
@@ -30,7 +30,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestGetGoodsByGroup_Good()
         {
-            InitTest();
+            
             var storeAction = new StoreAction();
             var groupId = storeAction.GetGroups().OrderByDescending(s => s.id).First().id;
             var result = storeAction.GetGoodsByGroup(groupId);
@@ -41,7 +41,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void GetGoodInfo()
         {
-            InitTest();
+            
             var storeAction = new StoreAction();
             var rand = new Random();
             var groups = storeAction.GetGroups();
@@ -65,7 +65,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestGetNowWatching_CountNotNull()
         {
-            InitTest();
+            
             var storeAction = new StoreAction();
             var result = storeAction.GetNowWatching();
             // TODO: Add your test code here
@@ -75,7 +75,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestGetFeedBack_CountNotNull()
         {
-            InitTest();
+            
             var storeAction = new StoreAction();
             var result = storeAction.GetFeedBack(2);
             // TODO: Add your test code here

@@ -42,6 +42,12 @@ namespace StoreDomainObject
     partial void InsertFeedBacks(FeedBacks instance);
     partial void UpdateFeedBacks(FeedBacks instance);
     partial void DeleteFeedBacks(FeedBacks instance);
+    partial void InsertWishList(WishList instance);
+    partial void UpdateWishList(WishList instance);
+    partial void DeleteWishList(WishList instance);
+    partial void InsertGoodProperties(GoodProperties instance);
+    partial void UpdateGoodProperties(GoodProperties instance);
+    partial void DeleteGoodProperties(GoodProperties instance);
     #endregion
 		
 		public StoreDataBaseDataContext() : 
@@ -106,14 +112,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		public System.Data.Linq.Table<GoodsView> GoodsView
-		{
-			get
-			{
-				return this.GetTable<GoodsView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Goods> Goods
 		{
 			get
@@ -127,6 +125,30 @@ namespace StoreDomainObject
 			get
 			{
 				return this.GetTable<FeedBacks>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WishList> WishList
+		{
+			get
+			{
+				return this.GetTable<WishList>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GoodProperties> GoodProperties
+		{
+			get
+			{
+				return this.GetTable<GoodProperties>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GoodsView> GoodsView
+		{
+			get
+			{
+				return this.GetTable<GoodsView>();
 			}
 		}
 		
@@ -972,177 +994,6 @@ namespace StoreDomainObject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodsView")]
-	public partial class GoodsView
-	{
-		
-		private long _id;
-		
-		private string _name;
-		
-		private long _typeId;
-		
-		private decimal _price;
-		
-		private string _info;
-		
-		private string _imageUrl;
-		
-		private short _discount;
-		
-		private string _typeName;
-		
-		private string _typeInfo;
-		
-		public GoodsView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="BigInt NOT NULL")]
-		public long id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeId", DbType="BigInt NOT NULL")]
-		public long typeId
-		{
-			get
-			{
-				return this._typeId;
-			}
-			set
-			{
-				if ((this._typeId != value))
-				{
-					this._typeId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,2) NOT NULL")]
-		public decimal price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this._price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(50)")]
-		public string info
-		{
-			get
-			{
-				return this._info;
-			}
-			set
-			{
-				if ((this._info != value))
-				{
-					this._info = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(200)")]
-		public string imageUrl
-		{
-			get
-			{
-				return this._imageUrl;
-			}
-			set
-			{
-				if ((this._imageUrl != value))
-				{
-					this._imageUrl = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
-		public short discount
-		{
-			get
-			{
-				return this._discount;
-			}
-			set
-			{
-				if ((this._discount != value))
-				{
-					this._discount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeName", DbType="NVarChar(25)")]
-		public string typeName
-		{
-			get
-			{
-				return this._typeName;
-			}
-			set
-			{
-				if ((this._typeName != value))
-				{
-					this._typeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeInfo", DbType="NVarChar(50)")]
-		public string typeInfo
-		{
-			get
-			{
-				return this._typeInfo;
-			}
-			set
-			{
-				if ((this._typeInfo != value))
-				{
-					this._typeInfo = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.Goods")]
 	public partial class Goods : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1166,6 +1017,10 @@ namespace StoreDomainObject
 		private string _fullInfo;
 		
 		private EntitySet<FeedBacks> _FeedBacks;
+		
+		private EntitySet<WishList> _WishList;
+		
+		private EntitySet<GoodProperties> _GoodProperties;
 		
 		private EntityRef<GoodTypes> _GoodTypes;
 		
@@ -1194,6 +1049,8 @@ namespace StoreDomainObject
 		public Goods()
 		{
 			this._FeedBacks = new EntitySet<FeedBacks>(new Action<FeedBacks>(this.attach_FeedBacks), new Action<FeedBacks>(this.detach_FeedBacks));
+			this._WishList = new EntitySet<WishList>(new Action<WishList>(this.attach_WishList), new Action<WishList>(this.detach_WishList));
+			this._GoodProperties = new EntitySet<GoodProperties>(new Action<GoodProperties>(this.attach_GoodProperties), new Action<GoodProperties>(this.detach_GoodProperties));
 			this._GoodTypes = default(EntityRef<GoodTypes>);
 			OnCreated();
 		}
@@ -1375,6 +1232,32 @@ namespace StoreDomainObject
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WishList", Storage="_WishList", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<WishList> WishList
+		{
+			get
+			{
+				return this._WishList;
+			}
+			set
+			{
+				this._WishList.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodProperties", Storage="_GoodProperties", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<GoodProperties> GoodProperties
+		{
+			get
+			{
+				return this._GoodProperties;
+			}
+			set
+			{
+				this._GoodProperties.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_Goods", Storage="_GoodTypes", ThisKey="typeId", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public GoodTypes GoodTypes
 		{
@@ -1436,6 +1319,30 @@ namespace StoreDomainObject
 		}
 		
 		private void detach_FeedBacks(FeedBacks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_WishList(WishList entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_WishList(WishList entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_GoodProperties(GoodProperties entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_GoodProperties(GoodProperties entity)
 		{
 			this.SendPropertyChanging();
 			entity.Goods = null;
@@ -1661,6 +1568,521 @@ namespace StoreDomainObject
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.WishList")]
+	public partial class WishList : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private long _userId;
+		
+		private long _goodId;
+		
+		private EntityRef<Goods> _Goods;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OnuserIdChanging(long value);
+    partial void OnuserIdChanged();
+    partial void OngoodIdChanging(long value);
+    partial void OngoodIdChanged();
+    #endregion
+		
+		public WishList()
+		{
+			this._Goods = default(EntityRef<Goods>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="BigInt NOT NULL")]
+		public long userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					this.OnuserIdChanging(value);
+					this.SendPropertyChanging();
+					this._userId = value;
+					this.SendPropertyChanged("userId");
+					this.OnuserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goodId", DbType="BigInt NOT NULL")]
+		public long goodId
+		{
+			get
+			{
+				return this._goodId;
+			}
+			set
+			{
+				if ((this._goodId != value))
+				{
+					if (this._Goods.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OngoodIdChanging(value);
+					this.SendPropertyChanging();
+					this._goodId = value;
+					this.SendPropertyChanged("goodId");
+					this.OngoodIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WishList", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.WishList.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.WishList.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodProperties")]
+	public partial class GoodProperties : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private long _goodId;
+		
+		private string _name;
+		
+		private string _value;
+		
+		private EntityRef<Goods> _Goods;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OngoodIdChanging(long value);
+    partial void OngoodIdChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnvalueChanging(string value);
+    partial void OnvalueChanged();
+    #endregion
+		
+		public GoodProperties()
+		{
+			this._Goods = default(EntityRef<Goods>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goodId", DbType="BigInt NOT NULL")]
+		public long goodId
+		{
+			get
+			{
+				return this._goodId;
+			}
+			set
+			{
+				if ((this._goodId != value))
+				{
+					if (this._Goods.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OngoodIdChanging(value);
+					this.SendPropertyChanging();
+					this._goodId = value;
+					this.SendPropertyChanged("goodId");
+					this.OngoodIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_value", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string value
+		{
+			get
+			{
+				return this._value;
+			}
+			set
+			{
+				if ((this._value != value))
+				{
+					this.OnvalueChanging(value);
+					this.SendPropertyChanging();
+					this._value = value;
+					this.SendPropertyChanged("value");
+					this.OnvalueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodProperties", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.GoodProperties.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.GoodProperties.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodsView")]
+	public partial class GoodsView
+	{
+		
+		private long _id;
+		
+		private string _name;
+		
+		private long _typeId;
+		
+		private decimal _price;
+		
+		private string _info;
+		
+		private string _imageUrl;
+		
+		private short _discount;
+		
+		private string _typeName;
+		
+		private string _typeInfo;
+		
+		private System.Nullable<decimal> _mark;
+		
+		public GoodsView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="BigInt NOT NULL")]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeId", DbType="BigInt NOT NULL")]
+		public long typeId
+		{
+			get
+			{
+				return this._typeId;
+			}
+			set
+			{
+				if ((this._typeId != value))
+				{
+					this._typeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,2) NOT NULL")]
+		public decimal price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this._price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(50)")]
+		public string info
+		{
+			get
+			{
+				return this._info;
+			}
+			set
+			{
+				if ((this._info != value))
+				{
+					this._info = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(200)")]
+		public string imageUrl
+		{
+			get
+			{
+				return this._imageUrl;
+			}
+			set
+			{
+				if ((this._imageUrl != value))
+				{
+					this._imageUrl = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
+		public short discount
+		{
+			get
+			{
+				return this._discount;
+			}
+			set
+			{
+				if ((this._discount != value))
+				{
+					this._discount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeName", DbType="NVarChar(25)")]
+		public string typeName
+		{
+			get
+			{
+				return this._typeName;
+			}
+			set
+			{
+				if ((this._typeName != value))
+				{
+					this._typeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeInfo", DbType="NVarChar(50)")]
+		public string typeInfo
+		{
+			get
+			{
+				return this._typeInfo;
+			}
+			set
+			{
+				if ((this._typeInfo != value))
+				{
+					this._typeInfo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mark", DbType="Decimal(5,1)")]
+		public System.Nullable<decimal> mark
+		{
+			get
+			{
+				return this._mark;
+			}
+			set
+			{
+				if ((this._mark != value))
+				{
+					this._mark = value;
+				}
 			}
 		}
 	}

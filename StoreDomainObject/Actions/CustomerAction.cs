@@ -9,6 +9,14 @@ namespace StoreDomainObject
 {
     public class CustomerAction
     {
+        private long userId { get; set; }
+        private Customer customer { get; set; }
+
+        public CustomerAction(long userId)
+        {
+            this.userId = userId;
+            customer = new Customer(userId);
+        }
         public void AddBasket() { }
         public void DelBasket() { }
         public void ClearBasket() { }
@@ -18,11 +26,18 @@ namespace StoreDomainObject
 
         public void GetOrders() { }
         public void GetHistoryPays() { }
-
         public void LeaveFeadback(FeedBack feedBack)
+        {       
+            this.customer.LeaveFeedBack(feedBack);
+        }
+
+        public void AddToWishList(long goodId)
+        {      
+            this.customer.AddToWishList(goodId);
+        }
+        public List<Good> GetWishList()
         {
-            var customer = new Customer();
-            customer.LeaveFeedBack(feedBack);
+            return this.customer.GetWishList();
         }
     }
 }

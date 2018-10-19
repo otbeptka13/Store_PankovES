@@ -1,2 +1,5 @@
 StoreDomainObject/obj/
 StoreDomainObject.Tests/obj/
+StoreDomainObject/bin/Debug/StoreDomainObject.pdb
+StoreDomainObject.Tests/bin/
+StoreDomainObject/bin/

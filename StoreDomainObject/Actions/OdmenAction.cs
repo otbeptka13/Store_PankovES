@@ -40,6 +40,21 @@ namespace StoreDomainObject
             var odmen = new Odmen();
             odmen.ChangeGood(good);
         }
+        public void CreateGoodProperty(GoodProperty goodProperty)
+        {
+            var odmen = new Odmen();
+            odmen.CreateGoodProperty(goodProperty);
+        }
+        public void DeleteGoodProperty(long goodPropertyId)
+        {
+            var odmen = new Odmen();
+            odmen.DeleteGoodProperty(goodPropertyId);
+        }
+        public void ChangeGoodProperty(GoodProperty goodProperty)
+        {
+            var odmen = new Odmen();
+            odmen.ChangeGoodProperty(goodProperty);
+        }
 
     }
 }

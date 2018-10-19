@@ -12,7 +12,7 @@ namespace StoreDomainObject.Tests
     [TestFixture(Description = "AccountActionTest")]
     public class AccountActionTest
     {
-        [PreTest]
+        [PreTest][SetUp]
         public void InitTest()
         {
             StoreDomainObject.GlobalSettings.connectionString = "Data Source=mssql6.gear.host;Initial Catalog=pankoves;Persist Security Info=True;User ID=pankoves;Password=f,shdfku";
@@ -20,7 +20,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestRegister_NewEmail()
         {
-            InitTest();
+            
             var model = new RegisterModel
             {
                 email = "Egor-1313@yandex.ru" + Guid.NewGuid(),
@@ -36,7 +36,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestRegister_BusyEmail()
         {
-            InitTest();
+            
             var model = new RegisterModel
             {
                 email = "Egor-1313@yandex.ru",
@@ -51,7 +51,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestLogin_Good()
         {
-            InitTest();
+            
             var model = new LoginModel
             {
                 email = "Egor-1313@yandex.ru",
@@ -67,7 +67,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestLogin_NotConfirmed()
         {
-            InitTest();
+            
             var model = new RegisterModel
             {
                 email = "Egor-1313@yandex.ru" + Guid.NewGuid(),
@@ -89,7 +89,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestLogin_WrongPassword()
         {
-            InitTest();           
+                       
             var loginModel = new LoginModel
             {
                 email = "Egor-1313@yandex.ru",
@@ -104,7 +104,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestLogin_WrongAll()
         {
-            InitTest();
+            
             var loginModel = new LoginModel
             {
                 email = Guid.NewGuid().ToString(),
@@ -119,7 +119,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestSendEmailConfirm_Good()
         {
-            InitTest();
+            
             var userIdModel = new UserIdModel
             {
                 userId = 8
@@ -133,7 +133,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestEmailSetConfirm_Good()
         {
-            InitTest();
+            
             var token = new TokenModel
             {
                 token = new Guid("62c575df-64a3-4d02-8924-abe1a07fcb37")
@@ -146,7 +146,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestSendPasswordToken_Good()
         {
-            InitTest();
+            
             var userIdModel = new UserIdModel
             {
                 userId = 8
@@ -159,7 +159,7 @@ namespace StoreDomainObject.Tests
         [Test]
         public void TestChangePassword_Good()
         {
-            InitTest();
+            
             var token = new ChangePasswordModel
             {
                 token = new Guid("A178A744-A033-444A-96DB-A9D56C6E146A"),

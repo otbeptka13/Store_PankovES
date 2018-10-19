@@ -44,11 +44,51 @@ namespace StoreDomainObject.Code
                 db.SubmitChanges();
             }
         }
+
+        internal void DeleteGoodProperty(long goodPropertyId)
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var element = db.GoodProperties.First(s => s.id == goodPropertyId);
+                db.GoodProperties.DeleteOnSubmit(element);
+                db.SubmitChanges();
+            }
+        }
+
+        internal void ChangeGoodProperty(GoodProperty goodProperty)
+        {
+             using (var db = Base.storeDataBaseContext)
+            {
+                var updating = db.GoodProperties.First(s => s.id == goodProperty.id);
+                updating.goodId = goodProperty.goodId;
+                updating.value = goodProperty.value;
+                updating.name = goodProperty.name;
+                db.SubmitChanges();
+            }
+        }
+
+        internal void CreateGoodProperty(GoodProperty goodProperty)
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var property = new GoodProperties
+                {
+                    goodId = goodProperty.goodId,
+                    name = goodProperty.name,
+                    value = goodProperty.value,
+                };
+                db.GoodProperties.InsertOnSubmit(property);
+                db.SubmitChanges();
+            }
+        }
+
         internal void DeleteGood(long goodId)
         {
             using (var db = Base.storeDataBaseContext)
             {
                 var element = db.Goods.First(s => s.id == goodId);
+                var goodProperties = db.GoodProperties.Where(s => s.goodId == goodId);
+                db.GoodProperties.DeleteAllOnSubmit(goodProperties);
                 db.Goods.DeleteOnSubmit(element);
                 db.SubmitChanges();
             }
@@ -57,16 +97,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var goodInserting = new Goods
-                {
-                    imageUrl = good.imageUrl,
-                    info = good.info,
-                    name = good.name,
-                    discount = good.discount,
-                    fullInfo = good.fullInfo,
-                    price = good.price,
-                    typeId = good.groupId
-                };
+                var goodInserting = good.ToBDObject();
                 db.Goods.InsertOnSubmit(goodInserting);
                 db.SubmitChanges();
             }

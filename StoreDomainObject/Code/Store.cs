@@ -28,19 +28,7 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 var goods = db.GoodsView.Where(s => s.typeId == groupId)?
-                    .Select(s => new Good
-                    {
-                        id = s.id,
-                        imageUrl = s.imageUrl,
-                        info = s.info,
-                        name = s.name,
-                        discount = s.discount,
-                        groupId = s.typeId,
-                        groupInfo = s.typeInfo,
-                        price = s.price,
-                        groupName = s.typeName
-
-                    })?.ToList();
+                    .Select(s => Good.FromBDObjectView(s))?.ToList();
                 return goods;
             }
         }
@@ -50,16 +38,16 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 var feedbacks = db.FeedBacks.Where(s => s.goodId == goodId)
-                    .Join(db.UsersView, f=>f.userId, u=>u.id, (f,u) =>
-                    new FeedBack
-                    {
-                        date = f.created ?? DateTime.Now,
-                        mark = f.mark,
-                        message = f.message,
-                        userName = u.name,
-                        goodId = f.goodId,
-                        userId = f.userId
-                    })?.ToList();
+                    .Join(db.UsersView, f => f.userId, u => u.id, (f, u) =>
+                        new FeedBack
+                        {
+                            date = f.created ?? DateTime.Now,
+                            mark = f.mark,
+                            message = f.message,
+                            userName = u.name,
+                            goodId = f.goodId,
+                            userId = f.userId
+                        })?.ToList();
                 return feedbacks;
             }
         }
@@ -68,19 +56,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var goods = db.GoodsView.Select(s => new Good
-                {
-                    id = s.id,
-                    imageUrl = s.imageUrl,
-                    info = s.info,
-                    name = s.name,
-                    discount = s.discount,
-                    groupId = s.typeId,
-                    groupInfo = s.typeInfo,
-                    price = s.price,
-                    groupName = s.typeName
-
-                })?.ToList();
+                var goods = db.GoodsView.Select(s => Good.FromBDObjectView(s))?.ToList();
                 return goods;
             }
         }
@@ -110,20 +86,16 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var good = db.GoodsView.Select(s => new Good
-                {
-                    id = s.id,
-                    imageUrl = s.imageUrl,
-                    info = s.info,
-                    name = s.name,
-                    discount = s.discount,
-                    groupId = s.typeId,
-                    groupInfo = s.typeInfo,
-                    price = s.price,
-                    groupName = s.typeName
-
-                }).FirstOrDefault(s => s.id == goodId);
+                var good = db.GoodsView.Select(s => Good.FromBDObjectView(s)).FirstOrDefault(s => s.id == goodId);
                 good.fullInfo = db.GetFullInfo(goodId);
+                var goodProperties = db.GoodProperties.Where(s => s.goodId == goodId).Select(s => new GoodProperty
+                {
+                    goodId = s.goodId,
+                    name = s.name,
+                    value = s.value,
+                    id = s.id
+                }).ToList();
+                good.goodProperties = goodProperties;
                 db.AddNowWatching(goodId);
                 return good;
             }
