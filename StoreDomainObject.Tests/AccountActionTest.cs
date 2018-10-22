@@ -171,7 +171,7 @@ namespace StoreDomainObject.Tests
             // TODO: Add your test code here
             Assert.True(result.userId > 0);
         }
-        private static string GetHashSha256(string text)
+        public static string GetHashSha256(string text)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(text);
             SHA256Managed hashstring = new SHA256Managed();

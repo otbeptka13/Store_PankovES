@@ -46,5 +46,10 @@ namespace StoreDomainObject
             return Base.GetUserById(model.userId);
         }
 
+        public UserIdResult GetUserIdByEmail(string email)
+        {
+            return Base.GetUserIdByEmail(email);
+        }
+
     }
 }

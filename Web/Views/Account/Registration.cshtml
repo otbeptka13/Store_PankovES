@@ -1,0 +1,53 @@
+﻿@using Web.Models
+@model RegistrationViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 center-block">
+            <section class="section sign-in inner-right-xs">
+                <h2 class="bordered">@ViewBag.Title</h2>
+                @*<p>Добро пожаловать!</p>*@
+
+                @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "login-form cf-style-1" }))
+                {
+                @Html.AntiForgeryToken()
+                <div class="field-row">
+                    @Html.LabelFor(s => s.email)
+                    @Html.TextBoxFor(s => s.email, new { @class = "le-input" })
+                    @Html.ValidationMessageFor(s=>s.email)
+                </div><!-- /.field-row -->
+
+                <div class="field-row">
+                    @Html.LabelFor(s => s.password)
+                    @Html.PasswordFor(s => s.password, new { @class = "le-input" })
+                    @Html.ValidationMessageFor(s => s.password)
+                </div><!-- /.field-row -->
+                    <div class="field-row">
+                        @Html.LabelFor(s => s.password2)
+                        @Html.PasswordFor(s => s.password2, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(s => s.password2)
+                 </div><!-- /.field-row -->
+                    <div class="field-row">
+                        @Html.LabelFor(s => s.phoneNumber)
+                        @Html.PasswordFor(s => s.phoneNumber, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(s => s.phoneNumber)
+                    </div><!-- /.field-row -->
+                    <div class="field-row">
+                        @Html.LabelFor(s => s.name)
+                        @Html.PasswordFor(s => s.name, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(s => s.name)
+                    </div><!-- /.field-row -->
+             
+                <div class="buttons-holder">
+                    <button type="submit" class="le-button huge">Зарегистрироваться</button>
+                </div><!-- /.buttons-holder -->
+                }<!-- /.cf-style-1 -->
+
+            </section><!-- /.sign-in -->
+        </div><!-- /.col -->
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+<!-- ========================================= MAIN : END ========================================= -->

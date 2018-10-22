@@ -41,5 +41,14 @@ namespace StoreDomainObject.Code
                 .Single(s => s.id == userId);
             }
         }
+
+        internal static UserIdResult GetUserIdByEmail(string email)
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var id =  db.UsersView.FirstOrDefault(s => s.email == email)?.id ?? 0;
+                return new UserIdResult { userId = id };
+            }
+        }
     }
 }

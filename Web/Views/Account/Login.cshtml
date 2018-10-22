@@ -1,0 +1,44 @@
+﻿@using Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Авторизация";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 center-block">
+            <section class="section sign-in inner-right-xs">
+                <h2 class="bordered">@ViewBag.Title</h2>
+                @*<p>Добро пожаловать!</p>*@
+
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login-form cf-style-1" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="field-row">
+                        @Html.LabelFor(s => s.email)
+                        @Html.TextBoxFor(s => s.email, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(s => s.email)
+                    </div><!-- /.field-row -->
+
+                    <div class="field-row">
+                        @Html.LabelFor(s => s.password)
+                        @Html.PasswordFor(s => s.password, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(s => s.password)
+                    </div><!-- /.field-row -->
+
+                    <div class="field-row clearfix">
+                        <span class="pull-right">
+                            <a href="@Url.Action("ForgotPassword","Account")" class="content-color bold">Забыли пароль?</a>
+                        </span>
+                    </div>
+
+                    <div class="buttons-holder">
+                        <button type="submit" class="le-button huge">Войти</button>
+                    </div><!-- /.buttons-holder -->
+                }<!-- /.cf-style-1 -->
+
+            </section><!-- /.sign-in -->
+        </div><!-- /.col -->
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+<!-- ========================================= MAIN : END ========================================= -->

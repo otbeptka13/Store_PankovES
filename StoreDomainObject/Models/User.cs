@@ -15,5 +15,8 @@ namespace StoreDomainObject
         public DateTime? dateRegistration { get; set; }
         public string name { get; set; }
         public string role { get; set; }
+
+        public List<Good> wishList { get; set; }
+        public List<Basket> basket { get; set; }
     }
 }
