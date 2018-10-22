@@ -1,10 +1,10 @@
-﻿
+﻿@{ViewBag.IsHideWheaderMenu = true;}
 <div id="top-banner-and-menu">
     <div class="container">
         <div class="col-xs-12 col-sm-4 col-md-3 sidemenu-holder">
             <!-- ================================== TOP NAVIGATION ================================== -->
             <div class="side-menu animate-dropdown">
-                <div class="head"><i class="fa fa-list"></i> all departments</div>
+                <div class="head"><i class="fa fa-list"></i> Все разделы</div>
                 <nav class="yamm megamenu-horizontal" role="navigation">
                     <ul class="nav">
                         <li class="dropdown menu-item">
@@ -421,23 +421,22 @@
             <div id="hero">
                 <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
 
-                    <div class="item" style="background-image: url(Content/images/sliders/slider01.jpg);">
+                    <div class="item" style="background-image: url(Content/images/sliders/slider01.jpg); color:white">
                         <div class="container-fluid">
                             <div class="caption vertical-center text-left">
                                 <div class="big-text fadeInDown-1">
-                                    Save up to a<span class="big"><span class="sign">$</span>400</span>
+                                    Экономь до<span class="big"> 4000 ₽!</span>
                                 </div>
 
                                 <div class="excerpt fadeInDown-2">
-                                    on selected laptops<br>
-                                    & desktop pcs or<br>
-                                    smartphones
+                                    большие скидки <br>
+                                    на товары<br> бренда FISCHER<br>
                                 </div>
                                 <div class="small fadeInDown-2">
-                                    terms and conditions apply
+                                    @*terms and conditions apply*@
                                 </div>
                                 <div class="button-holder fadeInDown-3">
-                                    <a href="single-product.html" class="big le-button ">shop now</a>
+                                    <a href="single-product.html" class="big le-button ">Подробнее</a>
                                 </div>
                             </div><!-- /.caption -->
                         </div><!-- /.container-fluid -->
@@ -469,7 +468,7 @@
         </div><!-- /.homebanner-holder -->
     </div><!-- /.container -->
 </div><!-- /#top-banner-and-menu -->
-<!-- ========================================= HOME BANNERS ========================================= -->
+<!-- ========================================= HOME BANNERS ========================================= 
 <section id="banner-holder" class="wow fadeInUp">
     <div class="container">
         <div class="col-xs-12 col-lg-6 no-margin banner">
@@ -490,7 +489,7 @@
                 <img class="banner-image" alt="" src="Content/images/blank.gif" data-echo="Content/images/banners/banner-narrow-02.jpg" />
             </a>
         </div>
-    </div><!-- /.container -->
+    </div>
 </section><!-- /#banner-holder -->
 <!-- ========================================= HOME BANNERS : END ========================================= -->
 
@@ -499,9 +498,9 @@
         <div class="tab-holder">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#featured" data-toggle="tab">featured</a></li>
-                <li><a href="#new-arrivals" data-toggle="tab">new arrivals</a></li>
-                <li><a href="#top-sales" data-toggle="tab">top sales</a></li>
+                <li class="active"><a href="#featured" data-toggle="tab">Популярное</a></li>
+                <li><a href="#new-arrivals" data-toggle="tab">Новинки</a></li>
+                <li><a href="#top-sales" data-toggle="tab">Распродажа</a></li>
             </ul>
 
             <!-- Tab panes -->

@@ -13,6 +13,20 @@ namespace Web
         public static User GetUser(this HttpSessionStateBase sbase) => (User)sbase["user"];
         private static void SetUser(this HttpSessionStateBase sbase, User user) => sbase["user"] = user;
 
+        public static long GetUserId(this HttpSessionStateBase sbase)
+        {
+            return GetUser(sbase)?.id ?? 0;
+        }
+        public static void UpdateBasket(this HttpSessionStateBase sbase)
+        {
+            if (IsAuth(sbase))
+            {
+                var user = GetUser(sbase);
+                var customer = new CustomerAction(user.id);
+                user.basket = customer.GetBasket();
+            }
+            
+        }
         public static void Login(this HttpSessionStateBase sbase, long userId)
         {
             var account = new AccountAction();

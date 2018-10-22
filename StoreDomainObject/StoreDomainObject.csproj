@@ -58,6 +58,9 @@
     <Compile Include="Models\GlobalModels.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\StoreDataBase.cs">
+      <DependentUpon>StoreDataBase.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\StoreDataBase.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

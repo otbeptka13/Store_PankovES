@@ -38,7 +38,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var element = db.Basket.FirstOrDefault(s => s.id == basketId && s.status == 1);
+                var element = db.Basket.FirstOrDefault(s => s.id == basketId && s.status == 1 && s.userId == this.userId);
                 if (element != null)
                 {
                     element.status = 100;
@@ -59,7 +59,9 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                return db.Basket.Where(s => s.userId == this.userId && s.status == 1 && !s.isFastPay).ToList() ?? new List<Basket>();
+                var basket = db.Basket.Where(s => s.userId == this.userId && s.status == 1 && !s.isFastPay).ToList() ?? new List<Basket>();
+                basket.ForEach(s => s.name = s.Goods.name);
+                return basket;
             }
         }
 
@@ -67,7 +69,9 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                return db.Basket.Where(s => s.userId == this.userId && s.status == 2).ToList() ?? new List<Basket>();
+                var basket = db.Basket.Where(s => s.userId == this.userId && s.status == 2).ToList() ?? new List<Basket>();
+                basket.ForEach(s => s.name = s.Goods.name);
+                return basket;
             }
         }
 
@@ -75,7 +79,9 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                return db.Basket.Where(s => s.userId == this.userId && s.status == 5).ToList() ?? new List<Basket>();
+                var basket = db.Basket.Where(s => s.userId == this.userId && s.status == 5).ToList() ?? new List<Basket>();
+                basket.ForEach(s => s.name = s.Goods.name);
+                return basket;
             }
         }
 

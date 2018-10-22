@@ -145,8 +145,10 @@
     <Compile Include="Code\BaseMethods.cs" />
     <Compile Include="Code\SessionExtention.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Code\LinkAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,6 +291,7 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\buttons.js" />
     <Content Include="Content\js\css_browser_selector.min.js" />
+    <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\echo.min.js" />
     <Content Include="Content\js\gmap3.min.js" />
     <Content Include="Content\js\html5shiv.js" />

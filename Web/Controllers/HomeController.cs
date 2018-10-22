@@ -7,13 +7,14 @@ using Web.Models;
 
 namespace Web.Controllers
 {
+    [Link(description = "Главная", url = "~/")]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
-
+        [Link(description = "Инфо")]
         public ActionResult Info(InfoModel model)
         {
             ModelState.Clear();

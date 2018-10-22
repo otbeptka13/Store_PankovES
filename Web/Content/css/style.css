@@ -95,7 +95,19 @@ Table of Contents
     .info-message > .text-center{
         margin-bottom: 20px
     }
-
+.logo > a > img {
+    display: block;
+    margin: 0 auto;
+    max-width: 245px;
+    margin: 0;
+    padding: 0;
+}
+.top-cart-row-container {
+    text-align: right
+}
+.main-menu-bar {
+    min-width:240px;
+}
 /*  Helper
 /*===================================================================================*/
 .light-bg {
@@ -335,7 +347,7 @@ ul {
   border-top: 1px solid #e0e0e0; }
 
 img {
-  width: auto\9;
+  width: auto;
   max-width: 100%; }
 
 .no-margin, .sidemenu-holder, .products-list .product-item .row, .homebanner-holder, .sidebar .widget .row, #footer .widget .row {
@@ -707,7 +719,7 @@ header {
     padding-bottom: 0;
     margin-bottom: 13px; }
   header .logo-holder .logo {
-    margin: 17px 0; }
+    margin: 0px 0; }
   header .top-search-holder {
     margin: 0 0 0 -20px; }
     header .top-search-holder .contact-row {
@@ -2279,12 +2291,14 @@ header {
       opacity: 0.9; }
 
 #owl-main .caption {
-  letter-spacing: -3px;
-  color: #636363;
-  position: absolute;
-  z-index: 100;
-  top: 11%;
-  left: 5%; }
+    letter-spacing: -3px;
+    color: white;
+    text-shadow: #21b68e 0 0 4px;
+    position: absolute;
+    z-index: 100;
+    top: 11%;
+    left: 5%;
+}
   #owl-main .caption.right {
     left: auto;
     right: 2%;
@@ -3661,6 +3675,9 @@ select.top-drop-menu {
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
+    header {
+        padding: 5px 0 11px 0;
+    }
   #top-megamenu-nav .nav .dropdown {
     border-right: none;
     width: 100%; }
@@ -3682,9 +3699,12 @@ select.top-drop-menu {
   .logo > a {
     display: block;
     margin-bottom: 20px; }
-    .logo > a > svg {
+    .logo > a > img {
       display: block;
-      margin: 0 auto; }
+      margin: 0 auto; 
+  
+
+    }
   #owl-main .caption .big-text {
     font-size: 30px;
     line-height: 30px; }
@@ -3851,9 +3871,14 @@ select.top-drop-menu {
   .logo > a {
     display: block;
     margin-bottom: 20px; }
-    .logo > a > svg {
+    .logo > a > img {
       display: block;
-      margin: 0 auto; }
+      margin: 0 auto;
+      max-width: 400px;
+    }
+    header {
+        padding: 5px 0 11px 0;
+    }
   header .top-search-holder {
     margin: 0;
     padding-left: 15px;
@@ -3926,6 +3951,9 @@ select.top-drop-menu {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) {
+    header {
+        padding: 35px 0 11px 0;
+    }
   #owl-recently-viewed .owl-item .product-item-holder, #owl-recently-viewed-2 .owl-item .product-item-holder, #owl-recommended-products .owl-item .product-item-holder {
     max-width: none !important;
     width: 100%; }
@@ -3935,8 +3963,10 @@ select.top-drop-menu {
     width: 75% !important; }
   #footer .link-list-row .link-widget {
     width: 30.33% !important; }
-  header .logo svg {
-    width: 100% !important; }
+    header .logo img {
+        width: 200px;
+        margin-top: 15px; 
+    }
   header .top-search-holder {
     margin: 0;
     width: 41.6667% !important; }

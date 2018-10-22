@@ -9,16 +9,19 @@ using Web.Models;
 
 namespace Web.Controllers
 {
+    [Link(description = "Главная", url = "~/")]
     public class AccountController : Controller
     {
 
         [HttpGet]
+        [Link(description = "Авторизация")]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Link(description = "Авторизация")]
         public ActionResult Login(LoginViewModel model)
         {
             var account = new AccountAction();
@@ -71,12 +74,14 @@ namespace Web.Controllers
             return null;
         }
         [HttpGet]
+        [Link(description = "Регистрация")]
         public ActionResult Registration()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Link(description = "Регистрация")]
         public ActionResult Registration(RegistrationViewModel model)
         {
             var account = new AccountAction();
@@ -116,6 +121,7 @@ namespace Web.Controllers
 
 
         [HttpGet]
+        [Link(description = "Подтверждение Email")]
         public ActionResult EmailConfrimation(string token)
         {
             var account = new AccountAction();
@@ -145,12 +151,14 @@ namespace Web.Controllers
             }          
         }
         [HttpGet]
+        [Link(description = "Забыли пароль?")]
         public ActionResult ForgotPassword()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Link(description = "Забыли пароль?")]
         public ActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
             var account = new AccountAction();
@@ -190,6 +198,7 @@ namespace Web.Controllers
 
 
         [HttpGet]
+        [Link(description = "Замена пароля")]
         public ActionResult ChangePassword(string token)
         {
             var account = new AccountAction();
@@ -213,6 +222,7 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Link(description = "Замена пароля")]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
             var account = new AccountAction();

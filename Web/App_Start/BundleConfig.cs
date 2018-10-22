@@ -31,7 +31,8 @@ namespace Web
                         "~/Content/js/echo.min.js",
                         "~/Content/js/wow.min.js",
                         "~/Content/js/buttons.js",
-                        "~/Content/js/scripts.js"
+                        "~/Content/js/scripts.js",
+                         "~/Content/js/custom.js"
                         ));
 
         }
