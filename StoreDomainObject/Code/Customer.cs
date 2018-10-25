@@ -148,7 +148,20 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 return db.WishList.Where(s => s.userId == this.userId)
-                    ?.Join(db.GoodsView, w => w.goodId, g => g.id, (w, g) => Good.FromBDObjectView(g))?.ToList() ?? new List<Good>();
+                    ?.Join(db.GoodsView, w => w.goodId, g => g.id, (w, g) => new Good
+                    {
+                        id = g.id,
+                        imageUrl = g.imageUrl,
+                        info = g.info,
+                        name = g.name,
+                        discount = g.discount,
+                        groupId = g.typeId,
+                        groupInfo = g.typeInfo,
+                        price = g.price,
+                        groupName = g.typeName,
+                        mark = g.mark
+
+                    })?.ToList() ?? new List<Good>();
             }
         }
         internal void SetThatWatching(long goodId)

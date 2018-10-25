@@ -30,12 +30,16 @@ namespace StoreDomainObject
             var store = new Store();
             return store.GetAllGoods();
         }
+        public List<Good> PopularGoods()
+        {
+            var store = new Store();
+            return store.PopularGoods();
+        }
         public List<Good> GetNowWatching()
         {
             var store = new Store();
             return store.GetNowWatching();
         }
-        
         public List<FeedBack> GetFeedBack(long goodId)
         {
             var store = new Store();

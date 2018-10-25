@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreDomainObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,8 +21,21 @@ namespace Web.Controllers
             ModelState.Clear();
             return View(model);
         }
+        public PartialViewResult RecentlyViewed()
+        {
+            var store = new StoreAction();
+            var goods = store.GetNowWatching().Select(s => new GoodViewModel(s)).ToList();
+            foreach (var item in goods.Where(s => SaleNewPopular.populars.Any(w => w.id == s.id)))
+            {
+                item.isBestseller = true;
+            }
+            foreach (var item in goods.Where(s => SaleNewPopular.newes.Any(w => w.id == s.id)))
+            {
+                item.isNew = true;
+            }
 
-
+            return PartialView("_recentlyViewed", goods);
+        }
 
         public ActionResult About()
         {

@@ -28,7 +28,42 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 var goods = db.GoodsView.Where(s => s.typeId == groupId)?
-                    .Select(s => Good.FromBDObjectView(s))?.ToList();
+                    .Select(s => new Good
+                    {
+                        id = s.id,
+                        imageUrl = s.imageUrl,
+                        info = s.info,
+                        name = s.name,
+                        discount = s.discount,
+                        groupId = s.typeId,
+                        groupInfo = s.typeInfo,
+                        price = s.price,
+                        groupName = s.typeName,
+                        mark = s.mark
+
+                    })?.ToList();
+                return goods;
+            }
+        }
+
+        internal List<Good> GetNowWatching()
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var goods = db.WatchedGood.OrderByDescending(s=>s.id).Select(s=>s.goodId).Distinct().Take(8)
+                     ?.Join(db.GoodsView, w => w, s => s.id, (w, s) => new Good
+                    {
+                        id = s.id,
+                        imageUrl = s.imageUrl,
+                        info = s.info,
+                        name = s.name,
+                        discount = s.discount,
+                        groupId = s.typeId,
+                        groupInfo = s.typeInfo,
+                        price = s.price,
+                        groupName = s.typeName
+
+                    })?.ToList();
                 return goods;
             }
         }
@@ -56,11 +91,24 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var goods = db.GoodsView.Select(s => Good.FromBDObjectView(s))?.ToList();
+                var goods = db.GoodsView.Select(s => new Good
+                {
+                    id = s.id,
+                    imageUrl = s.imageUrl,
+                    info = s.info,
+                    name = s.name,
+                    discount = s.discount,
+                    groupId = s.typeId,
+                    groupInfo = s.typeInfo,
+                    price = s.price,
+                    groupName = s.typeName,
+                    mark = s.mark
+
+                })?.ToList();
                 return goods;
             }
         }
-        internal List<Good> GetNowWatching()
+        internal List<Good> PopularGoods()
         {
             using (var db = Base.storeDataBaseContext)
             {
@@ -86,7 +134,20 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var good = db.GoodsView.Select(s => Good.FromBDObjectView(s)).FirstOrDefault(s => s.id == goodId);
+                var good = db.GoodsView.Select(s => new Good
+                {
+                    id = s.id,
+                    imageUrl = s.imageUrl,
+                    info = s.info,
+                    name = s.name,
+                    discount = s.discount,
+                    groupId = s.typeId,
+                    groupInfo = s.typeInfo,
+                    price = s.price,
+                    groupName = s.typeName,
+                    mark = s.mark
+
+                }).FirstOrDefault(s => s.id == goodId);
                 good.fullInfo = db.GetFullInfo(goodId);
                 var goodProperties = db.GoodProperties.Where(s => s.goodId == goodId).Select(s => new GoodProperty
                 {

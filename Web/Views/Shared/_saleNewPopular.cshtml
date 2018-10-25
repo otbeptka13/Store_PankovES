@@ -1,0 +1,44 @@
+﻿@using Web.Models
+<div id="products-tab" class="wow fadeInUp">
+    <div class="container">
+        <div class="tab-holder">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#featured" data-toggle="tab">Популярное</a></li>
+                <li><a href="#new-arrivals" data-toggle="tab">Новинки</a></li>
+                <li><a href="#top-sales" data-toggle="tab">Распродажа</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Tab популярное -->
+                <div class="tab-pane active" id="featured">
+                    <div class="product-grid-holder">
+                        @foreach (var item in SaleNewPopular.populars)
+                        {
+                            @Html.Partial("_goodShort246_186", item)
+                        }                    
+                    </div>               
+                </div>
+                <!-- Tab новинки -->
+                <div class="tab-pane" id="new-arrivals">
+                    <div class="product-grid-holder">
+                        @foreach (var item in SaleNewPopular.newes)
+                        {
+                            @Html.Partial("_goodShort246_186", item)
+                        }
+                    </div>  
+                </div>
+                <!-- Tab распродажа -->
+                <div class="tab-pane" id="top-sales">
+                    <div class="product-grid-holder">
+                        @foreach (var item in SaleNewPopular.sales)
+                        {
+                            @Html.Partial("_goodShort246_186", item)
+                        }
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,14 +44,8 @@ namespace StoreDomainObject.Tests
             
             var storeAction = new StoreAction();
             var rand = new Random();
-            var groups = storeAction.GetGroups();
-            var goods = new List<Good>();
             Good fullGood = null;
-            foreach (var group in groups)
-            {
-                var groupGoods = storeAction.GetGoodsByGroup(group.id);
-                goods.AddRange(groupGoods);
-            }
+            var goods = storeAction.GetAllGoods();
             for (int i = 0; i < 10; i++)
             {
                 var randomGood = goods.ElementAt(rand.Next(goods.Count()));
@@ -67,7 +61,7 @@ namespace StoreDomainObject.Tests
         {
             
             var storeAction = new StoreAction();
-            var result = storeAction.GetNowWatching();
+            var result = storeAction.PopularGoods();
             // TODO: Add your test code here
             Assert.IsTrue(result?.Count() > 0);
         }

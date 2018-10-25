@@ -100,6 +100,25 @@ namespace StoreDomainObject.Tests
                 TestConfirmPayForAll(rand.Next(20) + 1);
             }      
         }
+
+        [Test]
+        public void Test_WatchGood()
+        {
+            for (int i = 0; i < 150; i++)
+            {
+                TestWatchGood(rand.Next(20) + 1);
+            }
+        }
+
+        private void TestWatchGood(int userId)
+        {
+            var customer = new CustomerAction(userId);
+            var goodId = rand.Next(12) + 1;
+            if (goodId == 8)
+                goodId = 1;
+            customer.SetThatWatching(goodId);
+        }
+
         public void TestConfirmPayForAll(long userId)
         {
             var customer = new CustomerAction(userId);

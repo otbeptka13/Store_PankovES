@@ -153,7 +153,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\GoodViewModel.cs" />
     <Compile Include="Models\InfoModel.cs" />
+    <Compile Include="Models\SaleNewPopular.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +448,10 @@
     <Content Include="Views\Home\Info.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\_goodShort246_186.cshtml" />
+    <Content Include="Views\Shared\_recentlyViewed.cshtml" />
+    <Content Include="Views\Shared\_goodShort194_143.cshtml" />
+    <Content Include="Views\Shared\_saleNewPopular.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
