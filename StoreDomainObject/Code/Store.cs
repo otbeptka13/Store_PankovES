@@ -50,8 +50,9 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var goods = db.WatchedGood.OrderByDescending(s=>s.id).Select(s=>s.goodId).Distinct().Take(8)
-                     ?.Join(db.GoodsView, w => w, s => s.id, (w, s) => new Good
+                var goodTemp = db.GetNowWatching().ToList();
+
+                var goods = goodTemp.Select(s => new Good
                     {
                         id = s.id,
                         imageUrl = s.imageUrl,
@@ -112,7 +113,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var goods = db.GetNowWatching()
+                var goods = db.PopularGoods()
                     .Select(s => new Good
                     {
                         id = s.id,

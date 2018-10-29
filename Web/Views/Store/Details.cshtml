@@ -1,0 +1,229 @@
+﻿@using Web.Models
+@model GoodDetailsViewModel
+@{
+    ViewBag.Title = "О товаре";
+}
+<div id="single-product">
+    <div class="container">
+
+        <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
+            <div class="product-item-holder size-big single-product-gallery small-gallery">
+
+                <div id="owl-single-product" class="owl-carousel">
+                    <div class="single-product-gallery-item" id="slide1">
+                        <a data-rel="prettyphoto" href="@Url.Content("~/Content/images/products/" + (Model.imageUrl ?? "product-gallery-01.jpg"))">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/" + (Model.imageUrl ?? "product-gallery-01.jpg"))" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+
+                    <div class="single-product-gallery-item" id="slide2">
+                        <a data-rel="prettyphoto" href="@Url.Content("~/Content/images/products/product-gallery-01.jpg")">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+
+                    <div class="single-product-gallery-item" id="slide3">
+                        <a data-rel="prettyphoto" href="@Url.Content("~/Content/images/products/product-gallery-01.jpg")">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                </div><!-- /.single-product-slider -->
+
+
+                <div class="single-product-gallery-thumbs gallery-thumbs">
+
+                    <div id="owl-single-product-thumbnails" class="owl-carousel">
+                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
+                            <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/" + (Model.imageUrl ?? "product-gallery-01.jpg"))" />
+                        </a>
+
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
+                            <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
+                        </a>
+
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
+                            <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
+                        </a>
+
+                    
+                    </div><!-- /#owl-single-product-thumbnails -->
+
+                    <div class="nav-holder left hidden-xs">
+                        <a class="prev-btn slider-prev" data-target="#owl-single-product-thumbnails" href="#prev"></a>
+                    </div><!-- /.nav-holder -->
+
+                    <div class="nav-holder right hidden-xs">
+                        <a class="next-btn slider-next" data-target="#owl-single-product-thumbnails" href="#next"></a>
+                    </div><!-- /.nav-holder -->
+
+                </div><!-- /.gallery-thumbs -->
+
+            </div><!-- /.single-product-gallery -->
+        </div><!-- /.gallery-holder -->
+        <div class="no-margin col-xs-12 col-sm-7 body-holder">
+            <div class="body">
+            @{var mark = ((int)Math.Ceiling(Model.mark ?? 0M)); }
+                <div class="star-holder inline"><div class="star big"  data-score="@mark"></div></div>
+                @*<div class="availability"><label>Availability:</label><span class="available">  in stock</span></div>*@
+
+                <div class="title"><a href="#">@Model.name</a></div>
+                <div class="brand">sony</div>
+
+                <div class="social-row">
+                    <span class="st_facebook_hcount"></span>
+                    <span class="st_twitter_hcount"></span>
+                    <span class="st_pinterest_hcount"></span>
+                </div>
+
+                <div class="buttons-holder">
+                    <a class="btn-add-to-wishlist" href="#">В избранное</a>
+                </div>
+
+                <div class="excerpt">
+                    <p>@Model.info</p>
+                </div>
+
+                <div class="prices">
+                    <div class="price-current">@Model.price</div>
+                    <div class="price-prev">@Model.previousPrice</div>
+                </div>
+
+                <div class="qnt-holder">
+                    <div class="le-quantity">
+                        <form>
+                            <a class="minus" href="#reduce"></a>
+                            <input name="quantity" readonly="readonly" type="text" value="1" />
+                            <a class="plus" href="#add"></a>
+                        </form>
+                    </div>
+                    <a id="addto-cart" href="cart.html" class="le-button huge">В корзину</a>
+                </div><!-- /.qnt-holder -->
+            </div><!-- /.body -->
+
+        </div><!-- /.body-holder -->
+    </div><!-- /.container -->
+</div><!-- /.single-product -->
+<!-- ========================================= SINGLE PRODUCT TAB ========================================= -->
+<section id="single-product-tab">
+    <div class="container">
+        <div class="tab-holder">
+            <ul class="nav nav-tabs simple">
+                <li class="active"><a href="#description" data-toggle="tab">Описание</a></li>
+                <li><a href="#additional-info" data-toggle="tab">Характеристики</a></li>
+            @{ var feedCount = Model.feedbacks?.Count ?? 0;}
+                <li><a href="#reviews" data-toggle="tab">Отзывы (@feedCount)</a></li>
+            </ul><!-- /.nav-tabs -->
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                @if (!string.IsNullOrEmpty(Model.fullInfo))
+                 {
+                    foreach (var str in Model.fullInfo?.Split('\n'))
+                    {
+                        <p>@str</p>
+                    }
+                 }
+                </div><!-- /.tab-pane #description -->
+            @if (Model.goodProperties?.Count > 0)
+            {
+                <div class="tab-pane" id="additional-info">
+                    <ul class="tabled-data">
+                    @foreach (var item in Model.goodProperties)
+                    {
+                        <li>
+                            <label>@item.name</label>
+                            <div class="value">@item.value</div>
+                        </li>
+                    }                     
+                    </ul><!-- /.tabled-data -->
+                </div><!-- /.tab-pane #additional-info -->
+            }
+
+                <div class="tab-pane" id="reviews">
+                    <div class="comments">
+                    @if (Model.feedbacks?.Count > 0)
+                    {
+                        foreach (var item in Model.feedbacks)
+                        {
+                            <div class="comment-item">
+                                <div class="row no-margin">
+                                    <div class="col-lg-1 col-xs-12 col-sm-2 no-margin">
+                                        <div class="avatar">
+                                            <img alt="avatar" src="~/Content/images/default-avatar.jpg">
+                                        </div><!-- /.avatar -->
+                                    </div><!-- /.col -->
+
+                                    <div class="col-xs-12 col-lg-11 col-sm-10 no-margin">
+                                        <div class="comment-body">
+                                            <div class="meta-info">
+                                                <div class="author inline">
+                                                    <p class="bold">@(item.userName ?? "Анон")</p>
+                                                </div>
+                                                <div class="star-holder inline">
+                                                    <div class="star" data-score="@item.mark"></div>
+                                                </div>
+                                                <div class="date inline pull-right">
+                                                    @item.date.ToShortDateString()
+                                                </div>
+                                            </div><!-- /.meta-info -->
+                                            <p class="comment-text">
+                                              @item.message
+                                            </p><!-- /.comment-text -->
+                                        </div><!-- /.comment-body -->
+
+                                    </div><!-- /.col -->
+
+                                </div><!-- /.row -->
+                            </div><!-- /.comment-item -->
+                        }
+                    }
+                       
+
+                      
+                    </div><!-- /.comments -->
+@if (Model.canSendFeedback)
+{
+                    <div class="add-review row">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="new-review-form">
+                                <h2>Оставить отзыв</h2>
+                       @using (Html.BeginForm("SendFeedback", "Customer", FormMethod.Post, new { @class = "login-form cf-style-1" }))
+                       {
+                                    <div class="field-row star-row">
+                                        <label>Ваша оценка</label>
+                                        <div class="star-holder">
+                                            <div class="star big editStar" data-score="0"></div>
+                                        </div>
+                                    </div><!-- /.field-row -->
+                                    @Html.Hidden("goodId",Model.id)
+                                    <div class="field-row">
+                                        <label>Ваш отзыв</label>
+                                       @Html.TextArea("message", new { rows = "8", @class="le-input" })
+                                    </div><!-- /.field-row -->
+
+                                    <div class="buttons-holder">
+                                        <button type="submit" class="le-button huge">Отправить</button>
+                                    </div><!-- /.buttons-holder -->
+                       }<!-- /.contact-form -->
+                            </div><!-- /.new-review-form -->
+                        </div><!-- /.col -->
+                    </div><!-- /.add-review -->
+}
+                </div><!-- /.tab-pane #reviews -->
+            </div><!-- /.tab-content -->
+
+        </div><!-- /.tab-holder -->
+    </div><!-- /.container -->
+</section><!-- /#single-product-tab -->
+<!-- ========================================= SINGLE PRODUCT TAB : END ========================================= -->
+@section scripts {
+<script>
+    $(document).ready(function () {
+        console.log("ready");
+        //$("[data-score]").each(ind, val, function () {
+        //    var mark = $(val).attr("[data-score]");
+        //    console.log(mark);
+        //});
+    })
+ </script>
+}

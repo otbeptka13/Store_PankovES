@@ -9,7 +9,10 @@ namespace Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Content/js/jquery*"));
+                        "~/Content/js/jquery*",
+                         "~/Content/js/jquery.raty.min.js",
+                          "~/Content/js/jquery.prettyPhoto.min.js"
+                         ));
 
             bundles.Add(new StyleBundle("~/Content/css/awesome").Include(
                   "~/Content/css/font-awesome.min.css"));
@@ -22,7 +25,8 @@ namespace Web
                     "~/Content/css/colors/dark-green.css",
                     "~/Content/css/owl.carousel.css",
                     "~/Content/css/owl.transitions.css",
-                    "~/Content/css/animate.min.css"));
+                    "~/Content/css/animate.min.css",
+                     "~/Content/css/prettyPhoto.css"));
 
             bundles.Add(new ScriptBundle("~/Content/js/my_js").Include(
                         "~/Content/js/gmap3.min.js",
@@ -34,7 +38,6 @@ namespace Web
                         "~/Content/js/scripts.js",
                          "~/Content/js/custom.js"
                         ));
-
         }
     }
 }

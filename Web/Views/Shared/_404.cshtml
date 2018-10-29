@@ -1,9 +1,10 @@
-﻿<div class="container">
+﻿@model string
+<div class="container">
     <div class="row">
         <div class="col-md-8 center-block">
             <div class="info-404 text-center" style="margin-bottom:30px">
                 <h2 class="primary-color inner-bottom-xs">404</h2>
-                <p class="lead">Что-то пошло не так...</p>
+                <p class="lead">@Model</p>
                 
                 <div class="text-center">
                     <a href="@Url.Content("~")" class="btn-lg huge"><i class="fa fa-home"></i> Вернуться на главную</a>

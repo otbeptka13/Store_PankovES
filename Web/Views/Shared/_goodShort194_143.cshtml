@@ -14,12 +14,14 @@
         {
             <div class="ribbon blue"><span>НОВИНКА</span></div>
         }
-        <div class="image">
+        <div class="image image194">
+            <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">
             <img alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/products/{Model.imageUrl ?? "product-01.jpg"}")" />
+            </a>
         </div>
         <div class="body">
             <div class="title">
-                <a href="single-product.html">@Model.name</a>
+                <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">@Model.name</a>
             </div>
             <div class="brand">Sharp</div>
         </div>

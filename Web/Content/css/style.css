@@ -108,6 +108,16 @@ Table of Contents
 .main-menu-bar {
     min-width:240px;
 }
+
+
+.image194 img {
+    max-width: 194px;
+    max-height: 143px;
+}
+.image246 img{
+    max-width: 246px !important;
+    max-height: 186px !important;
+}
 /*  Helper
 /*===================================================================================*/
 .light-bg {
@@ -2577,7 +2587,7 @@ header {
   #single-product-tab .tab-pane {
     padding: 35px; }
     #single-product-tab .tab-pane p {
-      margin-bottom: 24px; }
+      margin-bottom: 10px; }
     #single-product-tab .tab-pane .meta-row {
       margin: 47px 0 0 0;
       font-size: 14px; }
@@ -2623,7 +2633,7 @@ header {
     border-bottom: 0; }
   .tabled-data li label {
     margin: 0;
-    min-width: 150px;
+    width: 300px;
     font-weight: 700; }
 
 .field-row label {

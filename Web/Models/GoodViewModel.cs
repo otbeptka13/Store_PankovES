@@ -30,4 +30,15 @@ namespace Web.Models
         }
     }
 
+
+    public class GoodDetailsViewModel : GoodViewModel
+    {
+        public GoodDetailsViewModel(Good good) : base(good)
+        {
+        }
+        public List<FeedBack> feedbacks { get; set; }
+        public bool canSendFeedback { get; set; }
+    }
+
+
 }

@@ -27,6 +27,21 @@ namespace Web.Controllers
                 return Json(new { result = -1, message = "Ошибка удаления из корзины. Перезагрузите страницу" }, JsonRequestBehavior.AllowGet);
             }
         }
+
+
+        public ActionResult SendFeedback (SendFeedbackViewModel model)
+        {
+            var url = Request.UrlReferrer.AbsoluteUri;
+            var store = new StoreAction();
+            var canSendFeedback = Session.IsAuth() && !store.GetFeedBack(model.goodId).Any(s => s.userId == Session.GetUserId());
+            if (canSendFeedback)
+            {
+                var customer = new CustomerAction(Session.GetUserId());
+                customer.LeaveFeadback(new FeedBack { date = DateTime.Now,goodId = model.goodId,
+                mark = model.score , message = model.message });
+            }
+            return RedirectPermanent(url);
+        }
     }
 
 

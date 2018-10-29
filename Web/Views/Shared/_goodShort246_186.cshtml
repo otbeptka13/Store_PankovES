@@ -14,8 +14,10 @@
         {
             <div class="ribbon blue"><span>НОВИНКА</span></div>
         }
-        <div class="image">
-            <img alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/products/{Model.imageUrl ?? "product-01.jpg"}")" />
+        <div class="image image246" >
+            <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">
+                <img alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/products/{Model.imageUrl ?? "product-01.jpg"}")" />
+             </a>
         </div>
         <div class="body">
             @if (Model.isSale)
@@ -23,7 +25,7 @@
                <div class="label-discount green">-@Model.discount% СКИДКА</div>
             }
             <div class="title">
-                <a href="single-product.html">@Model.name</a>
+                <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">@Model.name</a>
             </div>
             <div class="brand">sony</div>
         </div>

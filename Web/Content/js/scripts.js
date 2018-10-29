@@ -252,21 +252,24 @@
 
         if ($('.star').length > 0) {
             $('.star').each(function(){
-                    var $star = $(this);
-
+                var $star = $(this);
+                var hasClassEditStar = $star.hasClass('editStar');
+                    var root = $("#root").val();
                     if($star.hasClass('big')){
                         $star.raty({
-                            starOff: 'assets/images/star-big-off.png',
-                            starOn: 'assets/images/star-big-on.png',
+                            readOnly: !hasClassEditStar,
+                            starOff: root+'/Content/images/star-big-off.png',
+                            starOn: root+'/Content/images/star-big-on.png',
                             space: false,
                             score: function() {
                                 return $(this).attr('data-score');
                             }
                         });
                     }else{
-                     $star.raty({
-                        starOff: 'assets/images/star-off.png',
-                        starOn: 'assets/images/star-on.png',
+                        $star.raty({
+                         readOnly: !hasClassEditStar,
+                         starOff: root +'/Content/images/star-off.png',
+                         starOn: root +'/Content/images/star-on.png',
                         space: false,
                         score: function() {
                             return $(this).attr('data-score');
@@ -317,7 +320,7 @@
         $('.le-quantity a').click(function(e){
             e.preventDefault();
             var currentQty= $(this).parent().parent().find('input').val();
-            if( $(this).hasClass('minus') && currentQty>0){
+            if( $(this).hasClass('minus') && currentQty>1){
                 $(this).parent().parent().find('input').val(parseInt(currentQty, 10) - 1);
             }else{
                 if( $(this).hasClass('plus')){
@@ -374,7 +377,7 @@
     /*===================================================================================*/
     $(document).ready(function(){
         if ($('a[data-rel="prettyphoto"]').length > 0) {
-            //$('a[data-rel="prettyphoto"]').prettyPhoto();
+            $('a[data-rel="prettyphoto"]').prettyPhoto({ social_tools: ''});
         }
     });
 
