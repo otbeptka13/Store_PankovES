@@ -2,11 +2,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-	  create function [store].[GetFullInfo](@goodId bigint)
-	  returns varchar(max)
+	  CREATE function [store].[GetFullInfo](@goodId bigint)
+	  returns nvarchar(max)
 	  as
 	  begin
-	  declare @text varchar(max)
+	  declare @text nvarchar(max)
 	  select @text= fullInfo from store.Goods
 	  where id = @goodId
 	  return @text

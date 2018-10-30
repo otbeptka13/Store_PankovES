@@ -4,10 +4,10 @@ CREATE TABLE [store].[Goods]
 [name] [nvarchar] (25) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [typeId] [bigint] NOT NULL,
 [price] [decimal] (10, 2) NOT NULL,
-[info] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[info] [nvarchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [imageUrl] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [discount] [smallint] NOT NULL CONSTRAINT [DF__Goods__discount__2EA5EC27] DEFAULT ((0)),
-[fullInfo] [varchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[fullInfo] [nvarchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 )
 GO
 ALTER TABLE [store].[Goods] ADD CONSTRAINT [PK__Goods__3213E83FAB7D77A2] PRIMARY KEY CLUSTERED  ([id])
