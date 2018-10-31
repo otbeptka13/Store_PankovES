@@ -118,6 +118,10 @@ Table of Contents
     max-width: 246px !important;
     max-height: 186px !important;
 }
+.basketIco {
+    max-width: 73px;
+    max-height: 73px;
+}
 /*  Helper
 /*===================================================================================*/
 .light-bg {
@@ -327,12 +331,15 @@ h2 {
   color: #3D3D3D;
   font-size: 12px;
   line-height: 24px; }
+
   .iconic-link:before, .btn-add-to-compare:before, .btn-add-to-wishlist:before {
     margin: 0 5px 0 0;
     font-size: 18px;
     transition: 0.3s ease;
     color: #c6c6c6; }
-
+    .wishlist_added:before {
+        color: red !important;
+    }
 .availability {
   font-size: 11px;
   line-height: 9px;

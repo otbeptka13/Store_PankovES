@@ -8,11 +8,24 @@ namespace Web
 {
     public static class SessionExtention
     {
-
+        
         public static bool IsAuth(this HttpSessionStateBase sbase) => (User)sbase["user"] != null;
         public static User GetUser(this HttpSessionStateBase sbase) => (User)sbase["user"];
         private static void SetUser(this HttpSessionStateBase sbase, User user) => sbase["user"] = user;
 
+
+        public static Role GetUserRoles(this HttpSessionStateBase sbase)
+        {
+            var role = Role.None;
+            if (!IsAuth(sbase))
+                return role;
+            var roleUser = GetUser(sbase)?.role;
+            if (!string.IsNullOrEmpty(roleUser) && (roleUser.ToUpper().Contains("ADMIN")
+                || roleUser.ToUpper().Contains("АДМИН") || roleUser.ToUpper().Contains("ODMEN")))
+                role |= Role.Admin;
+            role |= Role.Customer;
+            return role;
+        }
         public static long GetUserId(this HttpSessionStateBase sbase)
         {
             return GetUser(sbase)?.id ?? 0;

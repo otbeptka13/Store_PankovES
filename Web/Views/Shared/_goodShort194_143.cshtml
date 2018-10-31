@@ -1,6 +1,6 @@
 ﻿@using Web.Models
 @model GoodViewModel
-<div class="no-margin carousel-item product-item-holder size-small hover">
+<div class="no-margin carousel-item product-item-holder size-small hover" data-goodId="@Model.id">
     <div class="product-item">
         @if (Model.isSale)
         {
@@ -34,7 +34,7 @@
         </div>
         <div class="hover-area">
             <div class="add-cart-button">
-                <a href="single-product.html" class="le-button">В корзину</a>
+                <a href="#" class="le-button add-basket-button">В корзину</a>
             </div>
             <div class="wish-compare">
                 <a class="btn-add-to-wishlist" href="#">В избранное</a>            

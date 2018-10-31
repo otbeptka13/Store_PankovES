@@ -109,7 +109,7 @@
                                         }
                                     }
                                 }
-                                <a href="#"><i class="fa fa-heart"></i> Избранное <span class="value">(@wishCount)</span> </a>
+                                <a href="@Url.Action("WishList","Customer")"><i class="fa fa-heart"></i> Избранное <span id="wishCountValue" class="value">(@wishCount)</span> </a>
                             </div>                          
                         </div>
 
@@ -131,15 +131,15 @@
                                 </a>
                             @if (basketCount > 0)
                             {
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu basketMenu">
                                   @foreach (var item in Session.GetUser().basket)
                                   {
                                     <li>
                                         <div class="basket-item">
                                             <div class="row">
                                                 <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                                    <div class="thumb">
-                                                        <img alt="" src="@Url.Content("~/Content/images/products/product-small-01.jpg")" />
+                                                    <div class="thumb basketIco">
+                                                        <img alt="" src="@Url.Content("~/Content/images/products/" + (item.imageUrl?? "product-small-01.jpg"))" />
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 no-margin">
@@ -155,10 +155,10 @@
                                         <div class="basket-item">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-6">
-                                                    <a href="cart.html" class="le-button inverse">Открыть</a>
+                                                    <a href="@Url.Action("Basket","Customer")" class="le-button inverse">Открыть</a>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
-                                                    <a href="checkout.html" class="le-button">Оплатить</a>
+                                                    <a href="@Url.Action("PayBasket","Customer")" class="le-button">Оплатить</a>
                                                 </div>
                                             </div>
                                         </div>
