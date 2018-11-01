@@ -1,0 +1,58 @@
+﻿@using StoreDomainObject
+@model List<Good>
+<div class="row">
+    <div class="col-lg-10 center-block page-wishlist style-cart-page inner-bottom-xs">
+
+        <div class="inner-xs">
+            <div class="page-header">
+                <h2 class="page-title">Избранное</h2>
+            </div>
+        </div><!-- /.section-page-title -->
+
+        <div class="items-holder">
+            <div class="container-fluid wishlist_table">
+            @foreach (var item in Model)
+            {
+                <div class="row cart-item"  data-goodId="@item.id">
+
+                    <div class="col-xs-12 col-sm-1 no-margin">
+                        <a title="Удалить из избранного" class="remove_from_wishlist remove-item" href="#">×</a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-1 no-margin">
+                        <a href="@Url.Content($"~/Details/{item.groupId}/{item.id}")">
+                            <img width="73" height="73" class="attachment-shop_thumbnail wp-post-image"  src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/products/{item.imageUrl ?? "product-01.jpg"}")">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 no-margin" style="    padding-left: 20px;">
+                        <div class="title">
+                            <a href="@Url.Content($"~/Details/{item.groupId}/{item.id}")">@item.name</a>
+                        </div><!-- /.title -->
+                        <div>
+                            <span class="label label-success wishlist-in-stock">В наличии</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 no-margin">
+                        <div class="price">
+                            <span class="amount">@item.price.ToString("0.00")</span>₽
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 no-margin">
+                        <div class="text-right">
+                            <div class="add-cart-button">
+                                <a class="le-button add_to_cart_button product_type_simple add-basket-button" href="#">В корзину</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /.cart-item -->
+
+            }
+              
+            </div><!-- /.wishlist-table -->
+        </div><!-- /.items-holder -->
+
+    </div><!-- .large-->
+</div><!-- .row-->

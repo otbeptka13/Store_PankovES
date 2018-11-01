@@ -69,5 +69,10 @@ namespace StoreDomainObject
         {
             this.customer.DeleteWishList(goodId);
         }
+
+        public void UpdateCount(long basketId, decimal count)
+        {
+            this.customer.UpdateCount(basketId, count);
+        }
     }
 }

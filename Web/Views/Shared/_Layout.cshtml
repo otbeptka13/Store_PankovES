@@ -147,7 +147,7 @@
                                                     <div class="price">@item.summTotal.Value.ToString("0.00") ₽</div>
                                                 </div>
                                             </div>
-                                            <a class="close-btn" data-basket="@item.id" href="#"></a>
+                                            <a class="close-btn  delete-basket" data-basket="@item.id" href="#"></a>
                                         </div>
                                     </li>
                                   }  
@@ -158,7 +158,7 @@
                                                     <a href="@Url.Action("Basket","Customer")" class="le-button inverse">Открыть</a>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
-                                                    <a href="@Url.Action("PayBasket","Customer")" class="le-button">Оплатить</a>
+                                                    <a href="#" onclick="payBasket(true)" class="le-button">Оплатить</a>
                                                 </div>
                                             </div>
                                         </div>

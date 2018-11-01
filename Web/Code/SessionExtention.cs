@@ -40,6 +40,16 @@ namespace Web
             }
             
         }
+        public static void UpdateWishList(this HttpSessionStateBase sbase)
+        {
+            if (IsAuth(sbase))
+            {
+                var user = GetUser(sbase);
+                var customer = new CustomerAction(user.id);
+                user.wishList = customer.GetWishList();
+            }
+
+        }
         public static void Login(this HttpSessionStateBase sbase, long userId)
         {
             var account = new AccountAction();

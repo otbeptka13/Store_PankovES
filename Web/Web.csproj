@@ -193,20 +193,21 @@
     <Content Include="Content\images\blog-post\blog-post-image.jpg" />
     <Content Include="Content\images\blog-post\slider-1.jpg" />
     <Content Include="Content\images\blog-post\slider-2.jpg" />
-    <Content Include="Content\images\brands\brand-01.jpg" />
-    <Content Include="Content\images\brands\brand-02.jpg" />
-    <Content Include="Content\images\brands\brand-03.jpg" />
-    <Content Include="Content\images\brands\brand-04.jpg" />
     <Content Include="Content\images\default-avatar.jpg" />
+    <Content Include="Content\images\error.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\grabbing.png" />
     <Content Include="Content\images\icon-cart.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo.svg" />
+    <Content Include="Content\images\logo2.png" />
+    <Content Include="Content\images\mail.png" />
+    <Content Include="Content\images\okok.png" />
     <Content Include="Content\images\owl-carousel\AjaxLoader.gif" />
     <Content Include="Content\images\owl-carousel\grabbing.png" />
     <Content Include="Content\images\payments\payment-discover.png" />
     <Content Include="Content\images\payments\payment-master.png" />
+    <Content Include="Content\images\payments\payment-mir.png" />
     <Content Include="Content\images\payments\payment-paypal.png" />
     <Content Include="Content\images\payments\payment-skrill.png" />
     <Content Include="Content\images\payments\payment-visa.png" />
@@ -248,6 +249,7 @@
     <Content Include="Content\images\prettyPhoto\light_square\default_thumbnail.gif" />
     <Content Include="Content\images\prettyPhoto\light_square\loader.gif" />
     <Content Include="Content\images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="Content\images\products\fischer.jpeg" />
     <Content Include="Content\images\products\gallery-thumb-01.jpg" />
     <Content Include="Content\images\products\product-01.jpg" />
     <Content Include="Content\images\products\product-02.jpg" />
@@ -457,9 +459,13 @@
     <Content Include="Views\Shared\_saleNewPopular.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Error\Custom.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Views\Customer\WishList.cshtml" />
+    <Content Include="Views\Customer\Basket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\brands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

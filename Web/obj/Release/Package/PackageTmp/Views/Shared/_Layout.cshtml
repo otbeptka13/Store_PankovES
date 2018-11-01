@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="PankovES">
+    <meta name="keywords" content="DITI MEPHI, PANKOVES, EDUCTAION, MVC, FOR KAZINBAEV">
+    <meta name="robots" content="all">
+    <title>@(ViewBag.Title ?? "Интернет-магазин PANKOVES")</title>
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap Core CSS -->
+    @Styles.Render("~/Content/css/bootstrap")
+    <!-- Customizable CSS -->
+    @Styles.Render("~/Content/css/my_css")
+    <!-- Icons/Glyphs -->
+    @Styles.Render("~/Content/css/awesome")
+    <!-- Favicon -->
+    @Html.Hidden("root", Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~"))
+    <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")">
+    <!-- Fonts -->
+  
+    <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
+    <!--[if lt IE 9]>
+        <script src="Content/js/html5shiv.js"></script>
+        <script src="Content/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="wrapper">
+   <!-- ============================================================= HEADER ============================================================= -->
+        <header>
+            <div class="container no-padding">
+                <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+                    <!-- ============================================================= LOGO ============================================================= -->
+                    <div class="logo">
+                        <a href="@Url.Content("~")">
+                            <!--<img alt="logo" src="Content/images/logo.svg" width="233" height="54"/>-->
+                            <!--<object id="sp" type="image/svg+xml" data="Content/images/logo.svg" width="233" height="54"></object>-->
+                            <img src="@Url.Content("~/Content/images/logo2.png")">                          
+                        </a>
+                    </div><!-- /.logo -->
+                    <!-- ============================================================= LOGO : END ============================================================= -->
+                </div><!-- /.logo-holder -->
+             @if (!Session.IsAuth())
+             { 
+                <div class="main-auth">
+                    <a href="@Url.Action("Registration","Account")"><i class="fa fa-user"></i>  Регистрация </a>
+                    <a href="@Url.Action("Login","Account")" style="margin-left:15px"> <i class="fa fa-sign-in"></i>  Авторизация </a>
+                </div><!-- /.main-auth -->
+             }
+             else
+             {
+                 var user = Session.GetUser();
+                 var name = !string.IsNullOrEmpty(user.name) ? user.name : user.email;
+                <div class="main-auth">
+                    <a href="@Url.Action("Profile","Account")" ><i class="fa fa-user"></i> @name </a>
+                    <a href="@Url.Action("LogOff","Account")" style="margin-left:15px"> <i class="fa fa-sign-out"></i>  Выход </a>
+                </div><!-- /.main-auth -->
+             }
+                <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder no-margin">
+                        <!-- ============================================================= SEARCH AREA ============================================================= -->
+                        <div class="search-area">
+                            <form>
+                                <div class="control-group">
+                                    <input class="search-field" placeholder="Поиск по каталогу" />
+                                    <ul class="categories-filter animate-dropdown">
+                                        <li class="dropdown">
+
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="category-grid.html">Все</a>
+
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">laptops</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">tv & audio</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">gadgets</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">cameras</a></li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <a class="search-button" href="#"></a>
+
+                                </div>
+                            </form>
+                        </div><!-- /.search-area -->
+                        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                    </div><!-- /.top-search-holder -->
+
+                <div class="col-sm-6 col-md-3 top-cart-row no-margin">
+                    <div class="top-cart-row-container">
+                        <div class="wishlist-compare-holder">
+                            <div class="wishlist" style="padding: 10px 0 20px 0">
+                                @{ 
+                                    var wishCount = 0;
+                                    var basketCount = 0;
+                                    var basketSumm = 0.00M;
+                                    if (Session.IsAuth())
+                                    {
+                                        wishCount = Session.GetUser().wishList?.Count() ?? 0;
+                                        basketCount = Session.GetUser().basket?.Count() ?? 0;
+                                        if (basketCount > 0)
+                                        {
+                                            basketSumm = Session.GetUser().basket?.Sum(s => s.summTotal) ?? 0.00M;
+                                        }
+                                    }
+                                }
+                                <a href="@Url.Action("WishList","Customer")"><i class="fa fa-heart"></i> Избранное <span id="wishCountValue" class="value">(@wishCount)</span> </a>
+                            </div>                          
+                        </div>
+
+                        <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+                        <div class="top-cart-holder dropdown animate-dropdown">
+                            <div class="basket">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <div class="basket-item-count">
+                                        <span class="count countBasket">@basketCount</span>
+                                        <img src="@Url.Content("~/Content/images/icon-cart.png")" alt="" />
+                                    </div>
+
+                                    <div class="total-price-basket">
+                                        <span class="lbl">Корзина:</span>
+                                        <span class="total-price">
+                                            <span class="sign"></span><span class="value basketSumm">@basketSumm.ToString("0.00")</span> ₽
+                                        </span>
+                                    </div>
+                                </a>
+                            @if (basketCount > 0)
+                            {
+                                <ul class="dropdown-menu basketMenu">
+                                  @foreach (var item in Session.GetUser().basket)
+                                  {
+                                    <li>
+                                        <div class="basket-item">
+                                            <div class="row">
+                                                <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                                    <div class="thumb basketIco">
+                                                        <img alt="" src="@Url.Content("~/Content/images/products/" + (item.imageUrl?? "product-small-01.jpg"))" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8 col-sm-8 no-margin">
+                                                    <div class="title">@item.name</div>
+                                                    <div class="price">@item.summTotal.Value.ToString("0.00") ₽</div>
+                                                </div>
+                                            </div>
+                                            <a class="close-btn" data-basket="@item.id" href="#"></a>
+                                        </div>
+                                    </li>
+                                  }  
+                                    <li class="checkout">
+                                        <div class="basket-item">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <a href="@Url.Action("Basket","Customer")" class="le-button inverse">Открыть</a>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <a href="@Url.Action("PayBasket","Customer")" class="le-button">Оплатить</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }                                
+                            </div><!-- /.basket -->
+                        </div><!-- /.top-cart-holder -->
+                    </div><!-- /.top-cart-row-container -->
+                    <!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->
+                </div><!-- /.top-cart-row -->
+            </div><!-- /.container -->
+        </header>
+        <!-- ============================================================= HEADER : END ============================================================= -->
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+        @if (ViewBag.IsHideWheaderMenu != true)
+        {
+        <div class="animate-dropdown">
+            <!-- ========================================= BREADCRUMB ========================================= -->
+            <div id="top-mega-nav">
+                <div class="container">
+                    <nav>
+                        <ul class="inline">
+                            <li class="dropdown le-dropdown main-menu-bar">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-list"></i> Все разделы
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Computer Cases & Accessories</a></li>
+                                    <li><a href="#">CPUs, Processors</a></li>
+                                    <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
+                                    <li><a href="#">Graphics, Video Cards</a></li>
+                                    <li><a href="#">Interface, Add-On Cards</a></li>
+                                    <li><a href="#">Laptop Replacement Parts</a></li>
+                                    <li><a href="#">Memory (RAM)</a></li>
+                                    <li><a href="#">Motherboards</a></li>
+                                    <li><a href="#">Motherboard &amp; CPU Combos</a></li>
+                                    <li><a href="#">Motherboard Components</a></li>
+                                </ul>
+                            </li>
+                            @if (ViewBag.Links != null)
+                            {
+                                var links = ViewBag.Links as Queue<Link>;
+                                <li class="breadcrumb-nav-holder">
+                                    <ul>
+                                    @{
+                                        while (links.Count > 0)
+                                         {
+                                            var link = links.Dequeue();
+                                            var isLast = links.Count == 0 ? " current" : string.Empty;
+                                            <li class="breadcrumb-item gray @isLast">
+                                                <a href="@Url.Content(link.url ?? "#")">@link.description</a>
+                                            </li>                                 
+                                        }
+                                    }
+                                    </ul>
+                                </li><!-- /.breadcrumb-nav-holder -->
+                            }
+                        </ul>
+                    </nav>
+                </div><!-- /.container -->
+            </div><!-- /#top-mega-nav -->
+            <!-- ========================================= BREADCRUMB : END ========================================= -->
+        </div>
+        }
+        @RenderBody()
+
+        <!-- ============================================================= FOOTER ============================================================= -->
+        <footer id="footer" class="color-bg">
+            <div class="link-list-row">
+                <div class="container no-padding">
+                    <div class="col-xs-12 col-md-4 ">
+                        <!-- ============================================================= CONTACT INFO ============================================================= -->
+                        <div class="contact-info">
+                            <div class="footer-logo">
+                                <!-- /.footer-logo -->
+                                <!-- /.footer-logo -->
+                                <!-- /.footer-logo -->
+                            </div><!-- /.footer-logo -->
+
+                            <p class="regular-bold"> Feel free to contact us via phone,email or just send us mail.</p>
+
+                            <p>
+                                17 Princess Road, London, Greater London NW1 8JR, UK
+                                1-888-8MEDIA (1-888-892-9953)
+                            </p>
+                            <div class="phone inline">
+                                <i class="fa fa-phone"></i> (+800) 123 456 7890
+                            </div>
+                            <div class="contact inline">
+                                <i class="fa fa-envelope"></i> contact@oursupport.com
+                            </div>
+                            <div class="social-icons">
+                                <h3>Get in touch</h3>
+                                <ul>
+                                    <li><a href="http://facebook.com/transvelo" class="fa fa-facebook"></a></li>
+                                    <li><a href="#" class="fa fa-twitter"></a></li>
+                                    <li><a href="#" class="fa fa-pinterest"></a></li>
+                                    <li><a href="#" class="fa fa-linkedin"></a></li>
+                                    <li><a href="#" class="fa fa-stumbleupon"></a></li>
+                                    <li><a href="#" class="fa fa-dribbble"></a></li>
+                                    <li><a href="#" class="fa fa-vk"></a></li>
+                                </ul>
+                            </div><!-- /.social-icons -->
+
+                        </div>
+                        <!-- ============================================================= CONTACT INFO : END ============================================================= -->
+                    </div>
+
+                    <div class="col-xs-12 col-md-8 no-margin">
+                        <!-- ============================================================= LINKS FOOTER ============================================================= -->
+                        <div class="link-widget">
+                            <div class="widget">
+                                <h3>Find it fast</h3>
+                                <ul>
+                                    <li><a href="category-grid.html">laptops &amp; computers</a></li>
+                                    <li><a href="category-grid.html">Cameras &amp; Photography</a></li>
+                                    <li><a href="category-grid.html">Smart Phones &amp; Tablets</a></li>
+                                    <li><a href="category-grid.html">Video Games &amp; Consoles</a></li>
+                                    <li><a href="category-grid.html">TV &amp; Audio</a></li>
+                                    <li><a href="category-grid.html">Gadgets</a></li>
+                                    <li><a href="category-grid.html">Car Electronic &amp; GPS</a></li>
+                                    <li><a href="category-grid.html">Accesories</a></li>
+                                </ul>
+                            </div><!-- /.widget -->
+                        </div><!-- /.link-widget -->
+
+                        <div class="link-widget">
+                            <div class="widget">
+                                <h3>Information</h3>
+                                <ul>
+                                    <li><a href="category-grid.html">Find a Store</a></li>
+                                    <li><a href="category-grid.html">About Us</a></li>
+                                    <li><a href="category-grid.html">Contact Us</a></li>
+                                    <li><a href="category-grid.html">Weekly Deals</a></li>
+                                    <li><a href="category-grid.html">Gift Cards</a></li>
+                                    <li><a href="category-grid.html">Recycling Program</a></li>
+                                    <li><a href="category-grid.html">Community</a></li>
+                                    <li><a href="category-grid.html">Careers</a></li>
+
+                                </ul>
+                            </div><!-- /.widget -->
+                        </div><!-- /.link-widget -->
+
+                        <div class="link-widget">
+                            <div class="widget">
+                                <h3>Information</h3>
+                                <ul>
+                                    <li><a href="category-grid.html">My Account</a></li>
+                                    <li><a href="category-grid.html">Order Tracking</a></li>
+                                    <li><a href="category-grid.html">Wish List</a></li>
+                                    <li><a href="category-grid.html">Customer Service</a></li>
+                                    <li><a href="category-grid.html">Returns / Exchange</a></li>
+                                    <li><a href="category-grid.html">FAQs</a></li>
+                                    <li><a href="category-grid.html">Product Support</a></li>
+                                    <li><a href="category-grid.html">Extended Service Plans</a></li>
+                                </ul>
+                            </div><!-- /.widget -->
+                        </div><!-- /.link-widget -->
+                        <!-- ============================================================= LINKS FOOTER : END ============================================================= -->
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.link-list-row -->
+            
+            <div class="copyright-bar">
+                <div class="container">
+                    <div class="col-xs-12 col-sm-6 no-margin">
+                        <div class="copyright">
+                            &copy; <a href="index.html">Media Center</a> - all rights reserved
+                        </div><!-- /.copyright -->
+
+                    </div>
+                    <div class="col-xs-12 col-sm-6 no-margin">
+                        <div class="payment-methods ">
+                            <ul>
+                                <li><img alt="" src="@Url.Content("~/Content/images/payments/payment-visa.png")"></li>
+                                <li><img alt="" src="@Url.Content("~/Content/images/payments/payment-master.png")"></li>
+                                <li><img alt="" src="@Url.Content("~/Content/images/payments/payment-mir.png")"></li>
+                            </ul>
+                        </div><!-- /.payment-methods -->
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.copyright-bar -->
+        </footer><!-- /#footer -->
+        <!-- ============================================================= FOOTER : END ============================================================= -->
+    </div><!-- /.wrapper -->   <!-- JavaScripts placed at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Content/js/bootstrap")
+    @Scripts.Render("~/Content/js/my_js")
+    @RenderSection("scripts", false);
+</body>
+</html>
+
+
+
+
+
+
+@*<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
+                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>*@

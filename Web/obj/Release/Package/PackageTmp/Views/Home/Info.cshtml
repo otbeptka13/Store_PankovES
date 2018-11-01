@@ -1,0 +1,36 @@
+﻿@using Web.Models
+@model  InfoModel
+@{
+    ViewBag.CurrentPage = ViewBag.Title = "Инфо";
+}
+@{
+    string imageName = string.Empty;
+    switch (Model.status)
+    {
+        case StatusMessage.Accept:
+            imageName = "okok.png";
+            break;
+        case StatusMessage.Error:
+            imageName = "error.png";
+            break;
+        case StatusMessage.Mail:
+            imageName = "mail.png";
+            break;
+        default:
+            break;
+    }
+
+<div class="info-message">
+    @if (!string.IsNullOrEmpty(imageName))
+    {
+        <div>
+            <img style="" src="@Url.Content("~/Content/images/" + imageName)">
+        </div>
+    }
+    <div><h1>@Model.header</h1></div>
+    <div><h5> @Model.message </h5></div>
+    <div class="text-center">
+        <a href="@Url.Content("~")" class="btn-lg huge"><i class="fa fa-home"></i> Вернуться на главную</a>
+    </div>
+</div>
+}

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "О товаре";
 }
-<div id="single-product">
+<div id="single-product" data-goodId="@Model.id">
     <div class="container">
 
         <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
@@ -74,9 +74,14 @@
                     <span class="st_twitter_hcount"></span>
                     <span class="st_pinterest_hcount"></span>
                 </div>
+             @{
+                 var isadd = string.Empty;
+                 if (Session.IsAuth() && Session.GetUser().wishList.Exists(s => s.id == Model.id))
+                 { isadd = "wishlist_added"; }
 
+             }
                 <div class="buttons-holder">
-                    <a class="btn-add-to-wishlist" href="#">В избранное</a>
+                    <a class="btn-add-to-wishlist @isadd" href="#">В избранное</a>
                 </div>
 
                 <div class="excerpt">
@@ -84,8 +89,8 @@
                 </div>
 
                 <div class="prices">
-                    <div class="price-current">@Model.price</div>
-                    <div class="price-prev">@Model.previousPrice</div>
+                    <div class="price-current">@Model.price ₽</div>
+                    <div class="price-prev">@Model.previousPrice ₽</div>
                 </div>
 
                 <div class="qnt-holder">
@@ -96,7 +101,7 @@
                             <a class="plus" href="#add"></a>
                         </form>
                     </div>
-                    <a id="addto-cart" href="cart.html" class="le-button huge">В корзину</a>
+                    <a id="addto-cart" href="#" class="le-button huge add-basket-button">В корзину</a>
                 </div><!-- /.qnt-holder -->
             </div><!-- /.body -->
 

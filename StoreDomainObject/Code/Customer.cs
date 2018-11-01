@@ -60,8 +60,21 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 var basket = db.Basket.Where(s => s.userId == this.userId && s.status == 1 && !s.isFastPay).ToList() ?? new List<Basket>();
-                basket.ForEach(s => { s.name = s.Goods.name; s.imageUrl = s.Goods.imageUrl; });
+                basket.ForEach(s => { s.name = s.Goods.name; s.imageUrl = s.Goods.imageUrl; s.groupId = s.Goods.typeId; });
                 return basket;
+            }
+        }
+
+        internal void UpdateCount(long basketId, decimal count)
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var element = db.Basket.First(s => s.id == basketId && s.userId == this.userId);
+                if (element != null)
+                {
+                    element.count = count;
+                    db.SubmitChanges();
+                }
             }
         }
 

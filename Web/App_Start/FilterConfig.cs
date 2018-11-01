@@ -29,7 +29,7 @@ namespace Web
                 result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                 filterContext.Result = result;               
             }
-            else if (!filterContext.HttpContext.Session.IsAuth())
+            else //if (!filterContext.HttpContext.Session.IsAuth())
                 filterContext.HttpContext.Response.Redirect("/Error/Custom?message=" + message, true);
 
 

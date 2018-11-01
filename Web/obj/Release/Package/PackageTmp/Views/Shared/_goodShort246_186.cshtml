@@ -1,0 +1,50 @@
+﻿@using Web.Models
+@model GoodViewModel
+<div class="col-sm-4 col-md-3  no-margin product-item-holder hover" data-goodId="@Model.id">
+    <div class="product-item">
+        @if (Model.isSale)
+        {
+        <div class="ribbon red"><span>РАСПРОДАЖА</span></div>
+        }
+        @if (Model.isBestseller)
+        {
+            <div class="ribbon green"><span>БЕСТСЕЛЛЕР</span></div>
+        }
+        @if (Model.isNew)
+        {
+            <div class="ribbon blue"><span>НОВИНКА</span></div>
+        }
+        <div class="image image246" >
+            <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">
+                <img alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/products/{Model.imageUrl ?? "product-01.jpg"}")" />
+             </a>
+        </div>
+        <div class="body">
+            @if (Model.isSale)
+            {
+               <div class="label-discount green">-@Model.discount% СКИДКА</div>
+            }
+            <div class="title">
+                <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">@Model.name</a>
+            </div>
+            <div class="brand">sony</div>
+        </div>
+        <div class="prices">
+           @if (Model.isSale)
+           {
+            <div class="price-prev"><strike>@Model.previousPrice.ToString("0.00")</strike> ₽</div>
+           }
+            <div class="price-current pull-right">@Model.price.ToString("0.00") ₽</div>
+        </div>
+
+        <div class="hover-area">
+            <div class="add-cart-button">
+                <a href="#" class="le-button add-basket-button">В корзину</a>
+            </div>
+            <div class="wish-compare">
+                <a class="btn-add-to-wishlist" href="#">В избранное</a>
+                @*<a class="btn-add-to-compare" href="#">compare</a>*@
+            </div>
+        </div>
+    </div>
+</div>
