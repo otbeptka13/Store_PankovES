@@ -5,3 +5,7 @@ StoreDomainObject.Tests/bin/
 StoreDomainObject/bin/
 /Web/obj/Debug
 /Web/bin
+.vs/
+packages/
+Web/obj/
+Web.Tests/obj/
