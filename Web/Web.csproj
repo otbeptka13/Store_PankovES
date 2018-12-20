@@ -53,12 +53,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -142,11 +151,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AuthorizeAttribute.cs" />
     <Compile Include="Code\BaseMethods.cs" />
     <Compile Include="Code\SessionExtention.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OdmenController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Models\OdmenModels.cs" />
     <Compile Include="Models\SendFeedbackViewModel.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -462,6 +474,12 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Views\Customer\WishList.cshtml" />
     <Content Include="Views\Customer\Basket.cshtml" />
+    <Content Include="Views\Odmen\Store.cshtml" />
+    <Content Include="Views\Odmen\_partialDelivery.cshtml" />
+    <Content Include="Views\Odmen\_partialGoods.cshtml" />
+    <Content Include="Views\Odmen\_partialGoodsEditor.cshtml" />
+    <Content Include="Views\Odmen\_partialGoodsImageEditor.cshtml" />
+    <Content Include="Views\Odmen\_partialStoreOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

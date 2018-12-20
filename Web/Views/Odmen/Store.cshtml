@@ -1,0 +1,260 @@
+﻿@{
+    ViewBag.CurrentPage = ViewBag.Title = "Магазин";
+}
+
+@*@Scripts.Render("~/Content/jquerytablesorter")*@
+
+<div class="row">
+    <div class="col-lg-10 center-block page-wishlist style-cart-page inner-bottom-xs">
+        <div class="container">
+            <button id="goods" class="le-button" onclick="goodsLoad(this)">Товары</button>
+            <button id="goods" class="le-button" onclick="goodsLoad(this)">Группы товаров</button>
+            <button id="goods" class="le-button" onclick="storeOrdersLoad(this)">Заказы</button>
+            <div id="StoreBlock" class="create-edit-form" style="margin-top:25px"></div>
+
+        </div>
+    </div><!-- .large-->
+</div><!-- .row-->
+
+
+<script>
+    //$("[name='specificationsButtonAdd']").on("click", specificationsAdd);
+    function storeOrdersLoad(e) {
+        var nameService = $(e).text();
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: '@Url.Action("_partialStoreOrders", "Odmen")',
+            beforeSend: function () {
+           //     loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+         //       loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                      $('#StoreBlock').html(data);
+                      $('.text-LineServices').text(nameService);
+                },
+            error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+
+
+    function goodsLoad(e) {
+        var nameService = $(e).text();
+              $.ajax({
+                cache: false,
+                type: "GET",
+                url: '@Url.Action("_partialGoods", "Odmen")',
+                beforeSend: function () {
+               //     loadingToggleDiv($('#StoreBlock'), 15);
+                },
+                complete: function () {
+             //       loadingToggleDiv($('#StoreBlock'), 15);
+                },
+                success: function (data) {
+                      $('#StoreBlock').html(data);
+                      $('.text-LineServices').text(nameService);
+                },
+
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+    $(document).on("click", ".ObjectInputButtonClick", function () {
+        $(".newImages").click();
+    });
+    $(document).ready(function () {
+        $("#goods").click();
+    });
+
+</script>
+
+<style>
+    #PickupPointsTable {
+        margin-bottom: 25px;
+    }
+
+    .centerDivButton {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .textAreaAdministrateForm {
+        height: 170px;
+        padding-left: 15px;
+        padding-right: 10px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #00313f !important;     
+        outline: none;
+        width:900px;
+    }
+
+    .specificationsButton {
+        display: inline-block;
+        border: 1px solid #00313f;
+        width: 40px;
+        text-align: center;
+        outline: none;
+        background-color: white;
+        font-size: 20px;
+        height: 30px;
+        color: #00313f !important;
+        cursor: pointer
+    }
+
+        .specificationsButton:hover {
+            box-shadow: none;
+            border-color: #aaa;
+            color: #aaa;
+            cursor: pointer
+        }
+
+    .form-administrate {
+        display: block;
+        margin-left: 30px;
+    }
+
+        .form-administrate div {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-administrate label {
+            width: 250px;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .form-administrate input {
+            display: inline-block;
+            height: 28px;
+            padding-left: 15px;
+            padding-right: 10px;
+            line-height: 20px;
+            color: #00313f !important;
+            outline: none;
+            width: 450px;
+        }
+        .form-administrate select {
+            display: inline-block;
+            height: 28px;
+            padding-left: 15px;
+            padding-right: 10px;
+            line-height: 20px;
+            color: #00313f !important;
+            outline: none;
+            width: 650px;
+        }
+        .form-administrate .bigInput {
+            width: 650px !important;
+        }
+        .form-administrate .smallInput {
+            width: 150px !important;
+        }
+        .form-administrate label input {
+            height: 15px;
+            width: 15px;
+        }
+
+    .buttonStore {
+        height: 22px;
+        padding: 0px 8px;
+        color: white;
+        border: 1px solid #01b284;
+        background: linear-gradient(90deg,#01b284,#007f78,#007f78);
+        border-radius: 20px;
+        cursor: pointer;
+        outline: none;
+        width: 170px;
+    }
+
+        .buttonStore:hover {
+            background: linear-gradient(90deg,#01b284,#00313f,#007f78)
+        }
+
+    @@media screen and (max-width: 650px) {
+        .tableImage {
+            display: block !important;
+        }
+    }
+
+    .tableImage {
+        display: flex;
+        justify-content: center;
+        margin-left: 10px;
+    }
+
+    .uploadedPictures {
+        float: left;
+    }
+
+        .uploadedPictures td {
+            padding: 10px;
+        }
+
+    .container input[type="radio"] {
+        display: inherit;
+        width: 30px;
+        height: 17px;
+    }
+
+    .radioH {
+        text-align: center;
+    }
+
+    .loadImage {
+        height: 100px;
+        width: 100px;
+        margin: 10px;
+        transition: 0.4s;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .input-file {
+        padding: 5px 20px;
+        color: #fefefe;
+        border: none;
+        background: #08c;
+        border-radius: 20px;
+    }
+
+    .image_upload {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+        .image_upload > button {
+            width: 300px
+        }
+
+        .image_upload > div {
+            padding-left: 1em; /* example */
+        }
+
+        .image_upload input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            -ms-transform: scale(20);
+            opacity: 0;
+            cursor: pointer;
+        }
+
+
+
+    ul li .param {
+        color: #00313f;
+        margin: 0;
+        margin-left: 30px;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+</style>

@@ -51,7 +51,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                db.Pay(modelPay.packId, this.userId, modelPay.countInBasket, modelPay.payDate, modelPay.transactionNumber, Math.Round(modelPay.totalSumm,2));
+                db.Pay(modelPay.packId, this.userId, modelPay.countInBasket, modelPay.payDate, modelPay.transactionNumber, Math.Round(modelPay.totalSumm, 2));
             }
         }
 
@@ -60,7 +60,7 @@ namespace StoreDomainObject.Code
             using (var db = Base.storeDataBaseContext)
             {
                 var basket = db.Basket.Where(s => s.userId == this.userId && s.status == 1 && !s.isFastPay).ToList() ?? new List<Basket>();
-                basket.ForEach(s => { s.name = s.Goods.name; s.imageUrl = s.Goods.imageUrl; s.groupId = s.Goods.typeId; });
+                basket.ForEach(s => { s.name = s.Goods.name; s.imageUrl = s.Goods.GoodImages.FirstOrDefault(p => p.isPrimary == true)?.imageUrl; s.groupId = s.Goods.typeId; });
                 return basket;
             }
         }

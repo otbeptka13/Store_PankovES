@@ -60,5 +60,51 @@ namespace StoreDomainObject
             this.odmen.SetDeliverly(packId);
         }
 
+        public object GetLastImageId()
+        {
+            using (var db = new StoreDataBaseDataContext())
+            {
+                return (db.GoodImages?.Max(s => s.id) + 1) ?? 1;
+            }
+        }
+
+        public void AddGoodImage(long goodId, string imageName)
+        {
+            using (var db = new StoreDataBaseDataContext())
+            {
+                var isPrimary = db.GoodImages.Count(s => s.goodId == goodId) == 0;
+                var goodImage = new GoodImages
+                {
+                    goodId = goodId,
+                    imageUrl = imageName,
+                    isPrimary = isPrimary
+                };
+                db.GoodImages.InsertOnSubmit(goodImage);
+                db.SubmitChanges();            
+            }
+        }
+
+        public void ImageGoodDelete(long imageId)
+        {
+            using (var db = new StoreDataBaseDataContext())
+            {
+                var image = db.GoodImages.First(s => s.id == imageId);
+                db.GoodImages.DeleteOnSubmit(image);
+                db.SubmitChanges();
+            }
+        }
+
+        public void SetPrimaryImage(long imageId)
+        {
+            using (var db = new StoreDataBaseDataContext())
+            {
+                var image = db.GoodImages.First(s => s.id == imageId);
+                var imageOldPrimary = db.GoodImages.FirstOrDefault(s => s.goodId == image.goodId && s.isPrimary == true);
+                if (imageOldPrimary != null)
+                    imageOldPrimary.isPrimary = false;
+                image.isPrimary = true;
+                db.SubmitChanges();
+            }
+        }
     }
 }

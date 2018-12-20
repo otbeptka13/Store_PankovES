@@ -6,1053 +6,1053 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVldL3YpLuEWfwKQssqB/jwAAAAACAAAAAAAQZgAAAAEAACAAAAAlml7wV4cro4nB7h8yTCf+ID644yS2gzeJtnk7uyUp+wAAAAAOgAAAAAIAACAAAAAkmcki6wmVbrb0Kmahv5PIRrAVkEKO8h3JflBndpRWMSAAAAC7gHQJuMYK7sTINoCBLrARIvIGypNfqySFfMfEaIfDr0AAAABhX9tmQp8Vax7GQ3vKakkwbA5vJVIhRuJFdubgix+H8ysIVZdrayIwk4ZmJG3zuKuQy/+FuONulBfclgW7uCOt</EncryptedPassword>
     <_PublishTargetUrl>ftp://pankoves.somee.com/www.pankoves.somee.com</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
-      <publishTime>10/19/2018 22:11:35</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>02/22/2013 08:43:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>02/22/2013 08:43:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>10/19/2018 22:11:35</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
-      <publishTime>11/30/2016 16:07:42</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
-      <publishTime>12/07/2016 11:45:42</publishTime>
+      <publishTime>07/12/2016 11:45:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
-      <publishTime>12/07/2016 11:50:34</publishTime>
+      <publishTime>07/12/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
-      <publishTime>12/06/2016 15:15:48</publishTime>
+      <publishTime>06/12/2016 15:15:48</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Web.dll">
-      <publishTime>12/07/2016 11:49:10</publishTime>
+      <publishTime>07/12/2016 11:49:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.WindowsServer.dll">
-      <publishTime>12/07/2016 11:50:34</publishTime>
+      <publishTime>07/12/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
-      <publishTime>12/06/2016 15:09:52</publishTime>
+      <publishTime>06/12/2016 15:09:52</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>08/15/2017 13:12:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>01/05/2012 11:08:46</publishTime>
+      <publishTime>05/01/2012 11:08:46</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/03/2014 20:33:56</publishTime>
+      <publishTime>03/08/2014 20:33:56</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe.config">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/csc.rsp">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/csi.exe">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/csi.rsp">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.AppContext.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.FileSystem.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe.config">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.rsp">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>06/27/2016 14:50:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/System.Web.Helpers.resources.dll">
-      <publishTime>01/28/2015 03:04:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/System.Web.Mvc.resources.dll">
-      <publishTime>01/28/2015 03:02:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/System.Web.Optimization.resources.dll">
-      <publishTime>02/11/2014 15:28:42</publishTime>
+      <publishTime>11/02/2014 15:28:42</publishTime>
     </File>
     <File Include="bin/ru/System.Web.Razor.resources.dll">
-      <publishTime>01/28/2015 03:02:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/System.Web.WebPages.Deployment.resources.dll">
-      <publishTime>01/28/2015 03:04:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/System.Web.WebPages.Razor.resources.dll">
-      <publishTime>01/28/2015 03:04:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/System.Web.WebPages.resources.dll">
-      <publishTime>01/28/2015 03:04:40</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/StoreDomainObject.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/StoreDomainObject.dll.config">
-      <publishTime>10/17/2018 20:11:41</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/StoreDomainObject.pdb">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>01/28/2015 03:04:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>01/28/2015 03:02:18</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>02/11/2014 15:26:04</publishTime>
+      <publishTime>11/02/2014 15:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>01/28/2015 03:02:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>01/28/2015 03:04:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>01/28/2015 03:04:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>01/28/2015 03:04:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>11/01/2018 22:46:03</publishTime>
+      <publishTime>01/11/2018 22:46:03</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>11/01/2018 22:46:03</publishTime>
+      <publishTime>01/11/2018 22:46:03</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>09/10/2013 17:28:38</publishTime>
+      <publishTime>10/09/2013 17:28:38</publishTime>
     </File>
     <File Include="Content/css/animate.min.css">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/blog-single.css">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/bootstrap.min.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/colors/blue.css">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/colors/dark-green.css">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/colors/green.css">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/colors/navy.css">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/colors/orange.css">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/colors/red.css">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/config.css">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/font-awesome.min.css">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/fonts/fontawesome-webfont.eot">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/fonts/fontawesome-webfont.svg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/fonts/fontawesome-webfont.ttf">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/fonts/fontawesome-webfont.woff">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/fonts/FontAwesome.otf">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/images/bg_direction_nav.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/owl.carousel.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/css/owl.transitions.css">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/prettyPhoto.css">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/css/rtl.css">
-      <publishTime>02/01/2017 12:46:14</publishTime>
+      <publishTime>01/02/2017 12:46:14</publishTime>
     </File>
     <File Include="Content/css/style.css">
-      <publishTime>11/01/2018 20:16:36</publishTime>
+      <publishTime>01/11/2018 20:16:36</publishTime>
     </File>
     <File Include="Content/images/ajax.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/AjaxLoader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/background-images/testimonials.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/banners/banner-gamer.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/banners/banner-narrow-01.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/banners/banner-narrow-02.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/banners/banner-side.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/banners/banner-simple.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/blank.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/blog-post/blog-author.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/blog-post/blog-post-image.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/blog-post/slider-1.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/blog-post/slider-2.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/default-avatar.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/error.png">
-      <publishTime>10/21/2018 15:54:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/favicon.ico">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/grabbing.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/icon-cart.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/logo.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/logo.svg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/logo2.png">
-      <publishTime>10/22/2018 19:30:12</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/mail.png">
-      <publishTime>10/21/2018 15:54:05</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/okok.png">
-      <publishTime>10/21/2018 15:54:27</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/owl-carousel/AjaxLoader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/owl-carousel/grabbing.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/payments/payment-discover.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/payments/payment-master.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/payments/payment-mir.png">
-      <publishTime>10/25/2018 20:01:41</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/payments/payment-paypal.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/payments/payment-skrill.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/payments/payment-visa.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_rounded/btnNext.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_rounded/btnPrevious.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_rounded/contentPattern.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_rounded/default_thumbnail.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_rounded/loader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_rounded/sprite.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_square/btnNext.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_square/btnPrevious.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_square/contentPattern.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_square/default_thumbnail.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_square/loader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/dark_square/sprite.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/default_thumb.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/loader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/sprite.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/sprite_next.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/sprite_prev.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/sprite_x.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/default/sprite_y.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/btnNext.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/btnPrevious.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/contentPatternBottom.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/contentPatternLeft.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/contentPatternRight.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/contentPatternTop.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/default_thumbnail.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/loader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/facebook/sprite.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_rounded/btnNext.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_rounded/btnPrevious.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_rounded/default_thumbnail.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_rounded/loader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_rounded/sprite.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_square/btnNext.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_square/btnPrevious.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_square/default_thumbnail.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_square/loader.gif">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/prettyPhoto/light_square/sprite.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/fischer.jpeg">
-      <publishTime>10/29/2018 22:56:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/products/gallery-thumb-01.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-01.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-02.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-03.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-04.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-05.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-06.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-07.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-08.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-09.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-10.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-11.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-12.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-13.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-14.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-15.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-16.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-gallery-01.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-01.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-02.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-03.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-04.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-05.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-06.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-07.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-08.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/products/product-small-09.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/recent-posts/1.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/recent-posts/2.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/recent-posts/3.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/recent-posts/4.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/recent-posts/5.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/sliders/slider01.jpg">
-      <publishTime>10/22/2018 22:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/images/sliders/slider02.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/sliders/slider03.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/sliders/slider04.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/star-big-off.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/star-big-on.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/star-off.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/star-on.png">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/team/1.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/images/team/2.jpg">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/bootstrap-hover-dropdown.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/bootstrap-slider.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/bootstrap.js">
-      <publishTime>10/19/2018 22:11:28</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/bootstrap.min.js">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/buttons.js">
-      <publishTime>02/01/2017 11:00:06</publishTime>
+      <publishTime>01/02/2017 11:00:06</publishTime>
     </File>
     <File Include="Content/js/css_browser_selector.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/custom.js">
-      <publishTime>11/01/2018 22:41:51</publishTime>
+      <publishTime>01/11/2018 22:41:51</publishTime>
     </File>
     <File Include="Content/js/echo.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/gmap3.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/html5shiv.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery-1.10.2.js">
-      <publishTime>10/19/2018 22:11:29</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/jquery-1.10.2.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery-1.10.2.min.map">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery-migrate-1.2.1.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery.customSelect.js">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/jquery.customSelect.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery.easing-1.3.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery.prettyPhoto.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery.raty.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery.validate.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/jquery.validate.min.js">
-      <publishTime>10/19/2018 22:11:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/jquery.validate.unobtrusive.js">
-      <publishTime>10/19/2018 22:11:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/jquery.validate.unobtrusive.min.js">
-      <publishTime>10/19/2018 22:11:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/modernizr-2.6.2.js">
-      <publishTime>10/19/2018 22:11:31</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/owl.carousel.min.js">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/respond.js">
-      <publishTime>10/19/2018 22:11:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/respond.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/js/scripts.js">
-      <publishTime>10/31/2018 22:08:05</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/js/wow.min.js">
-      <publishTime>01/10/2017 14:39:46</publishTime>
+      <publishTime>10/01/2017 14:39:46</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/alerts.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/badges.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/bootstrap.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/bootstrap.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/breadcrumbs.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/button-groups.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/buttons.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/carousel.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/close.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/code.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/component-animations.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/dropdowns.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/forms.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/glyphicons.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/grid.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/input-groups.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/jumbotron.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/labels.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/list-group.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/media.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/media.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/mixins.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/mixins.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/modals.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/navbar.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/navs.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/normalize.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/normalize.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/pager.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/pagination.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/panels.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/popovers.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/print.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/print.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/progress-bars.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/responsive-utilities.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/scaffolding.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/tables.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/theme.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/theme.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/thumbnails.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/tooltip.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/type.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/utilities.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/variables.css">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/variables.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/bootstrap/wells.less">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/blue.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/dark-green.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/green.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/navy.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/orange.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/red.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/colors/_color.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_bordered-pulled.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_core.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_extras.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_fixed-width.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_font-awesome.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_icons.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_larger.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_list.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_mixins.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_path.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_rotated-flipped.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_spinning.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_stacked.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/font-awesome/_variables.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/integrations/_fontawesome-variables.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/rtl.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/style.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_breadcrumb.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_browsers.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_carousel.scss">
-      <publishTime>02/01/2017 11:00:06</publishTime>
+      <publishTime>01/02/2017 11:00:06</publishTime>
     </File>
     <File Include="Content/sass/_controls.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_direction-controller.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_footer.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_general.scss">
-      <publishTime>02/01/2017 11:00:06</publishTime>
+      <publishTime>01/02/2017 11:00:06</publishTime>
     </File>
     <File Include="Content/sass/_header.scss">
-      <publishTime>02/01/2017 11:00:06</publishTime>
+      <publishTime>01/02/2017 11:00:06</publishTime>
     </File>
     <File Include="Content/sass/_helper.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_main.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_megamenu.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_mixins.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-404.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-about.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-authentication.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-blog.scss">
-      <publishTime>02/01/2017 12:46:14</publishTime>
+      <publishTime>01/02/2017 12:46:14</publishTime>
     </File>
     <File Include="Content/sass/_page-cart.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-checkout.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-compare.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-contact.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-faq.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-home.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-single-product.scss">
-      <publishTime>02/01/2017 11:00:06</publishTime>
+      <publishTime>01/02/2017 11:00:06</publishTime>
     </File>
     <File Include="Content/sass/_page-track-your-order.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_page-wishlist.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_product-item.scss">
-      <publishTime>02/01/2017 11:00:06</publishTime>
+      <publishTime>01/02/2017 11:00:06</publishTime>
     </File>
     <File Include="Content/sass/_responsive.scss">
-      <publishTime>01/13/2017 15:35:46</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_sections.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_sidebar.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_sidemenu.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_top-navbar.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/sass/_variables.scss">
-      <publishTime>01/13/2017 13:36:38</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>10/19/2018 22:11:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>10/19/2018 22:11:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Account/ChangePassword.cshtml">
-      <publishTime>10/21/2018 17:03:49</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Account/ForgotPassword.cshtml">
-      <publishTime>10/21/2018 16:58:27</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>10/21/2018 16:30:09</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Account/Registration.cshtml">
-      <publishTime>11/01/2018 19:33:19</publishTime>
+      <publishTime>01/11/2018 19:33:19</publishTime>
     </File>
     <File Include="Views/Customer/Basket.cshtml">
-      <publishTime>11/01/2018 21:57:00</publishTime>
+      <publishTime>01/11/2018 21:57:00</publishTime>
     </File>
     <File Include="Views/Customer/WishList.cshtml">
-      <publishTime>11/01/2018 20:01:34</publishTime>
+      <publishTime>01/11/2018 20:01:34</publishTime>
     </File>
     <File Include="Views/Error/Custom.cshtml">
-      <publishTime>10/29/2018 20:53:11</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>10/19/2018 22:11:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/29/2018 23:06:27</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Home/Info.cshtml">
-      <publishTime>10/21/2018 16:49:20</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Shared/_404.cshtml">
-      <publishTime>10/29/2018 19:44:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Shared/_goodShort194_143.cshtml">
-      <publishTime>11/01/2018 20:21:52</publishTime>
+      <publishTime>01/11/2018 20:21:52</publishTime>
     </File>
     <File Include="Views/Shared/_goodShort246_186.cshtml">
-      <publishTime>10/31/2018 21:00:01</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/01/2018 22:41:43</publishTime>
+      <publishTime>01/11/2018 22:41:43</publishTime>
     </File>
     <File Include="Views/Shared/_recentlyViewed.cshtml">
-      <publishTime>10/25/2018 22:05:28</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Shared/_saleNewPopular.cshtml">
-      <publishTime>10/25/2018 21:58:51</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Store/Details.cshtml">
-      <publishTime>11/01/2018 20:22:13</publishTime>
+      <publishTime>01/11/2018 20:22:13</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>10/19/2018 22:11:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>10/19/2018 22:11:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/31/2018 22:43:04</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
   </ItemGroup>
 </Project>

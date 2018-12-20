@@ -41,7 +41,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var element = db.GoodTypes.First(s=>s.id == group.id);
+                var element = db.GoodTypes.First(s => s.id == group.id);
                 if (element != null)
                 {
                     element.imageUrl = group.imageUrl;
@@ -67,7 +67,7 @@ namespace StoreDomainObject.Code
 
         internal void ChangeGoodProperty(GoodProperty goodProperty)
         {
-             using (var db = Base.storeDataBaseContext)
+            using (var db = Base.storeDataBaseContext)
             {
                 var element = db.GoodProperties.First(s => s.id == goodProperty.id);
                 if (element != null)
@@ -110,7 +110,7 @@ namespace StoreDomainObject.Code
                 if (element != null)
                 {
                     var goodProperties = db.GoodProperties.Where(s => s.goodId == goodId);
-                    if (goodProperties?.Count() >0)
+                    if (goodProperties?.Count() > 0)
                         db.GoodProperties.DeleteAllOnSubmit(goodProperties);
                     db.Goods.DeleteOnSubmit(element);
                     db.SubmitChanges();
@@ -125,6 +125,12 @@ namespace StoreDomainObject.Code
                 db.Goods.InsertOnSubmit(goodInserting);
                 db.SubmitChanges();
                 good.id = goodInserting.id;
+                if (good.goodProperties?.Count > 0)
+                {
+                    good.goodProperties.ForEach(s => s.goodId = good.id);
+                    CreateGoodProperties(good.goodProperties.Where(s => !string.IsNullOrEmpty(s.name)).ToList());
+
+                }
                 return goodInserting.id;
             }
         }
@@ -136,7 +142,6 @@ namespace StoreDomainObject.Code
                 var element = db.Goods.First(s => s.id == good.id);
                 if (element != null)
                 {
-                    element.imageUrl = good.imageUrl;
                     element.info = good.info;
                     element.name = good.name;
                     element.discount = good.discount;
@@ -144,10 +149,50 @@ namespace StoreDomainObject.Code
                     element.typeId = good.groupId;
                     element.fullInfo = good.fullInfo ?? element.fullInfo;
                     db.SubmitChanges();
+
+                    var properties = db.GoodProperties.Where(s => s.goodId == good.id).ToList();
+                    var deleted = properties.Intersect(good.goodProperties.Where(s => s.isDeleted)?.Select(g => new GoodProperties
+                    {
+                        goodId = g.id,
+                        name = g.name,
+                        value = g.value,
+                        id = g.id
+                    }), new GoodPropertyComparer()).ToList();
+                    db.GoodProperties.DeleteAllOnSubmit(deleted);
+                    var inserted = good.goodProperties.Where(s => s.id == 0 && !string.IsNullOrEmpty(s.name))?.Select(g => new GoodProperties
+                    {
+                        goodId = g.id,
+                        name = g.name,
+                        value = g.value
+                    }).ToList();
+                    inserted.ForEach(s => s.goodId = good.id);
+                    db.GoodProperties.InsertAllOnSubmit(inserted);
+                    foreach (var prop in properties)
+                    {
+                        var propUpdated = good.goodProperties.FirstOrDefault(s => s.id == prop.id);
+                        if (propUpdated != null && !string.IsNullOrEmpty(propUpdated.name) && (prop.name != propUpdated.name || prop.value != propUpdated.value))
+                        {
+                            prop.name = propUpdated.name;
+                            prop.value = propUpdated.value;
+                        }
+                    }
+                    db.SubmitChanges();
                 }
+
             }
         }
+        private class GoodPropertyComparer : EqualityComparer<GoodProperties>
+        {
+            public override bool Equals(GoodProperties x, GoodProperties y)
+            {
+                return x != null && y != null && x.id == y.id && x.id > 0 ? true : false;
+            }
 
+            public override int GetHashCode(GoodProperties obj)
+            {
+                return (int)obj.id;
+            }
+        }
 
         internal void SetDeliverly(long packId)
         {

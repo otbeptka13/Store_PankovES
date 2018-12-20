@@ -1,0 +1,424 @@
+﻿@using AIS.PAY.LK_New.STORE.Models
+@model List<PreOrderModel>
+
+@{
+    ViewBag.Title = "Мои заказы";
+    ViewBag.CurrentPage = "Заказы";
+}
+
+@Styles.Render("~/Content/dp-css")
+@Scripts.Render("~/Content/dp-js")
+
+@*<div class="MyUsersImage image-service-visible">
+</div>
+<div class="LineServices" style="margin-bottom:15px">
+    <div class="text-LineServices"> @ViewBag.Title</div>
+    <div class="page-controls page-width">
+    </div>
+</div>*@
+
+<dvi id="StoreOrders">
+    <div>    
+        <div class="filterBlock"> 
+            <div class="filterBlockL">Фильтры:</div>
+            <div class="form-group" style="margin-top: 13px;">
+                <label class="control-label">По дате:</label>
+                <input class="form-control" id="startDate" placeholder="с"/>
+                <input class="form-control" id="finalDate" placeholder="по"/>
+                <label style="margin-left:10px;">Статус:</label>
+                <div style="width: 200px; display: inline-block">
+                    <select class="form-control" id="statusFilter">
+                        <option value="0" selected="selected">Все</option>
+                    </select>
+                </div>
+                <label style="margin-left:10px;">Способ получения:</label>
+                <div style="width: 200px; display: inline-block">
+                    <select class="form-control" id="deliveryTypeFilter">
+                         <option value="0" selected="selected">Все</option>
+                         <option value="1" selected="selected">Доставка</option>
+                         <option value="2" selected="selected">Самовывоз</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table id="AdministrateStoreOrders" class="table physicTable">
+        <thead>
+            <tr>
+                <th>Номер заказа</th>
+                <th>Кол-во товаров</th>
+                <th>Статус</th>
+                <th>Способ получения</th>
+                <th>Тип платежа</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="border-top: 1px solid;">
+                    <td>
+                        <p>@item.id</p>@item.created.ToString("dd.MM.yyyy HH':'mm")
+                    </td>
+                    <td>
+                        <p style="cursor: pointer; color: #01b284;" onclick="getGoods(@item.preOrderId)">Товаров - @item.preOrderElements.Count</p>
+                    </td>
+                    <td><a style="cursor: pointer; color: #01b284;" onclick="editStatus(@item.id, @item.statusId, '@item.statusComment')">@item.statusText</a></td>
+                    <td>
+                        @item.deliveryType
+                    </td>
+                    @if (item.isCashless.ToString() == "True")
+                    {
+                        <td>Безналичный</td>
+                    } else
+                    {
+                        <td>Наличными</td>
+                    }
+                    <td>Стоимость товара: @item.summOrder <span>₽</span><p style="margin: 0px;">Доставка: @item.summDelivery<span> ₽</span></p><p style="margin: 0px;">Итого: @item.summTotal<span> ₽</span></p></td>                 
+                <td>
+
+                    <a style="cursor: pointer; color: #01b284;" onclick="getDetailOrder(@item.id, '@item.created.ToString("dd.MM.yyyy HH':'mm")')">Подробнее...</a>
+
+                </td>
+                    @*@foreach (var item2 in item.preOrderElements)
+                        {
+                        <tr class="hidden-store-tr hidden_@item.id">
+                            <td></td>
+                            <td><p>@item2.goodName </p>@item2.vendorCode </td>
+                            <td></td>
+                            <td style="font-weight:normal">@item2.count шт. @item2.weight.ToString("0.000") кг</td>
+                            <td style="color:gray">@item2.summOne <span> ₽</span></td>
+                        </tr>
+                        }*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pagerAdministrateStoreOrders">
+        <form>
+            <table>
+                <tr>
+                    <td><button class="first btn-small"><b><<</b></button></td>
+                    <td>|</td>
+                    <td><button class="prev btn-small"><b><</b></button></td>
+                    <td>|</td>
+                    <td><input type="text" class="pagedisplay form-control pagedisplay-new-mob" disabled /></td>
+                    <td>|</td>
+                    <td><button class="next btn-small"><b>></b></button></td>
+                    <td>|</td>
+                    <td><button class="last btn-small"><b>>></b></button></td>
+                    <td>|</td>
+                    <td class="td-col-vo-mob" style="min-width:45px">
+                        Кол-во строк:
+                    </td>
+                    <td>
+                        <select class="pagesize form-control select2 pagesize-new-mob">
+                            <option selected="selected" value="5">5</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id="AdministrateStoreOrdersInfo" class="modal modal_win_bg modal_win_bg_can_close" style="display:none; z-index: 100;">
+        <div class="modal_win_dialog">
+            <div class="modal_win_content">
+                <div style="padding:20px 20px">
+                    <div class="title-req-block">Заказ №<label id="numberOrder"></label></div>
+                    <table>
+                        <tbody class="modal-table-request-block">
+                            <tr><td>Дата создания: </td><td id="CreateDate"> </td></tr>
+                            <tr><td>ФИО: </td><td id="NameUser"> </td></tr>
+                            <tr><td>Телефон: </td><td id="Phone"> </td></tr>
+                            <tr><td>Email: </td><td id="Email"> </td></tr>
+                            <tr><td>Способ доставки: </td><td id="DeliveryMetod"> </td></tr>
+                            <tr><td>Адрес: </td><td id="Address"></td></tr>
+                            <tr><td>Способ оплаты: </td><td id="PaymentMetod"></td></tr>
+                            <tr><td>Общий вес: </td><td id="Weight"></td></tr>
+                            <tr><td>Сумма заказа: </td><td id="SummOrder"></td></tr>
+                            <tr><td>Доставка: </td><td id="SummDelivery"></td></tr>
+                            <tr><td>Итого: </td><td id="SummTotal"></td></tr>
+                            <tr><td>Статус: </td><td id="Status"></td></tr>
+                            <tr><td>Коментарий: </td><td id="Comment"></td></tr>
+                        </tbody>
+                    </table>
+                    <a href="#" class="modal_win_close demo-close"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Goods" class="modal modal_win_bg modal_win_bg_can_close" style="display:none; z-index: 100;">
+        <div class="modal_win_dialog">
+            <div class="modal_win_content">
+                <div style="padding:20px 20px">
+                    @*<div style="font-size: 27px;" class="title-req-block">Товары</div>*@
+                    <table id="GoodsTable">
+                        <tbody class="modal-table-request-block">
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                    <a href="#" class="modal_win_close demo-close"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="StatusEditWindow" class="modal modal_win_bg modal_win_bg_can_close modal--active" role="dialog" aria-hidden="true" style="display:none; z-index: 100;">
+        <div style="min-width:340px;" class="modal_win_content modal_win_content--active">
+            <div style="width: 370px;">
+                <div style="padding:20px 20px">
+                    <div class="form-administrate" style="width:270px;">
+                        <label>Статус:</label>
+                        <select class="form-control select2" id="StatusSelect"></select>
+                    </div>
+                    <div class="form-administrate" style="margin-top: 10px;">
+                        <label>Коментарий:</label>
+                        <textarea id="StatusComment" class="form-control" style="height: 150px; width: 270px; resize: none;"></textarea>
+                    </div>
+                </div>
+                <button style="float:right; margin-top:15px;" class="btn-small-filled" data-currentOrderId="" id="StatusEditButton" onclick="statusSave()">Сохранить</button>
+            </div>
+            <a href="#" class="modal_win_close demo-close"></a>
+        </div>
+    </div>
+</dvi>
+<script>
+    function StoreOrdersInit() {
+        $("#startDate").datepicker({
+        minDate: new Date(1899, 12, 01), maxDate: new Date(), changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd.mm.yy",
+        yearRange: "c-75:c+75"
+    });
+
+    $("#startDate").change(function () {
+        changeFilter();
+    });
+
+    $("#finalDate").datepicker({
+        minDate: new Date(1899, 12, 01), maxDate: new Date(), changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd.mm.yy",
+        yearRange: "c-75:c+75"
+    });
+
+    $("#finalDate").change(function () {
+        changeFilter();
+    });
+
+    $("#StatusSelect").select2();
+    $("#statusFilter").select2().on('select2:select', function (e) { changeFilter() });
+    $("#deliveryTypeFilter").select2().on('select2:select', function (e) { changeFilter() });
+    $("#AdministrateStoreOrders")
+        .tablesorter({
+            theme: 'blue',
+            dateFormat: "ddmmyyyy",
+            headers: {
+                0: { sorter: "shortDate", dateFormat: "ddmmyyyy" }
+            },
+            widthFixed: false
+        })
+        .tablesorterPager({
+            container: $(".pagerAdministrateStoreOrders"),
+            size: 5,
+            fixedHeight: false
+        });
+
+       $.ajax({
+            cache: false,
+            type: "Get",
+            //data: {  },
+            url: '@Url.Action("GetOrderStatus", "Administration")',
+            success: function (data) {
+                $('#StatusSelect').text("");
+                //$('#citySelect').append('<option value="0" selected="selected">Все</option>');
+                    for (var i = 0; i < data.length; i++) {
+                        var newOption = new Option(data[i].Text, data[i].Value, false, false);
+                        $('#StatusSelect').append(newOption);
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        var newOption = new Option(data[i].Text, data[i].Value, false, false);
+                        $('#statusFilter').append(newOption);
+                    }
+                    $('#deliveryTypeFilter').select2('val', '0');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+        });
+
+    }
+
+    StoreOrdersInit();
+
+    function getGoods(preorderId) {
+        $("#Goods").show();
+        $.ajax({
+            cache: false,
+            type: "Get",
+            data: { preorderId: preorderId },
+            url: '@Url.Action("GetGoods", "Administration")',
+            success: function (data) {
+                if (data.length > 0) {
+                    var htmlTable = "";
+                    for (i = 0; i < data.length; i++) {
+                        htmlTable += "<tr><td align='center' colspan='2'><b style='font-size: 25px;'>" + data[i].goodName + "</b></td><td style='border-bottom: 0'></td></tr>" +
+                            "<tr><td>Артикул</td><td>" + (data[i].vendorCode == null ? "" : data[i].vendorCode)+ "</td></tr>" +
+                                "<tr><td>Вес</td><td>" + (data[i].weight == null ? "" : data[i].weight) + " кг.</td></tr>" +
+                                    "<tr><td>Стоимость</td><td>" + (data[i].summOne == null ? "" : data[i].summOne) + " ₽</td></tr>";
+                    }
+                    $("#GoodsTable tbody").html(htmlTable);
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+    }
+
+    function changeFilter() {
+        var dateStart = $("#startDate").datepicker("getDate") == null ? null : $("#startDate").datepicker("getDate").toISOString();
+        var dateEnd = $("#finalDate").datepicker("getDate") == null ? null : $("#finalDate").datepicker("getDate").toISOString();
+        var statusId = $("#statusFilter").val();
+        var deliveryType = $('#deliveryTypeFilter').select2('data')[0].text;
+         $.ajax({
+            cache: false,
+            type: "Get",
+            data: { dateStart: dateStart, dateEnd: dateEnd, statusId: statusId, deliveryType: deliveryType },
+            url: '@Url.Action("OrdersFilter", "Administration")',
+            success: function (data) {
+                //$("#AdministrateStoreOrders tbody").html("");
+                $("#AdministrateStoreOrders tbody").html("<tr></tr>");
+                $('#AdministrateStoreOrders').trigger('update');
+                if (data.length > 0)
+                    updateAdministrateStoreOrdersTable(data);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+        });
+    }
+
+    function updateAdministrateStoreOrdersTable(data) {
+        var htmlTable = "";
+        for (var i = 0; i < data.length; i++) {
+            htmlTable += "<tr style='border-top: 1px solid;'>";
+            htmlTable += "<td><p>" + data[i].id + "</p>" + ToJavaScriptFormatDate(data[i].created) + "</td>";
+            htmlTable += "<td><p style='cursor: pointer; color: #01b284;' onclick='getGoods(" + data[i].preOrderId + ")'>Товаров - " + data[i].preOrderElements.length + "</p ></td>";
+            htmlTable += "<td><a style='cursor: pointer; color: #01b284;' onclick='editStatus(" + data[i].id + "," + data[i].statusId + "," + "\"" + data[i].statusComment + "\"" + ")'>" + data[i].statusText + "</a></td>";
+            htmlTable += "<td>" + data[i].deliveryType + "</td>";
+            htmlTable += data[i].isCashless == "True" ? "<td>Безналичный</td>" : "<td>Наличными</td>";
+            htmlTable += "<td>Стоимость товара:" + data[i].summOrder + "<span>₽</span><p style='margin: 0px;'>Доставка:" + data[i].summDelivery + "<span> ₽</span></p><p style='margin: 0px;'>Итого:" + data[i].summTotal + "<span> ₽</span></p></td> ";
+            htmlTable += "<td><a style='cursor: pointer; color: #01b284;' onclick='getDetailOrder(" + data[i].id + ")'>Подробнее...</a></td>";
+            htmlTable += "</tr>";
+        }
+        $("#AdministrateStoreOrders tbody").html(htmlTable);
+        $('#AdministrateStoreOrders').trigger('update');
+    }
+
+    function statusSave() {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            data: { statusId: $("#StatusSelect").val(), orderId: $("#StatusEditButton").data("currentOrderId"), statusComment: $("#StatusComment").val() },
+            url: '@Url.Action("UpdateStatus", "Administration")',
+            success: function (data) {
+                if (data == "") {
+                    alert("Ошибка. Не удалось сохранить изменения.")
+
+                } else {
+                    if (data.length > 0)
+                    updateAdministrateStoreOrdersTable(data);
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+        $("#StatusEditWindow").hide();
+    }
+
+    function editStatus(orderId, statusId, statusComment) {
+        $('#StatusSelect').select2('val', statusId.toString());
+        //$("#StatusSelect").val(statusId);
+        $("#StatusComment").val(statusComment == "null" ? "" : statusComment);
+        $("#StatusEditButton").data("currentOrderId", orderId);
+        $("#StatusEditWindow").show();
+    }
+
+    function getDetailOrder(id, date) {
+         $.ajax({
+            cache: false,
+            type: "GET",
+            data: { orderId: id },
+            url: '@Url.Action("GetInfoOrder", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                $("#numberOrder").text(" " + data.id);
+                $("#CreateDate").text(ToJavaScriptFormatDate(data.created));
+                $("#NameUser").text(data.firstName + " " + data.secondName + " " + data.familyName);
+                $("#Phone").text(data.phone);
+                $("#Email").text(data.email);
+                $("#DeliveryMetod").text(data.deliveryType);
+                $("#Address").text(data.city + ", " + data.address);
+                $("#PaymentMetod").text(data.isCashless == true ? "безналичный" : "наличными");
+                $("#Weight").text(data.weightTotal == null ? "" : data.weightTotal + " кг.");
+                $("#Status").text(data.statusText);
+                $("#SummOrder").text(data.summOrder + " ₽");
+                $("#SummDelivery").text(data.summDelivery + " ₽");
+                $("#SummTotal").text(data.summTotal + " ₽");
+                $("#Comment").text(data.comment == null ? "" : data.comment);
+                $("#AdministrateStoreOrdersInfo").show();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+    }
+
+    function ToJavaScriptFormatDate(date) {
+        if (date) {
+            if (date != "/Date(-62135596800000)/") {
+                date = new Date(parseInt(date.substr(6)));
+                var year = date.getFullYear();
+                var month = (1 + date.getMonth()).toString();
+                month = month.length > 1 ? month : '0' + month;
+                var day = date.getDate().toString();
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var seconds = date.getSeconds();
+                day = day.length > 1 ? day : '0' + day;
+                date = day + "." + month + "." + year + " " + hours + ":" + minutes + ":" + seconds;
+                return date;
+            }
+            else {
+                date = "";
+                return date;
+            }
+        }
+        else {
+            date = "";
+            return date;
+        }
+    }
+
+</script>
+
+<style>
+    .filterBlock {
+        border: 1px solid #e6caca;
+        padding: 15px;
+    }
+
+    .filterBlockL {
+        margin-left: 5px;
+        margin-top: -25px;
+        background-color: white;
+        width: 60px;
+    }
+</style>

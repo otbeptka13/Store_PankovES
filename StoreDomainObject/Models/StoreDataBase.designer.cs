@@ -54,12 +54,18 @@ namespace StoreDomainObject
     partial void InsertWatchedGood(WatchedGood instance);
     partial void UpdateWatchedGood(WatchedGood instance);
     partial void DeleteWatchedGood(WatchedGood instance);
-    partial void InsertBasket(Basket instance);
-    partial void UpdateBasket(Basket instance);
-    partial void DeleteBasket(Basket instance);
     partial void InsertGoodProperties(GoodProperties instance);
     partial void UpdateGoodProperties(GoodProperties instance);
     partial void DeleteGoodProperties(GoodProperties instance);
+    partial void InsertGoodImages(GoodImages instance);
+    partial void UpdateGoodImages(GoodImages instance);
+    partial void DeleteGoodImages(GoodImages instance);
+    partial void InsertBasket(Basket instance);
+    partial void UpdateBasket(Basket instance);
+    partial void DeleteBasket(Basket instance);
+    partial void InsertOrders(Orders instance);
+    partial void UpdateOrders(Orders instance);
+    partial void DeleteOrders(Orders instance);
     #endregion
 		
 		public StoreDataBaseDataContext() : 
@@ -172,14 +178,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		public System.Data.Linq.Table<Basket> Basket
-		{
-			get
-			{
-				return this.GetTable<Basket>();
-			}
-		}
-		
 		public System.Data.Linq.Table<GoodProperties> GoodProperties
 		{
 			get
@@ -188,11 +186,35 @@ namespace StoreDomainObject
 			}
 		}
 		
+		public System.Data.Linq.Table<GoodImages> GoodImages
+		{
+			get
+			{
+				return this.GetTable<GoodImages>();
+			}
+		}
+		
 		public System.Data.Linq.Table<GoodsView> GoodsView
 		{
 			get
 			{
 				return this.GetTable<GoodsView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Basket> Basket
+		{
+			get
+			{
+				return this.GetTable<Basket>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Orders> Orders
+		{
+			get
+			{
+				return this.GetTable<Orders>();
 			}
 		}
 		
@@ -1082,8 +1104,6 @@ namespace StoreDomainObject
 		
 		private string _info;
 		
-		private string _imageUrl;
-		
 		private short _discount;
 		
 		private string _fullInfo;
@@ -1094,9 +1114,11 @@ namespace StoreDomainObject
 		
 		private EntitySet<WatchedGood> _WatchedGood;
 		
-		private EntitySet<Basket> _Basket;
-		
 		private EntitySet<GoodProperties> _GoodProperties;
+		
+		private EntitySet<GoodImages> _GoodImages;
+		
+		private EntitySet<Basket> _Basket;
 		
 		private EntityRef<GoodTypes> _GoodTypes;
 		
@@ -1114,8 +1136,6 @@ namespace StoreDomainObject
     partial void OnpriceChanged();
     partial void OninfoChanging(string value);
     partial void OninfoChanged();
-    partial void OnimageUrlChanging(string value);
-    partial void OnimageUrlChanged();
     partial void OndiscountChanging(short value);
     partial void OndiscountChanged();
     partial void OnfullInfoChanging(string value);
@@ -1127,8 +1147,9 @@ namespace StoreDomainObject
 			this._FeedBacks = new EntitySet<FeedBacks>(new Action<FeedBacks>(this.attach_FeedBacks), new Action<FeedBacks>(this.detach_FeedBacks));
 			this._WishList = new EntitySet<WishList>(new Action<WishList>(this.attach_WishList), new Action<WishList>(this.detach_WishList));
 			this._WatchedGood = new EntitySet<WatchedGood>(new Action<WatchedGood>(this.attach_WatchedGood), new Action<WatchedGood>(this.detach_WatchedGood));
-			this._Basket = new EntitySet<Basket>(new Action<Basket>(this.attach_Basket), new Action<Basket>(this.detach_Basket));
 			this._GoodProperties = new EntitySet<GoodProperties>(new Action<GoodProperties>(this.attach_GoodProperties), new Action<GoodProperties>(this.detach_GoodProperties));
+			this._GoodImages = new EntitySet<GoodImages>(new Action<GoodImages>(this.attach_GoodImages), new Action<GoodImages>(this.detach_GoodImages));
+			this._Basket = new EntitySet<Basket>(new Action<Basket>(this.attach_Basket), new Action<Basket>(this.detach_Basket));
 			this._GoodTypes = default(EntityRef<GoodTypes>);
 			OnCreated();
 		}
@@ -1237,26 +1258,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(200)")]
-		public string imageUrl
-		{
-			get
-			{
-				return this._imageUrl;
-			}
-			set
-			{
-				if ((this._imageUrl != value))
-				{
-					this.OnimageUrlChanging(value);
-					this.SendPropertyChanging();
-					this._imageUrl = value;
-					this.SendPropertyChanged("imageUrl");
-					this.OnimageUrlChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
 		public short discount
 		{
@@ -1336,19 +1337,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Basket", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<Basket> Basket
-		{
-			get
-			{
-				return this._Basket;
-			}
-			set
-			{
-				this._Basket.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodProperties", Storage="_GoodProperties", ThisKey="id", OtherKey="goodId")]
 		public EntitySet<GoodProperties> GoodProperties
 		{
@@ -1359,6 +1347,32 @@ namespace StoreDomainObject
 			set
 			{
 				this._GoodProperties.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodImages", Storage="_GoodImages", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<GoodImages> GoodImages
+		{
+			get
+			{
+				return this._GoodImages;
+			}
+			set
+			{
+				this._GoodImages.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Basket", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<Basket> Basket
+		{
+			get
+			{
+				return this._Basket;
+			}
+			set
+			{
+				this._Basket.Assign(value);
 			}
 		}
 		
@@ -1452,18 +1466,6 @@ namespace StoreDomainObject
 			entity.Goods = null;
 		}
 		
-		private void attach_Basket(Basket entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_Basket(Basket entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-		
 		private void attach_GoodProperties(GoodProperties entity)
 		{
 			this.SendPropertyChanging();
@@ -1471,6 +1473,30 @@ namespace StoreDomainObject
 		}
 		
 		private void detach_GoodProperties(GoodProperties entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_GoodImages(GoodImages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_GoodImages(GoodImages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_Basket(Basket entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_Basket(Basket entity)
 		{
 			this.SendPropertyChanging();
 			entity.Goods = null;
@@ -1967,6 +1993,8 @@ namespace StoreDomainObject
 		
 		private EntitySet<Basket> _Basket;
 		
+		private EntitySet<Orders> _Orders;
+		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1998,6 +2026,7 @@ namespace StoreDomainObject
 			this._UserRoles = new EntitySet<UserRoles>(new Action<UserRoles>(this.attach_UserRoles), new Action<UserRoles>(this.detach_UserRoles));
 			this._WatchedGood = new EntitySet<WatchedGood>(new Action<WatchedGood>(this.attach_WatchedGood), new Action<WatchedGood>(this.detach_WatchedGood));
 			this._Basket = new EntitySet<Basket>(new Action<Basket>(this.attach_Basket), new Action<Basket>(this.detach_Basket));
+			this._Orders = new EntitySet<Orders>(new Action<Orders>(this.attach_Orders), new Action<Orders>(this.detach_Orders));
 			OnCreated();
 		}
 		
@@ -2246,6 +2275,19 @@ namespace StoreDomainObject
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Orders", Storage="_Orders", ThisKey="id", OtherKey="userId")]
+		public EntitySet<Orders> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2321,6 +2363,18 @@ namespace StoreDomainObject
 		}
 		
 		private void detach_Basket(Basket entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+		
+		private void attach_Orders(Orders entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void detach_Orders(Orders entity)
 		{
 			this.SendPropertyChanging();
 			entity.Users = null;
@@ -2670,414 +2724,6 @@ namespace StoreDomainObject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.Basket")]
-	public partial class Basket : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _id;
-		
-		private System.Nullable<long> _packId;
-		
-		private long _userId;
-		
-		private System.DateTime _created;
-		
-		private System.Nullable<decimal> _summOne;
-		
-		private System.Nullable<decimal> _count;
-		
-		private byte _status;
-		
-		private long _goodId;
-		
-		private string _transactionNumber;
-		
-		private System.Nullable<System.DateTime> _datePay;
-		
-		private bool _isFastPay;
-		
-		private System.Nullable<decimal> _summTotal;
-		
-		private EntityRef<Goods> _Goods;
-		
-		private EntityRef<Users> _Users;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(long value);
-    partial void OnidChanged();
-    partial void OnpackIdChanging(System.Nullable<long> value);
-    partial void OnpackIdChanged();
-    partial void OnuserIdChanging(long value);
-    partial void OnuserIdChanged();
-    partial void OncreatedChanging(System.DateTime value);
-    partial void OncreatedChanged();
-    partial void OnsummOneChanging(System.Nullable<decimal> value);
-    partial void OnsummOneChanged();
-    partial void OncountChanging(System.Nullable<decimal> value);
-    partial void OncountChanged();
-    partial void OnstatusChanging(byte value);
-    partial void OnstatusChanged();
-    partial void OngoodIdChanging(long value);
-    partial void OngoodIdChanged();
-    partial void OntransactionNumberChanging(string value);
-    partial void OntransactionNumberChanged();
-    partial void OndatePayChanging(System.Nullable<System.DateTime> value);
-    partial void OndatePayChanged();
-    partial void OnisFastPayChanging(bool value);
-    partial void OnisFastPayChanged();
-    partial void OnsummTotalChanging(System.Nullable<decimal> value);
-    partial void OnsummTotalChanged();
-    #endregion
-		
-		public Basket()
-		{
-			this._Goods = default(EntityRef<Goods>);
-			this._Users = default(EntityRef<Users>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_packId", DbType="BigInt")]
-		public System.Nullable<long> packId
-		{
-			get
-			{
-				return this._packId;
-			}
-			set
-			{
-				if ((this._packId != value))
-				{
-					this.OnpackIdChanging(value);
-					this.SendPropertyChanging();
-					this._packId = value;
-					this.SendPropertyChanged("packId");
-					this.OnpackIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="BigInt NOT NULL")]
-		public long userId
-		{
-			get
-			{
-				return this._userId;
-			}
-			set
-			{
-				if ((this._userId != value))
-				{
-					if (this._Users.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnuserIdChanging(value);
-					this.SendPropertyChanging();
-					this._userId = value;
-					this.SendPropertyChanged("userId");
-					this.OnuserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created", DbType="DateTime NOT NULL")]
-		public System.DateTime created
-		{
-			get
-			{
-				return this._created;
-			}
-			set
-			{
-				if ((this._created != value))
-				{
-					this.OncreatedChanging(value);
-					this.SendPropertyChanging();
-					this._created = value;
-					this.SendPropertyChanged("created");
-					this.OncreatedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summOne", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> summOne
-		{
-			get
-			{
-				return this._summOne;
-			}
-			set
-			{
-				if ((this._summOne != value))
-				{
-					this.OnsummOneChanging(value);
-					this.SendPropertyChanging();
-					this._summOne = value;
-					this.SendPropertyChanged("summOne");
-					this.OnsummOneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_count", DbType="Decimal(18,3)")]
-		public System.Nullable<decimal> count
-		{
-			get
-			{
-				return this._count;
-			}
-			set
-			{
-				if ((this._count != value))
-				{
-					this.OncountChanging(value);
-					this.SendPropertyChanging();
-					this._count = value;
-					this.SendPropertyChanged("count");
-					this.OncountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt NOT NULL")]
-		public byte status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this.OnstatusChanging(value);
-					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goodId", DbType="BigInt NOT NULL")]
-		public long goodId
-		{
-			get
-			{
-				return this._goodId;
-			}
-			set
-			{
-				if ((this._goodId != value))
-				{
-					if (this._Goods.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OngoodIdChanging(value);
-					this.SendPropertyChanging();
-					this._goodId = value;
-					this.SendPropertyChanged("goodId");
-					this.OngoodIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_transactionNumber", DbType="VarChar(50)")]
-		public string transactionNumber
-		{
-			get
-			{
-				return this._transactionNumber;
-			}
-			set
-			{
-				if ((this._transactionNumber != value))
-				{
-					this.OntransactionNumberChanging(value);
-					this.SendPropertyChanging();
-					this._transactionNumber = value;
-					this.SendPropertyChanged("transactionNumber");
-					this.OntransactionNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datePay", DbType="DateTime")]
-		public System.Nullable<System.DateTime> datePay
-		{
-			get
-			{
-				return this._datePay;
-			}
-			set
-			{
-				if ((this._datePay != value))
-				{
-					this.OndatePayChanging(value);
-					this.SendPropertyChanging();
-					this._datePay = value;
-					this.SendPropertyChanged("datePay");
-					this.OndatePayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isFastPay", DbType="Bit NOT NULL")]
-		public bool isFastPay
-		{
-			get
-			{
-				return this._isFastPay;
-			}
-			set
-			{
-				if ((this._isFastPay != value))
-				{
-					this.OnisFastPayChanging(value);
-					this.SendPropertyChanging();
-					this._isFastPay = value;
-					this.SendPropertyChanged("isFastPay");
-					this.OnisFastPayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summTotal", AutoSync=AutoSync.Always, DbType="Decimal(18,2)", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Nullable<decimal> summTotal
-		{
-			get
-			{
-				return this._summTotal;
-			}
-			set
-			{
-				if ((this._summTotal != value))
-				{
-					this.OnsummTotalChanging(value);
-					this.SendPropertyChanging();
-					this._summTotal = value;
-					this.SendPropertyChanged("summTotal");
-					this.OnsummTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
-		public Goods Goods
-		{
-			get
-			{
-				return this._Goods.Entity;
-			}
-			set
-			{
-				Goods previousValue = this._Goods.Entity;
-				if (((previousValue != value) 
-							|| (this._Goods.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Goods.Entity = null;
-						previousValue.Basket.Remove(this);
-					}
-					this._Goods.Entity = value;
-					if ((value != null))
-					{
-						value.Basket.Add(this);
-						this._goodId = value.id;
-					}
-					else
-					{
-						this._goodId = default(long);
-					}
-					this.SendPropertyChanged("Goods");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Basket", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
-		public Users Users
-		{
-			get
-			{
-				return this._Users.Entity;
-			}
-			set
-			{
-				Users previousValue = this._Users.Entity;
-				if (((previousValue != value) 
-							|| (this._Users.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Users.Entity = null;
-						previousValue.Basket.Remove(this);
-					}
-					this._Users.Entity = value;
-					if ((value != null))
-					{
-						value.Basket.Add(this);
-						this._userId = value.id;
-					}
-					else
-					{
-						this._userId = default(long);
-					}
-					this.SendPropertyChanged("Users");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodProperties")]
 	public partial class GoodProperties : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3253,6 +2899,181 @@ namespace StoreDomainObject
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.GoodImages")]
+	public partial class GoodImages : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private long _goodId;
+		
+		private string _imageUrl;
+		
+		private System.Nullable<bool> _isPrimary;
+		
+		private EntityRef<Goods> _Goods;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OngoodIdChanging(long value);
+    partial void OngoodIdChanged();
+    partial void OnimageUrlChanging(string value);
+    partial void OnimageUrlChanged();
+    partial void OnisPrimaryChanging(System.Nullable<bool> value);
+    partial void OnisPrimaryChanged();
+    #endregion
+		
+		public GoodImages()
+		{
+			this._Goods = default(EntityRef<Goods>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goodId", DbType="BigInt NOT NULL")]
+		public long goodId
+		{
+			get
+			{
+				return this._goodId;
+			}
+			set
+			{
+				if ((this._goodId != value))
+				{
+					if (this._Goods.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OngoodIdChanging(value);
+					this.SendPropertyChanging();
+					this._goodId = value;
+					this.SendPropertyChanged("goodId");
+					this.OngoodIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string imageUrl
+		{
+			get
+			{
+				return this._imageUrl;
+			}
+			set
+			{
+				if ((this._imageUrl != value))
+				{
+					this.OnimageUrlChanging(value);
+					this.SendPropertyChanging();
+					this._imageUrl = value;
+					this.SendPropertyChanged("imageUrl");
+					this.OnimageUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isPrimary", DbType="Bit")]
+		public System.Nullable<bool> isPrimary
+		{
+			get
+			{
+				return this._isPrimary;
+			}
+			set
+			{
+				if ((this._isPrimary != value))
+				{
+					this.OnisPrimaryChanging(value);
+					this.SendPropertyChanging();
+					this._isPrimary = value;
+					this.SendPropertyChanged("isPrimary");
+					this.OnisPrimaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodImages", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.GoodImages.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.GoodImages.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodsView")]
 	public partial class GoodsView
 	{
@@ -3345,7 +3166,7 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(500)")]
 		public string info
 		{
 			get
@@ -3361,7 +3182,7 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(200)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(1000)")]
 		public string imageUrl
 		{
 			get
@@ -3439,6 +3260,658 @@ namespace StoreDomainObject
 					this._mark = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.Basket")]
+	public partial class Basket : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private System.Nullable<long> _packId;
+		
+		private long _userId;
+		
+		private System.DateTime _created;
+		
+		private System.Nullable<decimal> _summOne;
+		
+		private System.Nullable<decimal> _count;
+		
+		private byte _status;
+		
+		private long _goodId;
+		
+		private bool _isFastPay;
+		
+		private System.Nullable<decimal> _summTotal;
+		
+		private System.Nullable<long> _orderId;
+		
+		private EntityRef<Goods> _Goods;
+		
+		private EntityRef<Users> _Users;
+		
+		private EntityRef<Orders> _Orders;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OnpackIdChanging(System.Nullable<long> value);
+    partial void OnpackIdChanged();
+    partial void OnuserIdChanging(long value);
+    partial void OnuserIdChanged();
+    partial void OncreatedChanging(System.DateTime value);
+    partial void OncreatedChanged();
+    partial void OnsummOneChanging(System.Nullable<decimal> value);
+    partial void OnsummOneChanged();
+    partial void OncountChanging(System.Nullable<decimal> value);
+    partial void OncountChanged();
+    partial void OnstatusChanging(byte value);
+    partial void OnstatusChanged();
+    partial void OngoodIdChanging(long value);
+    partial void OngoodIdChanged();
+    partial void OnisFastPayChanging(bool value);
+    partial void OnisFastPayChanged();
+    partial void OnsummTotalChanging(System.Nullable<decimal> value);
+    partial void OnsummTotalChanged();
+    partial void OnorderIdChanging(System.Nullable<long> value);
+    partial void OnorderIdChanged();
+    #endregion
+		
+		public Basket()
+		{
+			this._Goods = default(EntityRef<Goods>);
+			this._Users = default(EntityRef<Users>);
+			this._Orders = default(EntityRef<Orders>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_packId", DbType="BigInt")]
+		public System.Nullable<long> packId
+		{
+			get
+			{
+				return this._packId;
+			}
+			set
+			{
+				if ((this._packId != value))
+				{
+					this.OnpackIdChanging(value);
+					this.SendPropertyChanging();
+					this._packId = value;
+					this.SendPropertyChanged("packId");
+					this.OnpackIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="BigInt NOT NULL")]
+		public long userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					if (this._Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnuserIdChanging(value);
+					this.SendPropertyChanging();
+					this._userId = value;
+					this.SendPropertyChanged("userId");
+					this.OnuserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created", DbType="DateTime NOT NULL")]
+		public System.DateTime created
+		{
+			get
+			{
+				return this._created;
+			}
+			set
+			{
+				if ((this._created != value))
+				{
+					this.OncreatedChanging(value);
+					this.SendPropertyChanging();
+					this._created = value;
+					this.SendPropertyChanged("created");
+					this.OncreatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summOne", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> summOne
+		{
+			get
+			{
+				return this._summOne;
+			}
+			set
+			{
+				if ((this._summOne != value))
+				{
+					this.OnsummOneChanging(value);
+					this.SendPropertyChanging();
+					this._summOne = value;
+					this.SendPropertyChanged("summOne");
+					this.OnsummOneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_count", DbType="Decimal(18,3)")]
+		public System.Nullable<decimal> count
+		{
+			get
+			{
+				return this._count;
+			}
+			set
+			{
+				if ((this._count != value))
+				{
+					this.OncountChanging(value);
+					this.SendPropertyChanging();
+					this._count = value;
+					this.SendPropertyChanged("count");
+					this.OncountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt NOT NULL")]
+		public byte status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_goodId", DbType="BigInt NOT NULL")]
+		public long goodId
+		{
+			get
+			{
+				return this._goodId;
+			}
+			set
+			{
+				if ((this._goodId != value))
+				{
+					if (this._Goods.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OngoodIdChanging(value);
+					this.SendPropertyChanging();
+					this._goodId = value;
+					this.SendPropertyChanged("goodId");
+					this.OngoodIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isFastPay", DbType="Bit NOT NULL")]
+		public bool isFastPay
+		{
+			get
+			{
+				return this._isFastPay;
+			}
+			set
+			{
+				if ((this._isFastPay != value))
+				{
+					this.OnisFastPayChanging(value);
+					this.SendPropertyChanging();
+					this._isFastPay = value;
+					this.SendPropertyChanged("isFastPay");
+					this.OnisFastPayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summTotal", AutoSync=AutoSync.Always, DbType="Decimal(18,2)", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> summTotal
+		{
+			get
+			{
+				return this._summTotal;
+			}
+			set
+			{
+				if ((this._summTotal != value))
+				{
+					this.OnsummTotalChanging(value);
+					this.SendPropertyChanging();
+					this._summTotal = value;
+					this.SendPropertyChanged("summTotal");
+					this.OnsummTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_orderId", DbType="BigInt")]
+		public System.Nullable<long> orderId
+		{
+			get
+			{
+				return this._orderId;
+			}
+			set
+			{
+				if ((this._orderId != value))
+				{
+					if (this._Orders.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnorderIdChanging(value);
+					this.SendPropertyChanging();
+					this._orderId = value;
+					this.SendPropertyChanged("orderId");
+					this.OnorderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.Basket.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.Basket.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Basket", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.Basket.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.Basket.Add(this);
+						this._userId = value.id;
+					}
+					else
+					{
+						this._userId = default(long);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Orders_Basket", Storage="_Orders", ThisKey="orderId", OtherKey="id", IsForeignKey=true)]
+		public Orders Orders
+		{
+			get
+			{
+				return this._Orders.Entity;
+			}
+			set
+			{
+				Orders previousValue = this._Orders.Entity;
+				if (((previousValue != value) 
+							|| (this._Orders.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Orders.Entity = null;
+						previousValue.Basket.Remove(this);
+					}
+					this._Orders.Entity = value;
+					if ((value != null))
+					{
+						value.Basket.Add(this);
+						this._orderId = value.id;
+					}
+					else
+					{
+						this._orderId = default(Nullable<long>);
+					}
+					this.SendPropertyChanged("Orders");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.Orders")]
+	public partial class Orders : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private System.Guid _transactionNumber;
+		
+		private System.Nullable<decimal> _summOrder;
+		
+		private long _userId;
+		
+		private System.DateTime _datePay;
+		
+		private EntitySet<Basket> _Basket;
+		
+		private EntityRef<Users> _Users;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OntransactionNumberChanging(System.Guid value);
+    partial void OntransactionNumberChanged();
+    partial void OnsummOrderChanging(System.Nullable<decimal> value);
+    partial void OnsummOrderChanged();
+    partial void OnuserIdChanging(long value);
+    partial void OnuserIdChanged();
+    partial void OndatePayChanging(System.DateTime value);
+    partial void OndatePayChanged();
+    #endregion
+		
+		public Orders()
+		{
+			this._Basket = new EntitySet<Basket>(new Action<Basket>(this.attach_Basket), new Action<Basket>(this.detach_Basket));
+			this._Users = default(EntityRef<Users>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_transactionNumber", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid transactionNumber
+		{
+			get
+			{
+				return this._transactionNumber;
+			}
+			set
+			{
+				if ((this._transactionNumber != value))
+				{
+					this.OntransactionNumberChanging(value);
+					this.SendPropertyChanging();
+					this._transactionNumber = value;
+					this.SendPropertyChanged("transactionNumber");
+					this.OntransactionNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summOrder", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> summOrder
+		{
+			get
+			{
+				return this._summOrder;
+			}
+			set
+			{
+				if ((this._summOrder != value))
+				{
+					this.OnsummOrderChanging(value);
+					this.SendPropertyChanging();
+					this._summOrder = value;
+					this.SendPropertyChanged("summOrder");
+					this.OnsummOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="BigInt NOT NULL")]
+		public long userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					if (this._Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnuserIdChanging(value);
+					this.SendPropertyChanging();
+					this._userId = value;
+					this.SendPropertyChanged("userId");
+					this.OnuserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datePay", DbType="DateTime NOT NULL")]
+		public System.DateTime datePay
+		{
+			get
+			{
+				return this._datePay;
+			}
+			set
+			{
+				if ((this._datePay != value))
+				{
+					this.OndatePayChanging(value);
+					this.SendPropertyChanging();
+					this._datePay = value;
+					this.SendPropertyChanged("datePay");
+					this.OndatePayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Orders_Basket", Storage="_Basket", ThisKey="id", OtherKey="orderId")]
+		public EntitySet<Basket> Basket
+		{
+			get
+			{
+				return this._Basket;
+			}
+			set
+			{
+				this._Basket.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Orders", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._userId = value.id;
+					}
+					else
+					{
+						this._userId = default(long);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Basket(Basket entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orders = this;
+		}
+		
+		private void detach_Basket(Basket entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orders = null;
 		}
 	}
 	

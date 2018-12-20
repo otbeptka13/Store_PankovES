@@ -9,21 +9,22 @@ namespace StoreDomainObject
         public long groupId {get; set;}
         public decimal price {get; set;}
         public string info {get; set;}
-        public string imageUrl {get; set;}
+        public string imageUrl {get; set;} //primaryImage
         public short discount {get; set;}
         public string groupName {get; set;}
         public string fullInfo {get; set;}
         public string groupInfo { get;  set; }
         public List<GoodProperty> goodProperties { get; set; }
+        public List<GoodImages> images { get; set; }
         public decimal? mark { get; set; }
-        
-       
+        public bool isEdit { get; set; }
+
+
         public static Good FromBDObject(Goods s)
         {
             return new Good
             {
                 id = s.id,
-                imageUrl = s.imageUrl,
                 info = s.info,
                 name = s.name,
                 discount = s.discount,
@@ -39,7 +40,6 @@ namespace StoreDomainObject
             return new Goods
             {
                 id = this.id,
-                imageUrl = this.imageUrl,
                 info = this.info,
                 name = this.name,
                 discount = this.discount,
@@ -56,5 +56,6 @@ namespace StoreDomainObject
         public string name { get; set; }
         public string value { get; set; }
         public long goodId { get; set; }
+        public bool isDeleted { get; set; }
     }
 }

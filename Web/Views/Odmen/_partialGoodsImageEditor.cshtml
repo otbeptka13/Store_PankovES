@@ -1,0 +1,241 @@
+﻿@using Web.Models
+@model GoodImageEditorModel
+<div>
+    @using (Ajax.BeginForm("AddGoodImages", "Odmen", new AjaxOptions {AllowCache = false, InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "StoreBlock" }, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.HiddenFor(s => s.goodId)
+
+
+        <div style="margin-bottom: 15px;">
+            <div class="image_upload">
+                <button style="outline:none" class="le-button ObjectInputButtonClick" type="button">Загрузить новые изображения на сервер</button>
+               
+                @*<input class="newImages" style="display:none" type="file" multiple name="newImages" id="newImages">*@
+                @Html.TextBoxFor(model => model.newImages, "", new
+               {
+                   @type = "file",
+                   @multiple = "multiple",
+                   @class = "newImages",
+                   style = "display:none"
+               })
+                <a href="#" class="clear" id="clear" style="display:none">очистить</a>
+            </div>
+            <br />
+            <div class="form-group" style="margin-bottom:0px;">
+                <div class="control-label"></div>
+                <div class="form-col" style="display:none">
+                    <label class="form-label personal-text" style="color:#a3a3a3">
+                        Форматы файлов для отправки: jpg, jpeg, png, bmp.
+                    </label>
+                </div>
+                <div id="divImageNames" style="outline: none;width:290px; text-align:center">
+                </div>
+            </div>
+        </div>
+    }
+    @*<button class="buttonStore" type="submit">Загрузить на сервер</button>*@
+    <div class="tableImage">
+        @if (Model?.images?.Count() > 0)
+        {
+            <table class="uploadedPictures" style="margin-right:100px">
+                <tr>
+                    <th></th>
+                    <th id="homeTH">На главную</th>
+                    <th></th>
+                </tr>
+                @for (int i = 0; i <= (int)Math.Round(((double)Model.images.Count) / 2); i++)
+                {
+
+                    <tr data-image="@Model.images[i].id">
+                        <td style="max-height:400px;max-width:400px">
+                            <a data-rel="prettyphoto" href="@Url.Content($"~/Content/images/Goods/{Model.goodId}/{Model.images[i].imageUrl}")">
+                                <img class="img-responsive loadImage" title="" src="@Url.Content($"~/Content/images/Goods/{Model.goodId}/{Model.images[i].imageUrl}")" />
+                            </a>
+                        </td>
+                        <td class="radioH">
+                            <input type="radio" name="primaryImageId" id="image_@Model.images[i].id" value="@Model.images[i].id"
+                                   @(Model.images[i].isPrimary == true ? @"checked=""checked""" : string.Empty) />
+                            <label for="image_@Model.images[i].id"></label>
+                        </td>
+                        <td><a href="#" onclick="return deleteImage(this)">Удалить</a></td>
+                    </tr>
+
+                }
+            </table>
+        }
+        @if (Model?.images?.Count() > 1)
+        {
+            <table class="uploadedPictures">
+                <tr>
+                    <th></th>
+                    <th id="homeTH">@*На главную*@</th>
+                    <th></th>
+                </tr>
+                @for (int i = (int)Math.Round(((double)Model.images.Count) / 2) + 1; i < Model.images.Count(); i++)
+                {
+
+                    <tr data-image="@Model.images[i].id">
+                        <td style="max-height:400px;max-width:400px">
+                            <a data-rel="prettyphoto" href="@Url.Content($"~/Content/images/Goods/{Model.goodId}/{Model.images[i].imageUrl}")">
+                                <img class="img-responsive loadImage" title="" src="@Url.Content($"~/Content/images/Goods/{Model.goodId}/{Model.images[i].imageUrl}")" />
+                             </a>
+                        </td>
+                        <td class="radioH">
+                            <input type="radio" name="primaryImageId" id="image_@Model.images[i].id" value="@Model.images[i].id"
+                                   @(Model.images[i].isPrimary == true ? @"checked=""checked""" : string.Empty) />
+                            <label for="image_@Model.images[i].id"></label>
+                        </td>
+                        <td><a href="#" onclick="return deleteImage(this)">Удалить</a></td>
+                    </tr>
+
+                }
+            </table>
+        }
+
+    </div>
+
+</div>
+
+<script>
+    if ($('a[data-rel="prettyphoto"]').length > 0) {
+        $('a[data-rel="prettyphoto"]').prettyPhoto({ social_tools: '' });
+    }
+    //скрипты для добавления файла
+    var wrapper = $(".image_upload"),
+        inp = wrapper.find("input"),
+        btn = wrapper.find("button"),
+        lbl = $("#divImageNames");
+    btn.focus(function () {
+        inp.focus()
+    });
+    // костыль для :focus style:
+    inp.focus(function () {
+        wrapper.addClass("focus");
+    }).blur(function () {
+        wrapper.removeClass("focus");
+    });
+
+    var file_api = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+
+    inp.change(function () {
+        if (file_api && inp[0].files[0]) {
+            if (inp[0].files.length > @GoodImageEditorModel.MAX_IMAGES_COUNT)
+            {
+                alert("Максимально допустимое количество изображений для загрузки:  " + @GoodImageEditorModel.MAX_IMAGES_COUNT);
+                return;
+            }
+            file_name = '';
+            $.each(inp[0].files, function () {
+                file_name += '<p>' + this.name + '</p>';
+            });
+            if (lbl.is(":visible")) {
+                $(lbl).append($(file_name));
+                $('#clear').show();
+                lbl.width(300);
+            }
+            goodImagePost($('newImages:first'));
+          //  $('.newImages:first').closest('form').submit();
+        }
+        else {
+            file_name = "Файл не выбран";
+        }
+
+    }).change();
+
+    $(window).resize(function () {
+        $(".image_upload input").triggerHandler("change");
+    });
+    $("#clear").on("click", function () {
+        lbl.html('');
+        $("#newImages").val('');
+        $('#clear').hide();
+        return false;
+    });
+    //для добавления файла
+
+
+    function deleteImage(e) {
+        var id = $(e).closest('[data-image]').attr('data-image');
+        var isPrimary = $(e).closest('tr').find('input[type=radio]').is(':checked');
+        if (isPrimary)
+        {
+            alert("Нельзя удалить изображение, назначеннное главным. Сделайте главным другое изображаение, а затем поробуйте снова ");
+            return false;
+        }
+     $.ajax({
+            cache: false,
+            type: "GET",
+            data: { imageId: id},
+            url: '@Url.Action("ImageGoodDelete", "Odmen")',
+                  success: function (data) {
+                      if (data.result == 0)
+                      {
+                          if ($(e).closest('table').find('tr').length == 1) {
+                              $(e).closest('table').remove();
+                          }
+                          else {
+                              var tr = $(e).closest('tr');
+                              $(tr).remove();
+                          }
+                      }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+     });
+     return false;
+    }
+
+    $(document).on('click', 'input[type=radio]', function () {
+        var radio = this;
+        var id = $(radio).closest('[data-image]').attr('data-image');
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: { imageId: id },
+            url: '@Url.Action("SetPrimaryImage", "Odmen")',
+            success: function (data) {
+                if (data.result != 0) {
+                    alert('Ошибка выполнения операции. Попробуйте еще раз');
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+    });
+
+
+     function goodImagePost(e) {
+        //loadingToggleDiv($('body'), 15);
+            var formData = new FormData();
+            var totalFiles = inp[0].files.length;
+            for (var i = 0; i < totalFiles; i++)
+            {
+                var file = inp[0].files[i];
+                formData.append("newImages", file);
+            }
+            formData.append("goodId", @Model.goodId)
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddGoodImages", "Odmen")',
+                data: formData,
+              //  dataType: 'json',
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                //    loadingToggleDiv($('#StoreBlock'), 15);
+                },
+                complete: function () {
+                //    loadingToggleDiv($('#StoreBlock'), 15);
+                }, 
+                success: function (response) {
+                    $('#StoreBlock').html(response);
+                },
+                error: function (error) {
+                    alert('Ошибка загрузки изображения на сервра');
+                    console.log(error);
+                }
+            });
+        };
+  
+</script>

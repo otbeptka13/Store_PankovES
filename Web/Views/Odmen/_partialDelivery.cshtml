@@ -1,0 +1,564 @@
+﻿
+<div class="deliveryBlock">
+    <div>
+        <label>Список городов:</label>
+        <button style="float:right; margin-right:40px;" class="btn-small-filled" id="OpenWinAddCity">Добавить</button>
+        <table id="CityTable" class="table physicTable">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Название</th>
+                    <th>Стоимость доставки за 1 кг.</th>
+                    <th></th>
+                    <th></th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.cityList)
+                {
+                    var styleClose = item.isClose == true ? "background-color: #a3a3a3;" : string.Empty;
+                    <tr data-id="@item.id" style="@styleClose">
+                        <td>@item.id</td>
+                        <td>@item.name</td>
+                        <td>@item.price</td>
+                        @*<td><a href="#">Отключить</a></td>*@
+                        <td>
+                            <a class="deleteLink" style="cursor:pointer; display:@(item.isClose != true ? "auto" : "none")" onclick="cityOff('@item.id');">Отключить</a>
+                            <a class="returnLink" style="cursor:pointer; display:@(item.isClose != true ? "none" : "auto")" onclick="cityOn('@item.id');">Включить</a>
+                        </td>
+                        <td>
+                            <a style="cursor:pointer;" onclick="cityDeliveryEdit('@item.id', '@item.name', '@item.price');">Редактировать</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="pagerCityTable">
+            <form>
+                <table>
+                    <tr>
+                        <td><button class="first btn-small"><b><<</b></button></td>
+                        <td>|</td>
+                        <td><button class="prev btn-small"><b><</b></button></td>
+                        <td>|</td>
+                        <td><input type="text" class="pagedisplay form-control pagedisplay-new-mob" disabled /></td>
+                        <td>|</td>
+                        <td><button class="next btn-small"><b>></b></button></td>
+                        <td>|</td>
+                        <td><button class="last btn-small"><b>>></b></button></td>
+                        <td>|</td>
+                        <td class="td-col-vo-mob" style="min-width:45px">
+                            Кол-во строк:
+                        </td>
+                        <td>
+                            <select class="pagesize form-control select2 pagesize-new-mob">
+                                <option selected="selected" value="5">5</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div style="margin-top:40px;">
+        <label>Список пунктов самовывоза:</label>
+        <div style="display:inline-block; float:right; width:350px; margin-right:40px;">
+            <select type="text" id="citySelect">
+                <option value="0" selected="selected">Все</option>
+            </select>
+            <button style="float:right; margin-top:10px;" class="btn-small-filled" id="OpenWinPickupPoint">Добавить</button>
+        </div>       
+        <table id="PickupPointsTable" class="table physicTable">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Город</th>
+                    <th>Адрес</th>
+                    <th></th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.pickupPointsList)
+                {
+                    var styleClose = item.isClose == true ? "background-color: #a3a3a3;" : string.Empty;
+                    <tr data-id="@item.id" style="@styleClose">
+                        <td>@item.id</td>
+                        <td>@item.cityName</td>
+                        <td>@item.address</td>
+                        @*<td><a href="#">Отключить</a></td>*@
+                        <td>
+                            <a class="deleteLink" style="cursor:pointer; display:@(item.isClose != true ? "auto" : "none")" onclick="pickupPointOff('@item.id');">Отключить</a>
+                            <a class="returnLink" style="cursor:pointer; display:@(item.isClose != true ? "none" : "auto")" onclick="pickupPointOn('@item.id');">Включить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="pagerPickupPointsTable">
+            <form>
+                <table>
+                    <tr>
+                        <td><button class="first btn-small"><b><<</b></button></td>
+                        <td>|</td>
+                        <td><button class="prev btn-small"><b><</b></button></td>
+                        <td>|</td>
+                        <td><input type="text" class="pagedisplay form-control pagedisplay-new-mob" disabled /></td>
+                        <td>|</td>
+                        <td><button class="next btn-small"><b>></b></button></td>
+                        <td>|</td>
+                        <td><button class="last btn-small"><b>>></b></button></td>
+                        <td>|</td>
+                        <td class="td-col-vo-mob" style="min-width:45px">
+                            Кол-во строк:
+                        </td>
+                        <td>
+                            <select class="pagesize form-control select2 pagesize-new-mob">
+                                <option selected="selected" value="5">5</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="WinAddCity" class="modal modal_win_bg modal_win_bg_can_close modal--active" role="dialog" aria-hidden="true" style="display:none;  z-index: 100;">
+    <div style="min-width:340px;" class="modal_win_content modal_win_content--active">
+        <input type="hidden" id="isEdit" value="false" />
+        <input type="hidden" id="cityEditId" value="0" />
+        <div class="container">
+            <div class="form-administrate">
+                <label style="display:block;">Название:</label>
+                <input id="cityName" type="text" />  
+                <p class="validationMessage"></p>                
+            </div>
+            <div class="form-administrate" style="margin-top: 10px;">
+                <label style="display:block; width:170px;">Стоимость доставки за 1 кг.</label>
+                <input type="number" class="spec-input-control" id="price" value="" min="0" />
+                <p class="validationMessage"></p>      
+            </div>
+            <button style="float:right; margin-top:20px;" class="btn-small-filled" id="addCity">Сохранить</button>
+        </div>
+        <a href="#" class="modal_win_close demo-close"></a>
+    </div>
+</div>
+
+<div id="WinPickupPoint" class="modal modal_win_bg modal_win_bg_can_close modal--active" role="dialog" aria-hidden="true" style="display:none; z-index: 100;">
+    <div style="min-width:340px;" class="modal_win_content modal_win_content--active">
+        <div class="container">
+            <div class="form-administrate" style="width:250px;">
+                <label style="display:block;">Город:</label>
+                <select type="text" id="selectAddPickupPoint">
+                </select>
+            </div>
+            <div class="form-administrate" style="margin-top: 10px;">
+                <label style="display:block;">Адрес:</label>
+                <input id="pickupPointName" type="text" />
+                <p class="validationMessage"></p>
+            </div>
+            <button style="float:right; margin-top:20px;" class="btn-small-filled" id="addPickupPoint">Сохранить</button>
+        </div>
+        <a href="#" class="modal_win_close demo-close"></a>
+    </div>
+</div>
+
+@Styles.Render("~/Content/select2-css")
+@Scripts.Render("~/Content/select2-js")
+
+<script type="text/javascript">
+    function validation(input) {
+        if (input.val() != "") {
+            input.next().hide();
+            return true;
+        }
+        input.next().text("Заполните поле!");
+        input.next().show();
+        return false;
+    }
+
+    function cityOff(id) {
+        //loadingToggleDiv($('body'), 15);
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: {id: id, type: "off"},
+            url: '@Url.Action("CityOffOn", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+                  success: function (data) {
+                      if (data.result == 0)
+                      {
+                          var tr = $('#CityTable').find('tr[data-id=' + id + ']');
+                          $(tr).css('background-color', '#a3a3a3');
+                          $(tr).find('a.deleteLink').hide();
+                          //$(tr).find('a.editLink').hide();
+                          //$(tr).find('td.cities p').html('');
+                          $(tr).find('a.returnLink').show();
+                          //$(tr).parents('tbody').append(tr);
+                      }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+    function cityOn(id) {
+        //loadingToggleDiv($('body'), 15);
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: {id : id, type: "on"},
+            url: '@Url.Action("CityOffOn", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+                  success: function (data) {
+                      if (data.result == 0)
+                      {
+                          var tr = $("#CityTable").find('tr[data-id=' + id + ']');
+                          $(tr).css('background-color', '');
+                          $(tr).find('a.deleteLink').show();
+                          //$(tr).find('a.editLink').show();
+                          //if (data.cities && data.cities.length > 0)
+                          //{
+                          //    var cities = '';
+                          //    $.each(data.cities, function (ind, val) {
+                          //        cities += val + '<br>';
+                          //    });
+                          //    $(tr).find('td.cities p').html(cities);
+                          //}
+                          $(tr).find('a.returnLink').hide();
+                      }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+
+    function pickupPointOff(id) {
+        //loadingToggleDiv($('body'), 15);
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: {id: id, type: "off"},
+            url: '@Url.Action("PickupPointOffOn", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                      if (data.result == 0)
+                      {
+                          var tr = $("#PickupPointsTable").find('tr[data-id=' + id + ']');
+                          $(tr).css('background-color', '#a3a3a3');
+                          $(tr).find('a.deleteLink').hide();
+                          $(tr).find('a.returnLink').show();
+                      }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+
+    function pickupPointOn(id) {
+        //loadingToggleDiv($('body'), 15);
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: {id : id, type: "on"},
+            url: '@Url.Action("PickupPointOffOn", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+                  success: function (data) {
+                      if (data.result == 0)
+                      {
+                          var tr = $("#PickupPointsTable").find('tr[data-id=' + id + ']');
+                          $(tr).css('background-color', '');
+                          $(tr).find('a.deleteLink').show();
+                          $(tr).find('a.returnLink').hide();
+                      }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+
+    $("#CityTable")
+    .tablesorter({
+        theme: 'blue',
+        dateFormat: "ddmmyyyy",
+        headers: {
+            0: { sorter: "shortDate", dateFormat: "ddmmyyyy" }
+        },
+        widthFixed: false
+    })
+    .tablesorterPager({
+        container: $(".pagerCityTable"),
+        size: 5,
+        fixedHeight: false
+    });
+
+    $("#PickupPointsTable")
+    .tablesorter({
+        theme: 'blue',
+        dateFormat: "ddmmyyyy",
+        headers: {
+            0: { sorter: "shortDate", dateFormat: "ddmmyyyy" }
+        },
+        widthFixed: false
+    })
+    .tablesorterPager({
+        container: $(".pagerPickupPointsTable"),
+        size: 5,
+        fixedHeight: false
+    });
+
+    function GenerateHtmlForCityTable(list) {
+        var htmlTable = "";
+        for (var i = 0; i < list.length; i++) {
+            var styleClose = list[i].isClose == true ? "background-color: #a3a3a3;" : "";
+            htmlTable += "<tr style=" + "'" + styleClose + "'" + "data-id=" + list[i].id + ">";
+            htmlTable += "<td>" + list[i].id + "</td>";
+            htmlTable += "<td>" + list[i].name + "</td>";
+            htmlTable += "<td>" + list[i].price + "</td>";
+            //htmlTable += "<td><a href='#'>Отключить</a></td>"
+            htmlTable +=  '<td>' +
+                              '<a class="deleteLink" style="cursor:pointer; display:' + (list[i].isClose != true ? "auto" : "none") + '" onclick="cityOff(' + list[i].id + ');">Отключить</a>' +
+                              '<a class="returnLink" style="cursor: pointer; display:' + (list[i].isClose != true ? "none" : "auto") + '" onclick="cityOn(' + list[i].id + ');">Включить</a>' +
+                           '</td>' +
+                            '<td>' +
+                               '<a style="cursor:pointer;" onclick="cityDeliveryEdit(' + list[i].id + ',' + list[i].naem + ',' + list[i].price +');">Редактировать</a>'
+                            '</td>';
+            htmlTable += "</tr>";
+        }
+        return htmlTable;
+    }
+
+    function GenerateHtmlForPickupPointTable(list) {
+        var htmlTable = "";
+        for (var i = 0; i < list.length; i++) {
+            var styleClose = list[i].isClose == true ? "background-color: #a3a3a3;" : "";
+            htmlTable += "<tr style=" + "'" + styleClose + "'" + "data-id=" + list[i].id + ">";
+            htmlTable += "<td>" + list[i].id + "</td>";
+            htmlTable += "<td>" + list[i].cityName + "</td>";
+            htmlTable += "<td>" + list[i].address + "</td>";
+            //htmlTable += "<td><a href='#'>Отключить</a></td>"
+            htmlTable += '<td>' +
+                '<a class="deleteLink" style="cursor:pointer; display:' + (list[i].isClose != true ? "auto" : "none") + '" onclick="pickupPointOff(' + list[i].id + ');">Отключить</a>' +
+                '<a class="returnLink" style="cursor: pointer; display:' + (list[i].isClose != true ? "none" : "auto") + '" onclick="pickupPointOn(' + list[i].id + '); ">Включить</a>' +
+                '</td>';
+            htmlTable += "</tr>";
+        }
+        return htmlTable;
+    }
+
+    function cityDeliveryEdit(id, name, price) {
+        $("#isEdit").val(true);
+        $("#cityEditId").val(id);
+        $("#cityName").prop('disabled', true);
+        $(".validationMessage").hide();
+        $('#cityName').val(name);
+        $('#price').val(price);
+        $('#WinAddCity').show();
+    }
+
+    $("#OpenWinAddCity").on('click', function () {
+        $("#cityEditId").val(false);
+        $("#cityEditId").val("0");
+        $("#cityName").prop('disabled', false);
+        $(".validationMessage").hide();
+        $('#cityName').val("");
+        $('#price').val("");
+        $('#WinAddCity').show();
+    });
+    $("#OpenWinPickupPoint").on('click', function () {
+            $('#pickupPointName').val("");
+            $.ajax({
+            cache: false,
+            type: "Get",
+            data: { filter: "" },
+            url: '@Url.Action("GetCitiesDelivery", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                $('#selectAddPickupPoint').text("");
+                    for (var i = 0; i < data.length; i++) {
+                        var newOption = new Option(data[i].text, data[i].id, false, false);
+                        $('#selectAddPickupPoint').append(newOption).trigger('change');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+        $('#WinPickupPoint').show();
+    });
+    $("#addCity").on('click', function () {
+        if (!validation($('#cityName'))) {
+            if (!validation($('#price'))) {  }
+            return;
+        }
+        if (!validation($('#price'))) { return; }
+        $.ajax({
+            cache: false,
+            type: "POST",
+            data: { id: $('#cityEditId').val(), name: $('#cityName').val(), price: $('#price').val(), isEdit: $('#isEdit').val() },
+            url: '@Url.Action("AddEditCity", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+                    success: function (data) {
+                        var htmlTable = GenerateHtmlForCityTable(data);
+                        $("#CityTable tbody").html(htmlTable);
+                        $('#WinAddCity').hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    });
+
+    $("#addPickupPoint").on('click', function () {
+        if (!validation($('#pickupPointName'))) { return; }
+        $.ajax({
+            cache: false,
+            type: "POST",
+            data: { pickupPointName: $('#pickupPointName').val(), cityId: $("#selectAddPickupPoint").val(), cityIdSelect: $("#citySelect").val() },
+            url: '@Url.Action("AddPickupPoint", "Administration")',
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+                    success: function (data) {
+                        var htmlTable = GenerateHtmlForPickupPointTable(data);
+                        $("#PickupPointsTable tbody").html(htmlTable);
+                        $('#WinPickupPoint').hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    });
+
+    $("#selectAddPickupPoint").select2();
+
+    @*$("#citySelect").select2(
+        {
+            language: "ru",
+            minimumInputLength: 1,
+            placeholder: "Введите название города",
+            //allowClear: true,
+            //inputTooShort: "SSDS",
+            ajax: {
+                url: '@Url.Action("GetCitiesDelivery", "Administration")',
+                type: "GET",
+                cache: true,
+                dataType: 'json',
+                data: function (obj) {
+                    return { filter: obj.term };
+                },
+                processResults: function (data) {
+                    var result = new Array();
+                    result[0] = {
+                        id: 0,
+                        text: "Все"
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        result[i + 1] = {
+                            id: data[i].id,
+                            text: data[i].text
+                        }
+                    }
+                    return {
+                        results: result
+                    };
+                }
+            }
+        }).on("change", function (e) {
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: '@Url.Action("GetPickupPoints", "Administration")',
+                    data: { cityId: $("#citySelect").val() },
+                    beforeSend: function () {
+                        loadingToggleDiv($('#StoreBlock'), 15);
+                    },
+                    complete: function () {
+                        loadingToggleDiv($('#StoreBlock'), 15);
+                    },
+                    success: function (data) {
+                        var htmlTable = GenerateHtmlForPickupPointTable(data);
+                        $("#PickupPointsTable tbody").html(htmlTable);
+                    },
+                });
+        });*@
+
+    $("#citySelect").select2().on("change", function (e) {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.Action("GetPickupPoints", "Administration")',
+            data: { cityId: $("#citySelect").val() },
+            beforeSend: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+                loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                var htmlTable = GenerateHtmlForPickupPointTable(data);
+                $("#PickupPointsTable tbody").html(htmlTable);
+            },
+        });
+    });
+     $.ajax({
+            cache: false,
+            type: "Get",
+            data: { filter: "" },
+            url: '@Url.Action("GetCitiesDelivery", "Administration")',
+            success: function (data) {
+                $('#citySelect').text("");
+                $('#citySelect').append('<option value="0" selected="selected">Все</option>');
+                    for (var i = 0; i < data.length; i++) {
+                        var newOption = new Option(data[i].text, data[i].id, false, false);
+                        $('#citySelect').append(newOption);
+
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+        });
+
+    //$("#citySelect").on("select2:unselecting", function (e) {
+    //    alert('PITUSHARA');
+    //});
+</script>
+
+<style>
+    .validationMessage {
+        color:red;
+        margin-top:0px;
+        display:none;
+    }
+</style>

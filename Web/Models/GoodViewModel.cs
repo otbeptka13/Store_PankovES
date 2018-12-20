@@ -25,6 +25,7 @@ namespace Web.Models
             fullInfo = good.fullInfo;
             groupInfo = good.groupInfo;
             goodProperties = good.goodProperties;
+            images = good.images;
             mark = good.mark;
 
         }

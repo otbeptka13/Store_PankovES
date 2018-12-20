@@ -1,0 +1,170 @@
+﻿@using StoreDomainObject
+@model Good
+
+@{var isReadOnly = Model?.isEdit == true ? new { @readonly = "readonly" } : null;}
+@using (Html.BeginForm("CreateEditGood", "Administration"))
+{
+
+    @Html.HiddenFor(s => s.isEdit)
+    @Html.HiddenFor(s => s.id)
+<div class="form-administrate">
+    <div>
+        <label>Наименование товара:</label>
+        @Html.TextBoxFor(s => s.name, new { @class = "bigInput" })
+    </div>
+    <div>
+        <label>Группа товаров:</label>
+        @Html.DropDownListFor(s => s.groupId, new StoreAction().GetGroups().Select(s => new SelectListItem { Value = s.id.ToString(), Text = s.name, Selected = s.id == Model.groupId }))
+    </div>
+    <div>
+        <label>Цена:</label>
+        @Html.TextBoxFor(s => s.price, new { @class = "smallInput" })
+    </div>
+    <div>
+        <label>Скидка(%):</label>
+        @Html.TextBoxFor(s => s.discount, new { @class = "smallInput", @type = "number" })
+    </div>
+    <br>
+    <label>Характеристики:</label>
+    <div>
+        <table id="specificationsTable">
+            <tr>
+                <th>Наименование</th>
+                <th>Значение</th>
+            </tr>
+            @if (Model?.goodProperties?.Count > 0)
+            {
+                for (int i = 0; i < Model.goodProperties.Count; i++)
+                {
+
+                    <tr>
+                        @Html.HiddenFor(s => s.goodProperties[i].id, new { data_property = Model.id, data_index = i })
+                        @Html.HiddenFor(s => s.goodProperties[i].goodId)
+                        <td>
+                            @Html.TextBoxFor(s => s.goodProperties[i].name)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(s => s.goodProperties[i].value)
+                        </td>
+                        <td>
+                            @if (Model.isEdit == true)
+                            {
+                                <button type="button" onclick="specificationsDelet(this)" name="specificationsButtonDelet" class="specificationsButton"> х </button>
+                            }
+                            @if (i == Model.goodProperties.Count - 1)
+                            {
+                                <button type="button" onclick="specificationsAdd()" name="specificationsButtonAdd" class="specificationsButton"> + </button>
+                            }
+                        </td>
+                    </tr>
+                }
+
+
+            }
+
+            @*<tr>
+                    <td>
+                        <input type="text" name="specificationsName" />
+                    </td>
+                    <td>
+                        <input type="text" name="specificationsValue" />
+                    </td>
+                    <td>
+                        <button style="display:none;" onclick="specificationsDelet(this)" name="specificationsButtonDelet" class="specificationsButton"> х </button>
+                        <button onclick="specificationsAdd()" name="specificationsButtonAdd" class="specificationsButton"> + </button>
+                    </td>
+                </tr>*@
+        </table>
+    </div>
+    <br>
+    <div>
+        <label>Краткая информация:</label> <br>
+        @Html.TextAreaFor(s => s.info, new { rows = "10", cols = "40", @class = "textAreaAdministrateForm" })
+    </div>
+    <div>
+        <label>Полное описание:</label> <br>
+        @Html.TextAreaFor(s => s.fullInfo, new { rows = "10", cols = "40", @class = "textAreaAdministrateForm" })
+    </div>
+
+    <br>
+
+</div>
+    <div class="centerDivButton">
+        <button class="le-button" type="button" onclick="goodEditCreatePost(this)">Сохранить</button>
+    </div>
+}
+<script>
+
+
+    function specificationsAdd() {
+        var newIndex = $('[data-property]').length;
+        var goodId = $('#goodId').val();
+        $("[name='specificationsButtonDelet']").show();
+        var tr = '<tr><td>' +
+            '<input id="goodProperties_' + newIndex + '__goodId" name="goodProperties[' + newIndex + '].goodId" type="hidden" value="' + goodId + '" data-property />' +
+            '<input id="goodProperties_' + newIndex + '__name" name="goodProperties[' + newIndex + '].name" type="text" value="" />' +
+            '</td>' +
+            '<td>' +
+            '<input id="goodProperties_' + newIndex + '__value" name="goodProperties[' + newIndex + '].value" type="text" value=""/>' +
+            '</td>' +
+            '<td>' +
+            //(($('[data-property]').length == 0) ? '' :
+              '<button onclick="specificationsDelet(this)" name="specificationsButtonDelet" class="specificationsButton"> х </button>'//   )
+            +
+            '</td>' +
+            '</tr> '
+        $("#specificationsTable").append(tr);
+        ReplacePlus();
+    }
+
+    function specificationsDelet(e) {
+
+        var idHidden = $(e).closest('tr').find('[data-property]');
+        if (idHidden.val() > 0) {
+            $(idHidden).removeAttr('data-property')
+            var index = $(idHidden).attr('data-index');
+            var isDelete = '<input id="goodProperties_' + index + '__isDeleted" name= "goodProperties[' + index + '].isDeleted" type="hidden" value= "True" />';
+            $(e).closest('form').append(isDelete);
+            $(e).closest('form').append(idHidden);
+        }
+
+        $(e).closest('tr').remove();
+        if ($("#specificationsTable tr").length == 1)
+            specificationsAdd();
+        ReplacePlus();
+    }
+    function ReplacePlus() {
+        if ($("[name='specificationsButtonAdd']").length > 0)
+            $("[name='specificationsButtonAdd']").remove();
+        var button = $('<button style="margin-left:3px;" onclick="specificationsAdd(this)" name="specificationsButtonAdd" class="specificationsButton"> + </button>');
+        $('#specificationsTable').find('td:last').append(button);
+    }
+     function goodEditCreatePost(e) {
+         var nameService = $(e).text();
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.Action("CreateEditGood", "Odmen")',
+            data: $(e).closest('form').serialize(),
+            beforeSend: function () {
+              //  loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+              //  loadingToggleDiv($('#StoreBlock'), 15);
+            }, 
+            success: function (data) {
+                    if (data.result == 0)
+                    {
+                        window.location.href = '@Url.Action("Store","Odmen")';
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("Ошибка сервера");
+                }
+            });
+    }
+</script>

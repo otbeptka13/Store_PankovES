@@ -1,0 +1,124 @@
+﻿@using Web.Models
+@model GoodsShortViewModel
+<div class="info" style="background-color:#b7b82c">
+    @if (!string.IsNullOrEmpty(Model?.message))
+    {
+        <p class="form-group info-style" id="info">@Model.message</p>
+    }
+</div>
+@if (Html.ValidationSummary(true) != null && !string.IsNullOrEmpty(Html.ValidationSummary(true).ToString().Trim()))
+{
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+}
+<div class="centerDivButton">
+ <button class="le-button" onclick="goodsEditorLoad(null)">Добавить новый товар</button>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID товара</th>
+            <th>Название</th>
+            <th>Группа товаров</th>
+            <th>Цена</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var good in Model.goods)
+        {
+            var styleCloseGood =  string.Empty;
+        <tr data-goodId="@good.id" style="@styleCloseGood">
+            <td>@good.id</td>
+            <td>@good.name</td>
+            <td>@good.groupName</td>
+            <td>@good.price.ToString("0.00")</td>
+            <td>
+                <a class="editLink" style="cursor:pointer;" onclick="goodsEditorLoad(this);">Редактор товара</a> <br>
+                <a class="editLink" style="cursor:pointer;" onclick="goodImagesLoad(this);">Редактор изображений</a> <br>
+                <a style="cursor:pointer;" tooltip="123123" onclick="goodsEditorLoad(this, true);">Клонировать характеристики</a>
+            </td>
+
+            <td> <a class="deleteLink" style="cursor:pointer;" onclick="goodDelete(this);">Удалить</a>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<script>
+    function goodsEditorLoad(e, isClone) {
+        var goodId = $(e).closest('tr').attr('data-goodId');
+        var nameService = $(e).text();
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: { goodId: goodId, isClone: isClone ? true : false },
+            url: '@Url.Action("_partialGoodsEditor", "Odmen")',
+            beforeSend: function () {
+            //    loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+            //    loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                      $('#StoreBlock').html(data);
+                      //$('.text-LineServices').text(nameService);
+                },
+            error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+    function goodImagesLoad(e) {
+        //loadingToggleDiv($('body'), 15);
+        var goodId = $(e).closest('tr').attr('data-goodId');
+        var nameService = $(e).text();
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: { goodId: goodId },
+            url: '@Url.Action("_partialCreateEditImageGood", "Odmen")',
+            beforeSend: function () {
+             //   loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+            //    loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                      $('#StoreBlock').html(data);
+                      $('.text-LineServices').text(nameService);
+                },
+           error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+    function goodDelete(e) {
+        //loadingToggleDiv($('body'), 15);
+        var goodId = $(e).closest('tr').attr('data-goodId');
+        $.ajax({
+            cache: false,
+            type: "GET",
+            data: {goodId : goodId},
+            url: '@Url.Action("GoodDelete", "Odmen")',
+            beforeSend: function () {
+              //  loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            complete: function () {
+            //   loadingToggleDiv($('#StoreBlock'), 15);
+            },
+            success: function (data) {
+                      if (data.result == 0)
+                      {
+                          var tr = $('tr[data-goodId=' + goodId + ']');
+                          $(tr).remove();
+                      }
+                },
+            error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+    }
+ 
+</script>

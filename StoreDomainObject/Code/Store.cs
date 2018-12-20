@@ -158,6 +158,7 @@ namespace StoreDomainObject.Code
                     id = s.id
                 }).ToList();
                 good.goodProperties = goodProperties;
+                good.images = db.GoodImages.Where(s => s.goodId == goodId).ToList();
                 return good;
             }
         }

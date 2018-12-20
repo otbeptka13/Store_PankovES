@@ -10,19 +10,23 @@
             <div class="product-item-holder size-big single-product-gallery small-gallery">
 
                 <div id="owl-single-product" class="owl-carousel">
-                    <div class="single-product-gallery-item" id="slide1">
-                        <a data-rel="prettyphoto" href="@Url.Content("~/Content/images/products/" + (Model.imageUrl ?? "product-gallery-01.jpg"))">
-                            <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/" + (Model.imageUrl ?? "product-gallery-01.jpg"))" />
-                        </a>
-                    </div><!-- /.single-product-gallery-item -->
+                    @for (int i = 0; i < Model.images?.Count; i++)
+                    {
+                        <div class="single-product-gallery-item" id="slide+@i">
+                            <a data-rel="prettyphoto" href="@Url.Content($"~/Content/images/Goods/{Model.id}/{Model.images[i].imageUrl}")">
+                                <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/Goods/{Model.id}/{Model.images[i].imageUrl}"))" />
+                            </a>
+                        </div><!-- /.single-product-gallery-item -->
+                    }
 
-                    <div class="single-product-gallery-item" id="slide2">
+
+                    <div class="single-product-gallery-item" id="slide12">
                         <a data-rel="prettyphoto" href="@Url.Content("~/Content/images/products/product-gallery-01.jpg")">
                             <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
                         </a>
                     </div><!-- /.single-product-gallery-item -->
 
-                    <div class="single-product-gallery-item" id="slide3">
+                    <div class="single-product-gallery-item" id="slide13">
                         <a data-rel="prettyphoto" href="@Url.Content("~/Content/images/products/product-gallery-01.jpg")">
                             <img class="img-responsive" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
                         </a>
@@ -33,19 +37,23 @@
                 <div class="single-product-gallery-thumbs gallery-thumbs">
 
                     <div id="owl-single-product-thumbnails" class="owl-carousel">
-                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
-                            <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/" + (Model.imageUrl ?? "product-gallery-01.jpg"))" />
-                        </a>
+                        @for (int i = 0; i < Model.images?.Count; i++)
+                        {
+                            <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="@i" href="#slide+@i">
+                                <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/Goods/{Model.id}/" + (Model.images[i].imageUrl ?? "product-gallery-01.jpg"))" />
+                            </a>
+                     
+                        }
 
-                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide12">
                             <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
                         </a>
 
-                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide13">
                             <img width="67" alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content("~/Content/images/products/product-gallery-01.jpg")" />
                         </a>
 
-                    
+
                     </div><!-- /#owl-single-product-thumbnails -->
 
                     <div class="nav-holder left hidden-xs">
