@@ -48,8 +48,7 @@ namespace Web.Controllers
                     try
                     {
                         Session.Login(result.userId ?? 0);
-                        Response.Redirect("~");
-                        return null;
+                        return Redirect(Url.Content("~/"));
                     }
                     catch (Exception ex)
                     {

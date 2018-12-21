@@ -33,12 +33,6 @@ namespace StoreDomainObject
     partial void InsertSettings(Settings instance);
     partial void UpdateSettings(Settings instance);
     partial void DeleteSettings(Settings instance);
-    partial void InsertGoodTypes(GoodTypes instance);
-    partial void UpdateGoodTypes(GoodTypes instance);
-    partial void DeleteGoodTypes(GoodTypes instance);
-    partial void InsertGoods(Goods instance);
-    partial void UpdateGoods(Goods instance);
-    partial void DeleteGoods(Goods instance);
     partial void InsertFeedBacks(FeedBacks instance);
     partial void UpdateFeedBacks(FeedBacks instance);
     partial void DeleteFeedBacks(FeedBacks instance);
@@ -66,6 +60,15 @@ namespace StoreDomainObject
     partial void InsertOrders(Orders instance);
     partial void UpdateOrders(Orders instance);
     partial void DeleteOrders(Orders instance);
+    partial void InsertGoodTypes(GoodTypes instance);
+    partial void UpdateGoodTypes(GoodTypes instance);
+    partial void DeleteGoodTypes(GoodTypes instance);
+    partial void InsertGoodBrands(GoodBrands instance);
+    partial void UpdateGoodBrands(GoodBrands instance);
+    partial void DeleteGoodBrands(GoodBrands instance);
+    partial void InsertGoods(Goods instance);
+    partial void UpdateGoods(Goods instance);
+    partial void DeleteGoods(Goods instance);
     #endregion
 		
 		public StoreDataBaseDataContext() : 
@@ -114,27 +117,11 @@ namespace StoreDomainObject
 			}
 		}
 		
-		public System.Data.Linq.Table<GoodTypes> GoodTypes
-		{
-			get
-			{
-				return this.GetTable<GoodTypes>();
-			}
-		}
-		
 		public System.Data.Linq.Table<SupplyView> SupplyView
 		{
 			get
 			{
 				return this.GetTable<SupplyView>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Goods> Goods
-		{
-			get
-			{
-				return this.GetTable<Goods>();
 			}
 		}
 		
@@ -194,14 +181,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		public System.Data.Linq.Table<GoodsView> GoodsView
-		{
-			get
-			{
-				return this.GetTable<GoodsView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Basket> Basket
 		{
 			get
@@ -215,6 +194,38 @@ namespace StoreDomainObject
 			get
 			{
 				return this.GetTable<Orders>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GoodTypes> GoodTypes
+		{
+			get
+			{
+				return this.GetTable<GoodTypes>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GoodBrands> GoodBrands
+		{
+			get
+			{
+				return this.GetTable<GoodBrands>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GoodsView> GoodsView
+		{
+			get
+			{
+				return this.GetTable<GoodsView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Goods> Goods
+		{
+			get
+			{
+				return this.GetTable<Goods>();
 			}
 		}
 		
@@ -593,168 +604,6 @@ namespace StoreDomainObject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodTypes")]
-	public partial class GoodTypes : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _id;
-		
-		private string _name;
-		
-		private string _info;
-		
-		private string _imageUrl;
-		
-		private EntitySet<Goods> _Goods;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(long value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OninfoChanging(string value);
-    partial void OninfoChanged();
-    partial void OnimageUrlChanging(string value);
-    partial void OnimageUrlChanged();
-    #endregion
-		
-		public GoodTypes()
-		{
-			this._Goods = new EntitySet<Goods>(new Action<Goods>(this.attach_Goods), new Action<Goods>(this.detach_Goods));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(50)")]
-		public string info
-		{
-			get
-			{
-				return this._info;
-			}
-			set
-			{
-				if ((this._info != value))
-				{
-					this.OninfoChanging(value);
-					this.SendPropertyChanging();
-					this._info = value;
-					this.SendPropertyChanged("info");
-					this.OninfoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(200)")]
-		public string imageUrl
-		{
-			get
-			{
-				return this._imageUrl;
-			}
-			set
-			{
-				if ((this._imageUrl != value))
-				{
-					this.OnimageUrlChanging(value);
-					this.SendPropertyChanging();
-					this._imageUrl = value;
-					this.SendPropertyChanged("imageUrl");
-					this.OnimageUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_Goods", Storage="_Goods", ThisKey="id", OtherKey="typeId")]
-		public EntitySet<Goods> Goods
-		{
-			get
-			{
-				return this._Goods;
-			}
-			set
-			{
-				this._Goods.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Goods(Goods entity)
-		{
-			this.SendPropertyChanging();
-			entity.GoodTypes = this;
-		}
-		
-		private void detach_Goods(Goods entity)
-		{
-			this.SendPropertyChanging();
-			entity.GoodTypes = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.SupplyView")]
 	public partial class SupplyView
 	{
@@ -1088,421 +937,6 @@ namespace StoreDomainObject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.Goods")]
-	public partial class Goods : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _id;
-		
-		private string _name;
-		
-		private long _typeId;
-		
-		private decimal _price;
-		
-		private string _info;
-		
-		private short _discount;
-		
-		private string _fullInfo;
-		
-		private EntitySet<FeedBacks> _FeedBacks;
-		
-		private EntitySet<WishList> _WishList;
-		
-		private EntitySet<WatchedGood> _WatchedGood;
-		
-		private EntitySet<GoodProperties> _GoodProperties;
-		
-		private EntitySet<GoodImages> _GoodImages;
-		
-		private EntitySet<Basket> _Basket;
-		
-		private EntityRef<GoodTypes> _GoodTypes;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(long value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OntypeIdChanging(long value);
-    partial void OntypeIdChanged();
-    partial void OnpriceChanging(decimal value);
-    partial void OnpriceChanged();
-    partial void OninfoChanging(string value);
-    partial void OninfoChanged();
-    partial void OndiscountChanging(short value);
-    partial void OndiscountChanged();
-    partial void OnfullInfoChanging(string value);
-    partial void OnfullInfoChanged();
-    #endregion
-		
-		public Goods()
-		{
-			this._FeedBacks = new EntitySet<FeedBacks>(new Action<FeedBacks>(this.attach_FeedBacks), new Action<FeedBacks>(this.detach_FeedBacks));
-			this._WishList = new EntitySet<WishList>(new Action<WishList>(this.attach_WishList), new Action<WishList>(this.detach_WishList));
-			this._WatchedGood = new EntitySet<WatchedGood>(new Action<WatchedGood>(this.attach_WatchedGood), new Action<WatchedGood>(this.detach_WatchedGood));
-			this._GoodProperties = new EntitySet<GoodProperties>(new Action<GoodProperties>(this.attach_GoodProperties), new Action<GoodProperties>(this.detach_GoodProperties));
-			this._GoodImages = new EntitySet<GoodImages>(new Action<GoodImages>(this.attach_GoodImages), new Action<GoodImages>(this.detach_GoodImages));
-			this._Basket = new EntitySet<Basket>(new Action<Basket>(this.attach_Basket), new Action<Basket>(this.detach_Basket));
-			this._GoodTypes = default(EntityRef<GoodTypes>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeId", DbType="BigInt NOT NULL")]
-		public long typeId
-		{
-			get
-			{
-				return this._typeId;
-			}
-			set
-			{
-				if ((this._typeId != value))
-				{
-					if (this._GoodTypes.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OntypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._typeId = value;
-					this.SendPropertyChanged("typeId");
-					this.OntypeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,2) NOT NULL")]
-		public decimal price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this.OnpriceChanging(value);
-					this.SendPropertyChanging();
-					this._price = value;
-					this.SendPropertyChanged("price");
-					this.OnpriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(50)")]
-		public string info
-		{
-			get
-			{
-				return this._info;
-			}
-			set
-			{
-				if ((this._info != value))
-				{
-					this.OninfoChanging(value);
-					this.SendPropertyChanging();
-					this._info = value;
-					this.SendPropertyChanged("info");
-					this.OninfoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
-		public short discount
-		{
-			get
-			{
-				return this._discount;
-			}
-			set
-			{
-				if ((this._discount != value))
-				{
-					this.OndiscountChanging(value);
-					this.SendPropertyChanging();
-					this._discount = value;
-					this.SendPropertyChanged("discount");
-					this.OndiscountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fullInfo", DbType="VarChar(MAX)")]
-		public string fullInfo
-		{
-			get
-			{
-				return this._fullInfo;
-			}
-			set
-			{
-				if ((this._fullInfo != value))
-				{
-					this.OnfullInfoChanging(value);
-					this.SendPropertyChanging();
-					this._fullInfo = value;
-					this.SendPropertyChanged("fullInfo");
-					this.OnfullInfoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_FeedBacks", Storage="_FeedBacks", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<FeedBacks> FeedBacks
-		{
-			get
-			{
-				return this._FeedBacks;
-			}
-			set
-			{
-				this._FeedBacks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WishList", Storage="_WishList", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<WishList> WishList
-		{
-			get
-			{
-				return this._WishList;
-			}
-			set
-			{
-				this._WishList.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WatchedGood", Storage="_WatchedGood", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<WatchedGood> WatchedGood
-		{
-			get
-			{
-				return this._WatchedGood;
-			}
-			set
-			{
-				this._WatchedGood.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodProperties", Storage="_GoodProperties", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<GoodProperties> GoodProperties
-		{
-			get
-			{
-				return this._GoodProperties;
-			}
-			set
-			{
-				this._GoodProperties.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodImages", Storage="_GoodImages", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<GoodImages> GoodImages
-		{
-			get
-			{
-				return this._GoodImages;
-			}
-			set
-			{
-				this._GoodImages.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Basket", ThisKey="id", OtherKey="goodId")]
-		public EntitySet<Basket> Basket
-		{
-			get
-			{
-				return this._Basket;
-			}
-			set
-			{
-				this._Basket.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_Goods", Storage="_GoodTypes", ThisKey="typeId", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public GoodTypes GoodTypes
-		{
-			get
-			{
-				return this._GoodTypes.Entity;
-			}
-			set
-			{
-				GoodTypes previousValue = this._GoodTypes.Entity;
-				if (((previousValue != value) 
-							|| (this._GoodTypes.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._GoodTypes.Entity = null;
-						previousValue.Goods.Remove(this);
-					}
-					this._GoodTypes.Entity = value;
-					if ((value != null))
-					{
-						value.Goods.Add(this);
-						this._typeId = value.id;
-					}
-					else
-					{
-						this._typeId = default(long);
-					}
-					this.SendPropertyChanged("GoodTypes");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_FeedBacks(FeedBacks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_FeedBacks(FeedBacks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-		
-		private void attach_WishList(WishList entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_WishList(WishList entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-		
-		private void attach_WatchedGood(WatchedGood entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_WatchedGood(WatchedGood entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-		
-		private void attach_GoodProperties(GoodProperties entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_GoodProperties(GoodProperties entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-		
-		private void attach_GoodImages(GoodImages entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_GoodImages(GoodImages entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-		
-		private void attach_Basket(Basket entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = this;
-		}
-		
-		private void detach_Basket(Basket entity)
-		{
-			this.SendPropertyChanging();
-			entity.Goods = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.FeedBacks")]
 	public partial class FeedBacks : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1521,9 +955,9 @@ namespace StoreDomainObject
 		
 		private long _goodId;
 		
-		private EntityRef<Goods> _Goods;
-		
 		private EntityRef<Users> _Users;
+		
+		private EntityRef<Goods> _Goods;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -1545,8 +979,8 @@ namespace StoreDomainObject
 		
 		public FeedBacks()
 		{
-			this._Goods = default(EntityRef<Goods>);
 			this._Users = default(EntityRef<Users>);
+			this._Goods = default(EntityRef<Goods>);
 			OnCreated();
 		}
 		
@@ -1678,40 +1112,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_FeedBacks", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
-		public Goods Goods
-		{
-			get
-			{
-				return this._Goods.Entity;
-			}
-			set
-			{
-				Goods previousValue = this._Goods.Entity;
-				if (((previousValue != value) 
-							|| (this._Goods.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Goods.Entity = null;
-						previousValue.FeedBacks.Remove(this);
-					}
-					this._Goods.Entity = value;
-					if ((value != null))
-					{
-						value.FeedBacks.Add(this);
-						this._goodId = value.id;
-					}
-					else
-					{
-						this._goodId = default(long);
-					}
-					this.SendPropertyChanged("Goods");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_FeedBacks", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
 		public Users Users
 		{
@@ -1742,6 +1142,40 @@ namespace StoreDomainObject
 						this._userId = default(long);
 					}
 					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_FeedBacks", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.FeedBacks.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.FeedBacks.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
 				}
 			}
 		}
@@ -1779,9 +1213,9 @@ namespace StoreDomainObject
 		
 		private long _goodId;
 		
-		private EntityRef<Goods> _Goods;
-		
 		private EntityRef<Users> _Users;
+		
+		private EntityRef<Goods> _Goods;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -1797,8 +1231,8 @@ namespace StoreDomainObject
 		
 		public WishList()
 		{
-			this._Goods = default(EntityRef<Goods>);
 			this._Users = default(EntityRef<Users>);
+			this._Goods = default(EntityRef<Goods>);
 			OnCreated();
 		}
 		
@@ -1870,40 +1304,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WishList", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
-		public Goods Goods
-		{
-			get
-			{
-				return this._Goods.Entity;
-			}
-			set
-			{
-				Goods previousValue = this._Goods.Entity;
-				if (((previousValue != value) 
-							|| (this._Goods.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Goods.Entity = null;
-						previousValue.WishList.Remove(this);
-					}
-					this._Goods.Entity = value;
-					if ((value != null))
-					{
-						value.WishList.Add(this);
-						this._goodId = value.id;
-					}
-					else
-					{
-						this._goodId = default(long);
-					}
-					this.SendPropertyChanged("Goods");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_WishList", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
 		public Users Users
 		{
@@ -1934,6 +1334,40 @@ namespace StoreDomainObject
 						this._userId = default(long);
 					}
 					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WishList", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.WishList.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.WishList.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
 				}
 			}
 		}
@@ -2522,9 +1956,9 @@ namespace StoreDomainObject
 		
 		private long _userId;
 		
-		private EntityRef<Goods> _Goods;
-		
 		private EntityRef<Users> _Users;
+		
+		private EntityRef<Goods> _Goods;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -2542,8 +1976,8 @@ namespace StoreDomainObject
 		
 		public WatchedGood()
 		{
-			this._Goods = default(EntityRef<Goods>);
 			this._Users = default(EntityRef<Users>);
+			this._Goods = default(EntityRef<Goods>);
 			OnCreated();
 		}
 		
@@ -2635,40 +2069,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WatchedGood", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
-		public Goods Goods
-		{
-			get
-			{
-				return this._Goods.Entity;
-			}
-			set
-			{
-				Goods previousValue = this._Goods.Entity;
-				if (((previousValue != value) 
-							|| (this._Goods.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Goods.Entity = null;
-						previousValue.WatchedGood.Remove(this);
-					}
-					this._Goods.Entity = value;
-					if ((value != null))
-					{
-						value.WatchedGood.Add(this);
-						this._goodId = value.id;
-					}
-					else
-					{
-						this._goodId = default(long);
-					}
-					this.SendPropertyChanged("Goods");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_WatchedGood", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
 		public Users Users
 		{
@@ -2699,6 +2099,40 @@ namespace StoreDomainObject
 						this._userId = default(long);
 					}
 					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WatchedGood", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.WatchedGood.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.WatchedGood.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
 				}
 			}
 		}
@@ -3074,195 +2508,6 @@ namespace StoreDomainObject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodsView")]
-	public partial class GoodsView
-	{
-		
-		private long _id;
-		
-		private string _name;
-		
-		private long _typeId;
-		
-		private decimal _price;
-		
-		private string _info;
-		
-		private string _imageUrl;
-		
-		private short _discount;
-		
-		private string _typeName;
-		
-		private string _typeInfo;
-		
-		private System.Nullable<decimal> _mark;
-		
-		public GoodsView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="BigInt NOT NULL")]
-		public long id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeId", DbType="BigInt NOT NULL")]
-		public long typeId
-		{
-			get
-			{
-				return this._typeId;
-			}
-			set
-			{
-				if ((this._typeId != value))
-				{
-					this._typeId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,2) NOT NULL")]
-		public decimal price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this._price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(500)")]
-		public string info
-		{
-			get
-			{
-				return this._info;
-			}
-			set
-			{
-				if ((this._info != value))
-				{
-					this._info = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(1000)")]
-		public string imageUrl
-		{
-			get
-			{
-				return this._imageUrl;
-			}
-			set
-			{
-				if ((this._imageUrl != value))
-				{
-					this._imageUrl = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
-		public short discount
-		{
-			get
-			{
-				return this._discount;
-			}
-			set
-			{
-				if ((this._discount != value))
-				{
-					this._discount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeName", DbType="NVarChar(25)")]
-		public string typeName
-		{
-			get
-			{
-				return this._typeName;
-			}
-			set
-			{
-				if ((this._typeName != value))
-				{
-					this._typeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeInfo", DbType="NVarChar(50)")]
-		public string typeInfo
-		{
-			get
-			{
-				return this._typeInfo;
-			}
-			set
-			{
-				if ((this._typeInfo != value))
-				{
-					this._typeInfo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mark", DbType="Decimal(5,1)")]
-		public System.Nullable<decimal> mark
-		{
-			get
-			{
-				return this._mark;
-			}
-			set
-			{
-				if ((this._mark != value))
-				{
-					this._mark = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="lk.Basket")]
 	public partial class Basket : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3291,11 +2536,11 @@ namespace StoreDomainObject
 		
 		private System.Nullable<long> _orderId;
 		
-		private EntityRef<Goods> _Goods;
-		
 		private EntityRef<Users> _Users;
 		
 		private EntityRef<Orders> _Orders;
+		
+		private EntityRef<Goods> _Goods;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -3327,9 +2572,9 @@ namespace StoreDomainObject
 		
 		public Basket()
 		{
-			this._Goods = default(EntityRef<Goods>);
 			this._Users = default(EntityRef<Users>);
 			this._Orders = default(EntityRef<Orders>);
+			this._Goods = default(EntityRef<Goods>);
 			OnCreated();
 		}
 		
@@ -3565,40 +2810,6 @@ namespace StoreDomainObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
-		public Goods Goods
-		{
-			get
-			{
-				return this._Goods.Entity;
-			}
-			set
-			{
-				Goods previousValue = this._Goods.Entity;
-				if (((previousValue != value) 
-							|| (this._Goods.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Goods.Entity = null;
-						previousValue.Basket.Remove(this);
-					}
-					this._Goods.Entity = value;
-					if ((value != null))
-					{
-						value.Basket.Add(this);
-						this._goodId = value.id;
-					}
-					else
-					{
-						this._goodId = default(long);
-					}
-					this.SendPropertyChanged("Goods");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Basket", Storage="_Users", ThisKey="userId", OtherKey="id", IsForeignKey=true)]
 		public Users Users
 		{
@@ -3663,6 +2874,40 @@ namespace StoreDomainObject
 						this._orderId = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("Orders");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Goods", ThisKey="goodId", OtherKey="id", IsForeignKey=true)]
+		public Goods Goods
+		{
+			get
+			{
+				return this._Goods.Entity;
+			}
+			set
+			{
+				Goods previousValue = this._Goods.Entity;
+				if (((previousValue != value) 
+							|| (this._Goods.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Goods.Entity = null;
+						previousValue.Basket.Remove(this);
+					}
+					this._Goods.Entity = value;
+					if ((value != null))
+					{
+						value.Basket.Add(this);
+						this._goodId = value.id;
+					}
+					else
+					{
+						this._goodId = default(long);
+					}
+					this.SendPropertyChanged("Goods");
 				}
 			}
 		}
@@ -3912,6 +3157,1080 @@ namespace StoreDomainObject
 		{
 			this.SendPropertyChanging();
 			entity.Orders = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodTypes")]
+	public partial class GoodTypes : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private string _name;
+		
+		private string _info;
+		
+		private string _imageUrl;
+		
+		private System.Nullable<long> _parentId;
+		
+		private EntitySet<GoodTypes> _GoodTypes2;
+		
+		private EntitySet<Goods> _Goods;
+		
+		private EntityRef<GoodTypes> _GoodTypes1;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OninfoChanging(string value);
+    partial void OninfoChanged();
+    partial void OnimageUrlChanging(string value);
+    partial void OnimageUrlChanged();
+    partial void OnparentIdChanging(System.Nullable<long> value);
+    partial void OnparentIdChanged();
+    #endregion
+		
+		public GoodTypes()
+		{
+			this._GoodTypes2 = new EntitySet<GoodTypes>(new Action<GoodTypes>(this.attach_GoodTypes2), new Action<GoodTypes>(this.detach_GoodTypes2));
+			this._Goods = new EntitySet<Goods>(new Action<Goods>(this.attach_Goods), new Action<Goods>(this.detach_Goods));
+			this._GoodTypes1 = default(EntityRef<GoodTypes>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(50)")]
+		public string info
+		{
+			get
+			{
+				return this._info;
+			}
+			set
+			{
+				if ((this._info != value))
+				{
+					this.OninfoChanging(value);
+					this.SendPropertyChanging();
+					this._info = value;
+					this.SendPropertyChanged("info");
+					this.OninfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(200)")]
+		public string imageUrl
+		{
+			get
+			{
+				return this._imageUrl;
+			}
+			set
+			{
+				if ((this._imageUrl != value))
+				{
+					this.OnimageUrlChanging(value);
+					this.SendPropertyChanging();
+					this._imageUrl = value;
+					this.SendPropertyChanged("imageUrl");
+					this.OnimageUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parentId", DbType="BigInt")]
+		public System.Nullable<long> parentId
+		{
+			get
+			{
+				return this._parentId;
+			}
+			set
+			{
+				if ((this._parentId != value))
+				{
+					if (this._GoodTypes1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnparentIdChanging(value);
+					this.SendPropertyChanging();
+					this._parentId = value;
+					this.SendPropertyChanged("parentId");
+					this.OnparentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_GoodTypes", Storage="_GoodTypes2", ThisKey="id", OtherKey="parentId")]
+		public EntitySet<GoodTypes> GoodTypes2
+		{
+			get
+			{
+				return this._GoodTypes2;
+			}
+			set
+			{
+				this._GoodTypes2.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_Goods", Storage="_Goods", ThisKey="id", OtherKey="typeId")]
+		public EntitySet<Goods> Goods
+		{
+			get
+			{
+				return this._Goods;
+			}
+			set
+			{
+				this._Goods.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_GoodTypes", Storage="_GoodTypes1", ThisKey="parentId", OtherKey="id", IsForeignKey=true)]
+		public GoodTypes GoodTypes1
+		{
+			get
+			{
+				return this._GoodTypes1.Entity;
+			}
+			set
+			{
+				GoodTypes previousValue = this._GoodTypes1.Entity;
+				if (((previousValue != value) 
+							|| (this._GoodTypes1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GoodTypes1.Entity = null;
+						previousValue.GoodTypes2.Remove(this);
+					}
+					this._GoodTypes1.Entity = value;
+					if ((value != null))
+					{
+						value.GoodTypes2.Add(this);
+						this._parentId = value.id;
+					}
+					else
+					{
+						this._parentId = default(Nullable<long>);
+					}
+					this.SendPropertyChanged("GoodTypes1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_GoodTypes2(GoodTypes entity)
+		{
+			this.SendPropertyChanging();
+			entity.GoodTypes1 = this;
+		}
+		
+		private void detach_GoodTypes2(GoodTypes entity)
+		{
+			this.SendPropertyChanging();
+			entity.GoodTypes1 = null;
+		}
+		
+		private void attach_Goods(Goods entity)
+		{
+			this.SendPropertyChanging();
+			entity.GoodTypes = this;
+		}
+		
+		private void detach_Goods(Goods entity)
+		{
+			this.SendPropertyChanging();
+			entity.GoodTypes = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodBrands")]
+	public partial class GoodBrands : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private string _name;
+		
+		private EntitySet<Goods> _Goods;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public GoodBrands()
+		{
+			this._Goods = new EntitySet<Goods>(new Action<Goods>(this.attach_Goods), new Action<Goods>(this.detach_Goods));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodBrands_Goods", Storage="_Goods", ThisKey="id", OtherKey="brandId")]
+		public EntitySet<Goods> Goods
+		{
+			get
+			{
+				return this._Goods;
+			}
+			set
+			{
+				this._Goods.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Goods(Goods entity)
+		{
+			this.SendPropertyChanging();
+			entity.GoodBrands = this;
+		}
+		
+		private void detach_Goods(Goods entity)
+		{
+			this.SendPropertyChanging();
+			entity.GoodBrands = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.GoodsView")]
+	public partial class GoodsView
+	{
+		
+		private long _id;
+		
+		private string _name;
+		
+		private long _typeId;
+		
+		private decimal _price;
+		
+		private string _info;
+		
+		private string _imageUrl;
+		
+		private short _discount;
+		
+		private string _typeName;
+		
+		private string _typeInfo;
+		
+		private System.Nullable<decimal> _mark;
+		
+		private System.Nullable<long> _brandId;
+		
+		private string _brandName;
+		
+		public GoodsView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="BigInt NOT NULL")]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeId", DbType="BigInt NOT NULL")]
+		public long typeId
+		{
+			get
+			{
+				return this._typeId;
+			}
+			set
+			{
+				if ((this._typeId != value))
+				{
+					this._typeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,2) NOT NULL")]
+		public decimal price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this._price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(500)")]
+		public string info
+		{
+			get
+			{
+				return this._info;
+			}
+			set
+			{
+				if ((this._info != value))
+				{
+					this._info = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageUrl", DbType="VarChar(1000)")]
+		public string imageUrl
+		{
+			get
+			{
+				return this._imageUrl;
+			}
+			set
+			{
+				if ((this._imageUrl != value))
+				{
+					this._imageUrl = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
+		public short discount
+		{
+			get
+			{
+				return this._discount;
+			}
+			set
+			{
+				if ((this._discount != value))
+				{
+					this._discount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeName", DbType="NVarChar(25)")]
+		public string typeName
+		{
+			get
+			{
+				return this._typeName;
+			}
+			set
+			{
+				if ((this._typeName != value))
+				{
+					this._typeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeInfo", DbType="NVarChar(50)")]
+		public string typeInfo
+		{
+			get
+			{
+				return this._typeInfo;
+			}
+			set
+			{
+				if ((this._typeInfo != value))
+				{
+					this._typeInfo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mark", DbType="Decimal(5,1)")]
+		public System.Nullable<decimal> mark
+		{
+			get
+			{
+				return this._mark;
+			}
+			set
+			{
+				if ((this._mark != value))
+				{
+					this._mark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_brandId", DbType="BigInt")]
+		public System.Nullable<long> brandId
+		{
+			get
+			{
+				return this._brandId;
+			}
+			set
+			{
+				if ((this._brandId != value))
+				{
+					this._brandId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_brandName", DbType="NVarChar(100)")]
+		public string brandName
+		{
+			get
+			{
+				return this._brandName;
+			}
+			set
+			{
+				if ((this._brandName != value))
+				{
+					this._brandName = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="store.Goods")]
+	public partial class Goods : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _id;
+		
+		private string _name;
+		
+		private long _typeId;
+		
+		private decimal _price;
+		
+		private string _info;
+		
+		private short _discount;
+		
+		private string _fullInfo;
+		
+		private System.Nullable<long> _brandId;
+		
+		private EntitySet<FeedBacks> _FeedBacks;
+		
+		private EntitySet<WishList> _WishList;
+		
+		private EntitySet<WatchedGood> _WatchedGood;
+		
+		private EntitySet<GoodProperties> _GoodProperties;
+		
+		private EntitySet<GoodImages> _GoodImages;
+		
+		private EntitySet<Basket> _Basket;
+		
+		private EntityRef<GoodBrands> _GoodBrands;
+		
+		private EntityRef<GoodTypes> _GoodTypes;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(long value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OntypeIdChanging(long value);
+    partial void OntypeIdChanged();
+    partial void OnpriceChanging(decimal value);
+    partial void OnpriceChanged();
+    partial void OninfoChanging(string value);
+    partial void OninfoChanged();
+    partial void OndiscountChanging(short value);
+    partial void OndiscountChanged();
+    partial void OnfullInfoChanging(string value);
+    partial void OnfullInfoChanged();
+    partial void OnbrandIdChanging(System.Nullable<long> value);
+    partial void OnbrandIdChanged();
+    #endregion
+		
+		public Goods()
+		{
+			this._FeedBacks = new EntitySet<FeedBacks>(new Action<FeedBacks>(this.attach_FeedBacks), new Action<FeedBacks>(this.detach_FeedBacks));
+			this._WishList = new EntitySet<WishList>(new Action<WishList>(this.attach_WishList), new Action<WishList>(this.detach_WishList));
+			this._WatchedGood = new EntitySet<WatchedGood>(new Action<WatchedGood>(this.attach_WatchedGood), new Action<WatchedGood>(this.detach_WatchedGood));
+			this._GoodProperties = new EntitySet<GoodProperties>(new Action<GoodProperties>(this.attach_GoodProperties), new Action<GoodProperties>(this.detach_GoodProperties));
+			this._GoodImages = new EntitySet<GoodImages>(new Action<GoodImages>(this.attach_GoodImages), new Action<GoodImages>(this.detach_GoodImages));
+			this._Basket = new EntitySet<Basket>(new Action<Basket>(this.attach_Basket), new Action<Basket>(this.detach_Basket));
+			this._GoodBrands = default(EntityRef<GoodBrands>);
+			this._GoodTypes = default(EntityRef<GoodTypes>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_typeId", DbType="BigInt NOT NULL")]
+		public long typeId
+		{
+			get
+			{
+				return this._typeId;
+			}
+			set
+			{
+				if ((this._typeId != value))
+				{
+					if (this._GoodTypes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OntypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._typeId = value;
+					this.SendPropertyChanged("typeId");
+					this.OntypeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,2) NOT NULL")]
+		public decimal price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_info", DbType="NVarChar(500)")]
+		public string info
+		{
+			get
+			{
+				return this._info;
+			}
+			set
+			{
+				if ((this._info != value))
+				{
+					this.OninfoChanging(value);
+					this.SendPropertyChanging();
+					this._info = value;
+					this.SendPropertyChanged("info");
+					this.OninfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount", DbType="SmallInt NOT NULL")]
+		public short discount
+		{
+			get
+			{
+				return this._discount;
+			}
+			set
+			{
+				if ((this._discount != value))
+				{
+					this.OndiscountChanging(value);
+					this.SendPropertyChanging();
+					this._discount = value;
+					this.SendPropertyChanged("discount");
+					this.OndiscountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fullInfo", DbType="NVarChar(MAX)")]
+		public string fullInfo
+		{
+			get
+			{
+				return this._fullInfo;
+			}
+			set
+			{
+				if ((this._fullInfo != value))
+				{
+					this.OnfullInfoChanging(value);
+					this.SendPropertyChanging();
+					this._fullInfo = value;
+					this.SendPropertyChanged("fullInfo");
+					this.OnfullInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_brandId", DbType="BigInt")]
+		public System.Nullable<long> brandId
+		{
+			get
+			{
+				return this._brandId;
+			}
+			set
+			{
+				if ((this._brandId != value))
+				{
+					if (this._GoodBrands.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnbrandIdChanging(value);
+					this.SendPropertyChanging();
+					this._brandId = value;
+					this.SendPropertyChanged("brandId");
+					this.OnbrandIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_FeedBacks", Storage="_FeedBacks", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<FeedBacks> FeedBacks
+		{
+			get
+			{
+				return this._FeedBacks;
+			}
+			set
+			{
+				this._FeedBacks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WishList", Storage="_WishList", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<WishList> WishList
+		{
+			get
+			{
+				return this._WishList;
+			}
+			set
+			{
+				this._WishList.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_WatchedGood", Storage="_WatchedGood", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<WatchedGood> WatchedGood
+		{
+			get
+			{
+				return this._WatchedGood;
+			}
+			set
+			{
+				this._WatchedGood.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodProperties", Storage="_GoodProperties", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<GoodProperties> GoodProperties
+		{
+			get
+			{
+				return this._GoodProperties;
+			}
+			set
+			{
+				this._GoodProperties.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_GoodImages", Storage="_GoodImages", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<GoodImages> GoodImages
+		{
+			get
+			{
+				return this._GoodImages;
+			}
+			set
+			{
+				this._GoodImages.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Goods_Basket", Storage="_Basket", ThisKey="id", OtherKey="goodId")]
+		public EntitySet<Basket> Basket
+		{
+			get
+			{
+				return this._Basket;
+			}
+			set
+			{
+				this._Basket.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodBrands_Goods", Storage="_GoodBrands", ThisKey="brandId", OtherKey="id", IsForeignKey=true)]
+		public GoodBrands GoodBrands
+		{
+			get
+			{
+				return this._GoodBrands.Entity;
+			}
+			set
+			{
+				GoodBrands previousValue = this._GoodBrands.Entity;
+				if (((previousValue != value) 
+							|| (this._GoodBrands.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GoodBrands.Entity = null;
+						previousValue.Goods.Remove(this);
+					}
+					this._GoodBrands.Entity = value;
+					if ((value != null))
+					{
+						value.Goods.Add(this);
+						this._brandId = value.id;
+					}
+					else
+					{
+						this._brandId = default(Nullable<long>);
+					}
+					this.SendPropertyChanged("GoodBrands");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GoodTypes_Goods", Storage="_GoodTypes", ThisKey="typeId", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public GoodTypes GoodTypes
+		{
+			get
+			{
+				return this._GoodTypes.Entity;
+			}
+			set
+			{
+				GoodTypes previousValue = this._GoodTypes.Entity;
+				if (((previousValue != value) 
+							|| (this._GoodTypes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GoodTypes.Entity = null;
+						previousValue.Goods.Remove(this);
+					}
+					this._GoodTypes.Entity = value;
+					if ((value != null))
+					{
+						value.Goods.Add(this);
+						this._typeId = value.id;
+					}
+					else
+					{
+						this._typeId = default(long);
+					}
+					this.SendPropertyChanged("GoodTypes");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_FeedBacks(FeedBacks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_FeedBacks(FeedBacks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_WishList(WishList entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_WishList(WishList entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_WatchedGood(WatchedGood entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_WatchedGood(WatchedGood entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_GoodProperties(GoodProperties entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_GoodProperties(GoodProperties entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_GoodImages(GoodImages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_GoodImages(GoodImages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
+		}
+		
+		private void attach_Basket(Basket entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = this;
+		}
+		
+		private void detach_Basket(Basket entity)
+		{
+			this.SendPropertyChanging();
+			entity.Goods = null;
 		}
 	}
 	

@@ -17,8 +17,18 @@ namespace StoreDomainObject.Code
                     id = s.id,
                     imageUrl = s.imageUrl,
                     info = s.info,
-                    name = s.name
+                    name = s.name,
+                    parentId = s.parentId
                 }).ToList();
+                return goodGroups;
+            }
+        }
+
+        internal List<GoodBrands> GetGoodBrands()
+        {
+            using (var db = Base.storeDataBaseContext)
+            {
+                var goodGroups = db.GoodBrands.ToList();
                 return goodGroups;
             }
         }
@@ -39,9 +49,21 @@ namespace StoreDomainObject.Code
                         groupInfo = s.typeInfo,
                         price = s.price,
                         groupName = s.typeName,
-                        mark = s.mark
+                        mark = s.mark,
+                        brandId = s.brandId,
+                        brandName = s.brandName
 
                     })?.ToList();
+
+                var childGroups = db.GoodTypes.Where(s => s.parentId == groupId);
+                if (childGroups.Count() > 0)
+                {
+                    foreach (var item in childGroups)
+                    {
+                        goods = goods.Union(GetGoodsByGroup(item.id)).ToList();
+                    }
+                    
+                }
                 return goods;
             }
         }
@@ -52,7 +74,7 @@ namespace StoreDomainObject.Code
             {
                 var goodTemp = db.GetNowWatching().ToList();
 
-                var goods = goodTemp.Select(s => new Good
+                var goods = goodTemp.Join(db.GoodsView, w=>w.id, g=>g.id, (s,g) => new Good
                     {
                         id = s.id,
                         imageUrl = s.imageUrl,
@@ -62,7 +84,10 @@ namespace StoreDomainObject.Code
                         groupId = s.typeId,
                         groupInfo = s.typeInfo,
                         price = s.price,
-                        groupName = s.typeName
+                        groupName = s.typeName,
+                        brandId = g.brandId,
+                        brandName = g.brandName,
+                        mark = g.mark
 
                     })?.ToList();
                 return goods;
@@ -103,8 +128,9 @@ namespace StoreDomainObject.Code
                     groupInfo = s.typeInfo,
                     price = s.price,
                     groupName = s.typeName,
-                    mark = s.mark
-
+                    mark = s.mark,
+                    brandId = s.brandId,
+                    brandName = s.brandName
                 })?.ToList();
                 return goods;
             }
@@ -113,8 +139,7 @@ namespace StoreDomainObject.Code
         {
             using (var db = Base.storeDataBaseContext)
             {
-                var goods = db.PopularGoods()
-                    .Select(s => new Good
+                var goods = db.PopularGoods().Join(db.GoodsView, w => w.id, g => g.id, (s, g) => new Good
                     {
                         id = s.id,
                         imageUrl = s.imageUrl,
@@ -124,7 +149,10 @@ namespace StoreDomainObject.Code
                         groupId = s.typeId,
                         groupInfo = s.typeInfo,
                         price = s.price,
-                        groupName = s.typeName
+                        groupName = s.typeName,
+                        brandId = g.brandId,
+                        brandName = g.brandName,
+                        mark = g.mark
 
                     })?.ToList();
                 return goods;
@@ -146,8 +174,9 @@ namespace StoreDomainObject.Code
                     groupInfo = s.typeInfo,
                     price = s.price,
                     groupName = s.typeName,
-                    mark = s.mark
-
+                    mark = s.mark,
+                    brandId = s.brandId,
+                    brandName = s.brandName
                 }).FirstOrDefault(s => s.id == goodId);
                 good.fullInfo = db.GetFullInfo(goodId);
                 var goodProperties = db.GoodProperties.Where(s => s.goodId == goodId).Select(s => new GoodProperty

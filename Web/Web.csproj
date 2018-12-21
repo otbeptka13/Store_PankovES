@@ -447,6 +447,7 @@
     <Content Include="Content\sass\_sidemenu.scss" />
     <Content Include="Content\sass\_top-navbar.scss" />
     <Content Include="Content\sass\_variables.scss" />
+    <None Include="Views\Store\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

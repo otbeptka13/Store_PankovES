@@ -27,7 +27,7 @@
             <div class="title">
                 <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">@Model.name</a>
             </div>
-            <div class="brand">sony</div>
+            <div class="brand">@Model.brandName</div>
         </div>
         <div class="prices">
            @if (Model.isSale)

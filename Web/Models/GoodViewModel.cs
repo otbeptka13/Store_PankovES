@@ -27,6 +27,8 @@ namespace Web.Models
             goodProperties = good.goodProperties;
             images = good.images;
             mark = good.mark;
+            brandId = good.brandId;
+            brandName = good.brandName;
 
         }
     }

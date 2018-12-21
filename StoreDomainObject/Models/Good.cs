@@ -14,6 +14,8 @@ namespace StoreDomainObject
         public string groupName {get; set;}
         public string fullInfo {get; set;}
         public string groupInfo { get;  set; }
+        public long? brandId { get; set; }
+        public string brandName { get; set; }
         public List<GoodProperty> goodProperties { get; set; }
         public List<GoodImages> images { get; set; }
         public decimal? mark { get; set; }
@@ -31,8 +33,8 @@ namespace StoreDomainObject
                 groupId = s.typeId,
                 price = s.price,
                 fullInfo = s.fullInfo,
-                groupInfo = s.fullInfo
-
+                groupInfo = s.fullInfo,
+                brandId = s.brandId
             };
         }
         public Goods ToBDObject()
@@ -45,7 +47,8 @@ namespace StoreDomainObject
                 discount = this.discount,
                 typeId = this.groupId,
                 fullInfo = this.fullInfo,
-                price = this.price
+                price = this.price,
+                brandId = this.brandId
             };
         }
     }

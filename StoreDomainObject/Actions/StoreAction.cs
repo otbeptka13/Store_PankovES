@@ -14,7 +14,12 @@ namespace StoreDomainObject
             var store = new Store();
             return store.GetGroups();
         }
-       // public void GetSubGroups() { }
+        public List<GoodBrands> GetGoodBrands()
+        {
+            var store = new Store();
+            return store.GetGoodBrands();
+        }
+        // public void GetSubGroups() { }
         public List<Good> GetGoodsByGroup(long groupId)
         {
             var store = new Store();

@@ -17,6 +17,10 @@
         @Html.DropDownListFor(s => s.groupId, new StoreAction().GetGroups().Select(s => new SelectListItem { Value = s.id.ToString(), Text = s.name, Selected = s.id == Model.groupId }))
     </div>
     <div>
+        <label>Бренд:</label>
+        @Html.DropDownListFor(s => s.brandId, new StoreAction().GetGoodBrands().Select(s => new SelectListItem { Value = s.id.ToString(), Text = s.name, Selected = s.id == Model.brandId }))
+    </div>
+    <div>
         <label>Цена:</label>
         @Html.TextBoxFor(s => s.price, new { @class = "smallInput" })
     </div>

@@ -148,6 +148,7 @@ namespace StoreDomainObject.Code
                     element.price = good.price;
                     element.typeId = good.groupId;
                     element.fullInfo = good.fullInfo ?? element.fullInfo;
+                    element.brandId = good.brandId;
                     db.SubmitChanges();
 
                     var properties = db.GoodProperties.Where(s => s.goodId == good.id).ToList();
