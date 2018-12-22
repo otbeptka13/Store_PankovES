@@ -140,10 +140,9 @@ namespace Web.Controllers
             var customer = new CustomerAction(Session.GetUserId());
             Session.UpdateBasket();
             var basket = Session.GetUser().basket;
-            if (isFast != true)
+            if (isFast != true && !string.IsNullOrWhiteSpace(idcount))
             {
-                if (string.IsNullOrWhiteSpace(idcount))
-                    return View("Basket");
+
                 var splitBasket = idcount.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 if (basket.Count != splitBasket.Count())
                 {
