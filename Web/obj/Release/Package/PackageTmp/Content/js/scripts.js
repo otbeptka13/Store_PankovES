@@ -329,17 +329,12 @@
             }
         });
 
-        // Price Slider
-        if ($('.price-slider').length > 0) {
-            $('.price-slider').slider({
-                min: 100,
-                max: 700,
-                step: 10,
-                value: [100, 400],
-                handle: "square"
-
-            });
-        }
+  
+        $(document).on("click", ".menuItemSearching", function () {
+            var groupId = $(this).data('groupid');
+            $('.inputSearchGroupId').val(groupId);
+            $('.selectedGorupLink').text($(this).text().substr(0,11));
+        })
 
         $(document).ready(function(){
             $('select.styled').customSelect();

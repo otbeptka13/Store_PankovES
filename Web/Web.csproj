@@ -158,6 +158,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OdmenController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Models\SearchingModel.cs" />
+    <Compile Include="Models\CatalogModel.cs" />
     <Compile Include="Models\OdmenModels.cs" />
     <Compile Include="Models\SendFeedbackViewModel.cs" />
     <Compile Include="Controllers\StoreController.cs" />
@@ -447,7 +449,10 @@
     <Content Include="Content\sass\_sidemenu.scss" />
     <Content Include="Content\sass\_top-navbar.scss" />
     <Content Include="Content\sass\_variables.scss" />
-    <None Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\Shared\_goodListCatalog.cshtml" />
+    <Content Include="Views\Home\_megaMenu.cshtml" />
+    <Content Include="Views\Shared\_searchingGoods.cshtml" />
+    <None Include="Views\Store\Catalog.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -481,6 +486,7 @@
     <Content Include="Views\Odmen\_partialGoodsEditor.cshtml" />
     <Content Include="Views\Odmen\_partialGoodsImageEditor.cshtml" />
     <Content Include="Views\Odmen\_partialStoreOrders.cshtml" />
+    <Content Include="Views\Store\_filterCatalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

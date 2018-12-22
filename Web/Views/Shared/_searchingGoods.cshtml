@@ -1,0 +1,31 @@
+﻿@using Web.Models
+@using (Html.BeginForm("Searching", "Store"))
+{
+    <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder no-margin">
+        <!-- ============================================================= SEARCH AREA ============================================================= -->
+        <div class="search-area">
+                <div class="control-group">
+                    <input class="search-field" name="search" placeholder="Поиск по каталогу" />
+                    <ul class="categories-filter animate-dropdown">
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle selectedGorupLink" data-toggle="dropdown" href="#">Все</a>
+                            @Html.Hidden("groupId",0, new { @class="inputSearchGroupId"})
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" class="menuItemSearching" tabindex="-1" href="#" data-groupId="0">Все</a></li>
+                                @foreach (var item in new CatalogModel().catalogTree)
+                                {
+                                    <li role="presentation"><a role="menuitem"  class="menuItemSearching" tabindex="-1" href="#" data-groupid="@item.groupId">@item.groupName</a></li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="search-button" href="#" onclick="if ($('.search-field').val().length > 0) $(this).closest('form').submit(); return false;"></a>
+
+                </div>
+        </div><!-- /.search-area -->
+        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+    </div><!-- /.top-search-holder -->
+
+}
+

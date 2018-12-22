@@ -19,7 +19,8 @@ namespace Web
             bundles.Add(new StyleBundle("~/Content/css/bootstrap").Include(
                  "~/Content/css/bootstrap.min.css"));
             bundles.Add(new ScriptBundle("~/Content/js/bootstrap").Include(
-                    "~/Content/js/bootstrap*"));
+                    "~/Content/js/bootstrap*",
+                    "~/Content/js/bootstrap-slider.min.js"));
             bundles.Add(new StyleBundle("~/Content/css/my_css").Include(
                     "~/Content/css/style.css",
                     "~/Content/css/colors/dark-green.css",

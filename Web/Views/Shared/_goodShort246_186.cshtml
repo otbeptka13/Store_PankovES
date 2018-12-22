@@ -1,6 +1,13 @@
 ﻿@using Web.Models
 @model GoodViewModel
-<div class="col-sm-4 col-md-3  no-margin product-item-holder hover" data-goodId="@Model.id">
+    @{ 
+       var className = "col-sm-4 col-md-3";
+    }
+    @if (Request.RequestContext.RouteData.Values["Controller"].ToString() == "Store")
+    {
+        className = "col-xs-12 col-sm-4";
+    } 
+<div class="@className  no-margin product-item-holder hover" data-goodId="@Model.id">
     <div class="product-item">
         @if (Model.isSale)
         {

@@ -1,0 +1,53 @@
+﻿@using Web.Models
+@model FilterCatalogModel
+@if (Model.maxPrice > 0)
+{
+    <!-- ========================================= PRODUCT FILTER ========================================= -->
+    using (Html.BeginForm("FilterDo", "Store"))
+    {
+        @Html.HiddenFor(s => s.groupId)
+        @Html.HiddenFor(s => s.selectedMaxPrice)
+        @Html.HiddenFor(s => s.selectedMinPrice)
+        int i = 0;
+        <div class="widget">
+            <h1>Фильтр</h1>
+            <div class="body bordered">
+                @if (Model.brands?.Count > 0)
+                {
+                    <div class="category-filter">
+                        <h2>Бренды</h2>
+                        <hr>
+                        <ul>
+                            @foreach (var item in Model.brands)
+                            {
+                                string isChecked = item.isChecked ? @"checked=""checked""" : string.Empty;
+                                <li>
+                                    @Html.CheckBoxFor(s => s.brands[i].isChecked, new { @class = "le-checkbox" })
+                                    @Html.HiddenFor(s => s.brands[i].brandId)
+                                    <label>@item.brandName</label>
+                                    <span class="pull-right">(@item.brandCount)</span>
+                                </li>
+                                i++;
+                            }
+                        </ul>
+                    </div><!-- /.category-filter -->
+                }
+                <div class="price-filter">
+                    <h2>Цена</h2>
+                    <hr>
+                    <div class="price-range-holder">
+                        <div class="price-slider" data-min="@Model.minPrice" data-max="@Model.maxPrice" data-selectmin="@Model.selectedMinPrice" data-selectmax="@Model.selectedMaxPrice"> </div>
+                        <span class="min-max">
+                            Цена: @Model.selectedMinPrice - @Model.selectedMaxPrice
+                        </span> <br>
+
+                    </div>
+                    <span class="filter-button">
+                        <a href="#" onclick="$(this).closest('form').submit(); return false;">Фильтровать</a>
+                    </span>
+                </div><!-- /.price-filter -->
+            </div><!-- /.body -->
+        </div><!-- /.widget -->
+        <!-- ========================================= PRODUCT FILTER : END ========================================= -->
+    }
+}

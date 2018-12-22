@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Web.Models
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <!-- Meta -->
@@ -44,60 +45,34 @@
                         <a href="@Url.Content("~")">
                             <!--<img alt="logo" src="Content/images/logo.svg" width="233" height="54"/>-->
                             <!--<object id="sp" type="image/svg+xml" data="Content/images/logo.svg" width="233" height="54"></object>-->
-                            <img src="@Url.Content("~/Content/images/logo2.png")">                          
+                            <img src="@Url.Content("~/Content/images/logo2.png")">
                         </a>
                     </div><!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
                 </div><!-- /.logo-holder -->
-             @if (!Session.IsAuth())
-             { 
-                <div class="main-auth">
-                    <a href="@Url.Action("Registration","Account")"><i class="fa fa-user"></i>  Регистрация </a>
-                    <a href="@Url.Action("Login","Account")" style="margin-left:15px"> <i class="fa fa-sign-in"></i>  Авторизация </a>
-                </div><!-- /.main-auth -->
-             }
-             else
-             {
-                 var user = Session.GetUser();
-                 var name = !string.IsNullOrEmpty(user.name) ? user.name : user.email;
-                <div class="main-auth">
-                    <a href="@Url.Action("Profile","Account")" ><i class="fa fa-user"></i> @name </a>
-                    <a href="@Url.Action("LogOff","Account")" style="margin-left:15px"> <i class="fa fa-sign-out"></i>  Выход </a>
-                </div><!-- /.main-auth -->
-             }
-                <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder no-margin">
-                        <!-- ============================================================= SEARCH AREA ============================================================= -->
-                        <div class="search-area">
-                            <form>
-                                <div class="control-group">
-                                    <input class="search-field" placeholder="Поиск по каталогу" />
-                                    <ul class="categories-filter animate-dropdown">
-                                        <li class="dropdown">
+                @if (!Session.IsAuth())
+                {
+                    <div class="main-auth">
+                        <a href="@Url.Action("Registration","Account")"><i class="fa fa-user"></i>  Регистрация </a>
+                        <a href="@Url.Action("Login","Account")" style="margin-left:15px"> <i class="fa fa-sign-in"></i>  Авторизация </a>
+                    </div><!-- /.main-auth -->
+                }
+                else
+                {
+                    var user = Session.GetUser();
+                    var name = !string.IsNullOrEmpty(user.name) ? user.name : user.email;
+                    <div class="main-auth">
+                        <a href="@Url.Action("Profile","Account")"><i class="fa fa-user"></i> @name </a>
+                        <a href="@Url.Action("LogOff","Account")" style="margin-left:15px"> <i class="fa fa-sign-out"></i>  Выход </a>
+                    </div><!-- /.main-auth -->
+                }
 
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="category-grid.html">Все</a>
-
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">laptops</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">tv & audio</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">gadgets</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">cameras</a></li>
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <a class="search-button" href="#"></a>
-
-                                </div>
-                            </form>
-                        </div><!-- /.search-area -->
-                        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
-                    </div><!-- /.top-search-holder -->
-
+                @{Html.RenderPartial("_searchingGoods");}
                 <div class="col-sm-6 col-md-3 top-cart-row no-margin">
                     <div class="top-cart-row-container">
                         <div class="wishlist-compare-holder">
                             <div class="wishlist" style="padding: 10px 0 20px 0">
-                                @{ 
+                                @{
                                     var wishCount = 0;
                                     var basketCount = 0;
                                     var basketSumm = 0.00M;
@@ -112,7 +87,7 @@
                                     }
                                 }
                                 <a href="@Url.Action("WishList","Customer")"><i class="fa fa-heart"></i> Избранное <span id="wishCountValue" class="value">(@wishCount)</span> </a>
-                            </div>                          
+                            </div>
                         </div>
 
                         <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
@@ -131,42 +106,42 @@
                                         </span>
                                     </div>
                                 </a>
-                            @if (basketCount > 0)
-                            {
-                                <ul class="dropdown-menu basketMenu">
-                                  @foreach (var item in Session.GetUser().basket)
-                                  {
-                                    <li>
-                                        <div class="basket-item">
-                                            <div class="row">
-                                                <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                                    <div class="thumb basketIco">
-                                                        <img alt="" src="@Url.Content("~/Content/images/products/" + (item.imageUrl?? "product-small-01.jpg"))" />
+                                @if (basketCount > 0)
+                                {
+                                    <ul class="dropdown-menu basketMenu">
+                                        @foreach (var item in Session.GetUser().basket)
+                                        {
+                                            <li>
+                                                <div class="basket-item">
+                                                    <div class="row">
+                                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                                            <div class="thumb basketIco">
+                                                                <img alt="" src="@Url.Content("~/Content/images/products/" + (item.imageUrl?? "product-small-01.jpg"))" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-8 col-sm-8 no-margin">
+                                                            <div class="title">@item.name</div>
+                                                            <div class="price">@item.summTotal.Value.ToString("0.00") ₽</div>
+                                                        </div>
+                                                    </div>
+                                                    <a class="close-btn  delete-basket" data-basket="@item.id" href="#"></a>
+                                                </div>
+                                            </li>
+                                        }
+                                        <li class="checkout">
+                                            <div class="basket-item">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <a href="@Url.Action("Basket","Customer")" class="le-button inverse">Открыть</a>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <a href="#" onclick="payBasket(true)" class="le-button">Оплатить</a>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8 col-sm-8 no-margin">
-                                                    <div class="title">@item.name</div>
-                                                    <div class="price">@item.summTotal.Value.ToString("0.00") ₽</div>
-                                                </div>
                                             </div>
-                                            <a class="close-btn  delete-basket" data-basket="@item.id" href="#"></a>
-                                        </div>
-                                    </li>
-                                  }  
-                                    <li class="checkout">
-                                        <div class="basket-item">
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <a href="@Url.Action("Basket","Customer")" class="le-button inverse">Открыть</a>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <a href="#" onclick="payBasket(true)" class="le-button">Оплатить</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            }                                
+                                        </li>
+                                    </ul>
+                                }
                             </div><!-- /.basket -->
                         </div><!-- /.top-cart-holder -->
                     </div><!-- /.top-cart-row-container -->
@@ -191,20 +166,13 @@
                                 <ul class="dropdown-menu">
                                     @if (Session.GetUserRoles().HasFlag(Role.Admin))
                                     {
-                                        <li><a href="@Url.Action("Store", "Odmen")">Администрирование</a></li>                            
+                                        <li><a href="@Url.Action("Store", "Odmen")">АДМИНИСТРИРОВАНИЕ</a></li>
                                     }
-                                    <li><a href="#">Computer Cases & Accessories</a></li>
-                                    <li><a href="#">CPUs, Processors</a></li>
-                                    <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
-                                    <li><a href="#">Graphics, Video Cards</a></li>
-                                    <li><a href="#">Interface, Add-On Cards</a></li>
-                                    <li><a href="#">Laptop Replacement Parts</a></li>
-                                    <li><a href="#">Memory (RAM)</a></li>
-                                    <li><a href="#">Motherboards</a></li>
-                                    <li><a href="#">Motherboard &amp; CPU Combos</a></li>
-                                    <li><a href="#">Motherboard Components</a></li>
-                                    <li><a href="#">Motherboard Components</a></li>
-                                </ul>
+                                    @foreach (var item in new CatalogModel().catalogTree)
+                                    {
+                                        <li><a href="@Url.Content(@item.link)">@item.groupName</a></li>
+                                    }
+                                    </ul>
                             </li>
                             @if (ViewBag.Links != null)
                             {
@@ -235,7 +203,7 @@
 
         <!-- ============================================================= FOOTER ============================================================= -->
         <footer id="footer" class="color-bg">
-            <div class="link-list-row">
+            @*<div class="link-list-row">
                 <div class="container no-padding">
                     <div class="col-xs-12 col-md-4 ">
                         <!-- ============================================================= CONTACT INFO ============================================================= -->
@@ -328,25 +296,25 @@
                         <!-- ============================================================= LINKS FOOTER : END ============================================================= -->
                     </div>
                 </div><!-- /.container -->
-            </div><!-- /.link-list-row -->
+            </div><!-- /.link-list-row -->*@
             
             <div class="copyright-bar">
                 <div class="container">
-                    <div class="col-xs-12 col-sm-6 no-margin">
+                    <div class=" no-margin">
                         <div class="copyright">
-                            &copy; <a href="index.html">Media Center</a> - all rights reserved
+                            &copy;  <a href="@Url.Content("~")"> @DateTime.Now.Year PankovES market</a> &nbsp;&nbsp;&nbsp; Проект создан в учебных целях и не предназначен для коммерческого использования
                         </div><!-- /.copyright -->
 
                     </div>
-                    <div class="col-xs-12 col-sm-6 no-margin">
+                    @*<div class="col-xs-12 col-sm-6 no-margin">
                         <div class="payment-methods ">
                             <ul>
                                 <li><img alt="" src="@Url.Content("~/Content/images/payments/payment-visa.png")"></li>
                                 <li><img alt="" src="@Url.Content("~/Content/images/payments/payment-master.png")"></li>
                                 <li><img alt="" src="@Url.Content("~/Content/images/payments/payment-mir.png")"></li>
                             </ul>
-                        </div><!-- /.payment-methods -->
-                    </div>
+                        </div> 
+                    </div>*@
                 </div><!-- /.container -->
             </div><!-- /.copyright-bar -->
         </footer><!-- /#footer -->

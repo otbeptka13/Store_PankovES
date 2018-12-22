@@ -431,7 +431,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 600 !important; }
 
 .capital, .h1, h1, h2, .iconic-link, .btn-add-to-compare, .btn-add-to-wishlist, .availability, .availability .available, .availability .not-available, .section-title, .pagination a, .inline-input .placeholder, .simple-link, .top-bar ul > li a, header .top-cart-row .wishlist-compare-holder, header .top-cart-row .top-cart-holder .total-price-basket, .categories-filter, .breadcrumb-nav-holder .breadcrumb-item > a, .le-links li a, .accordion-widget .accordion .accordion-inner li a, .accordion-widget .accordion, .le-button, .le-dropdown .dropdown-toggle, .carousel-holder .title-nav h1, .carousel-holder .title-nav h2, .product-item-holder .body .title, #owl-main .caption .small, .banner .banner-text h1, .banner .banner-text .tagline, .nav-tabs li a, .nav-tabs li.active a, .btn-loadmore, .meta-row label, .meta-row span, .meta-row span a, #single-product-tab .new-review-form h2, .tabled-data li label, .tabled-data li .value, .field-row label, .comment-item .comment-body .author, #cart-page .widget .buttons-holder .simple-link, #checkout-page .billing-address .placeholder, #checkout-page #your-order .order-item .title, #payment-method-options .payment-method-option .radio-label, #payment-method-options .payment-method-option .value, .sidebar .price-range-holder .filter-button a, .sidebar .widget .product-list li a, .sidebar .widget .category-filter ul label, #footer h2, #footer h3, #footer .widget .body li a, #footer .link-list-row .contact-info, #footer .link-list-row .link-widget li a, #footer .copyright-bar {
-  text-transform: capitalize; }
+   }
 
 #loading {
   display: none; }
@@ -925,7 +925,7 @@ header {
     padding: 17px;
     color: #fff;
     border-radius: 5px 5px 0 0;
-    text-transform: capitalize;
+    
     font-weight: bold;
     font-size: 16px; }
     .sidemenu-holder .side-menu .head i {
@@ -1036,7 +1036,7 @@ header {
   top: 0;
   left: 100%;
   margin: 0;
-  min-width: 365%; }
+  min-width: 170%; }
 .megamenu-horizontal .nav > li {
   position: relative;
   width: 100%; }
@@ -1085,7 +1085,7 @@ header {
   #top-megamenu-nav .navbar-nav > li {
     border-right: 1px solid; }
     #top-megamenu-nav .navbar-nav > li > a {
-      text-transform: capitalize;
+      
       font-weight: bold;
       padding: 18px 27px; }
       #top-megamenu-nav .navbar-nav > li > a, #top-megamenu-nav .navbar-nav > li > a:focus {
@@ -2751,7 +2751,7 @@ header {
         #cart-page .items-holder .cart-item .title a {
           line-height: 15px;
           font-size: 16px;
-          text-transform: capitalize;
+          
           font-weight: 700;
           color: #0E53A5; }
       #cart-page .items-holder .cart-item .brand {
@@ -3233,7 +3233,7 @@ header {
     font-size: 14px;
     font-weight: 300 !important;
     line-height: 15.58px;
-    text-transform: capitalize; }
+     }
     .blog-sidebar .widget .recent-post-list h5 a {
       color: #434343; }
   .blog-sidebar .widget .recent-post-list .posted-date {
@@ -3363,7 +3363,7 @@ header {
       .page-wishlist .items-holder .cart-item .title a {
         line-height: 15px;
         font-size: 16px;
-        text-transform: capitalize;
+        
         font-weight: 700;
         color: #0E53A5; }
     .page-wishlist .items-holder .cart-item .brand {

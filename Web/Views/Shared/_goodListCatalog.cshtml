@@ -1,0 +1,53 @@
+﻿@using Web.Models
+@model GoodViewModel
+
+<div class="product-item product-item-holder" data-goodId="@Model.id">
+    @if (Model.isSale)
+    {
+        <div class="ribbon red"><span>РАСПРОДАЖА</span></div>
+    }
+    @if (Model.isBestseller)
+    {
+        <div class="ribbon green"><span>БЕСТСЕЛЛЕР</span></div>
+    }
+    @if (Model.isNew)
+    {
+        <div class="ribbon blue"><span>НОВИНКА</span></div>
+    }
+    <div class="row">
+        <div class="no-margin col-xs-12 col-sm-4 image-holder">
+            <div class="image">
+              <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">
+                <img alt="" src="@Url.Content("~/Content/images/blank.gif")" data-echo="@Url.Content($"~/Content/images/Goods/{Model.id}/{Model.imageUrl ?? "product-01.jpg"}")" />
+            </a>
+            </div>
+        </div><!-- /.image-holder -->
+        <div class="no-margin col-xs-12 col-sm-5 body-holder">
+            <div class="body">
+                @if (Model.isSale)
+                {
+                    <div class="label-discount green">-@Model.discount% СКИДКА</div>
+                }
+                <div class="title">
+                     <a href="@Url.Content($"~/Details/{Model.groupId}/{Model.id}")">@Model.name</a>
+                </div>
+                <div class="brand">@Model.brandName</div>
+                <div class="excerpt">
+                    <div class="star-holder">
+                        @{var mark = ((int)Math.Ceiling(Model.mark ?? 0M)); }
+                        <div class="star" data-score="@mark"></div>
+                    </div>
+                    <p>@Model.info</p>
+                </div>
+            </div>
+        </div><!-- /.body-holder -->
+        <div class="no-margin col-xs-12 col-sm-3 price-area">
+            <div class="right-clmn">
+                <div class="price-current">@Model.price.ToString("0.00") ₽</div>
+                <div class="price-prev">@Model.previousPrice.ToString("0.00") ₽</div>
+                <a class="le-button add-basket-button" href="#">В корзину</a>
+                <a class="btn-add-to-wishlist" href="#">В избранное</a>
+            </div>
+        </div><!-- /.price-area -->
+    </div><!-- /.row -->
+</div><!-- /.product-item -->

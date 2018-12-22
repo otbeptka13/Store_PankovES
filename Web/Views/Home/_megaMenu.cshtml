@@ -1,0 +1,41 @@
+﻿@using Web.Models
+
+@if (Session.GetUserRoles().HasFlag(Role.Admin))
+{
+    <li class="dropdown menu-item"><a href="@Url.Action("Store", "Odmen")">АДМИНИСТРИРОВАНИЕ</a></li>
+}
+
+@foreach (var item in new CatalogModel().catalogTree)
+{
+    var link = item.childGroups?.Count > 0 ? "#" : Url.Content(item.link);
+    <li class="dropdown menu-item">
+
+        @if (item.childGroups?.Count > 0)
+        {
+            <a href="@link" class="dropdown-toggle" data-toggle="dropdown">@item.groupName</a>
+            <ul class="dropdown-menu mega-menu">
+                <li class="yamm-content">
+                    <!-- ================================== MEGAMENU VERTICAL ================================== -->
+                    <div class="row">
+                        <div class="">
+                            <ul>
+                                @foreach (var item2 in item.childGroups)
+                                {
+                                    <li><a href="@Url.Content(@item2.link)">@item2.groupName</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- ================================== MEGAMENU VERTICAL ================================== -->
+                </li>
+            </ul>
+        }
+        else
+        {
+            <a href="@link">@item.groupName</a>
+        }
+
+    </li><!-- /.menu-item -->
+
+}
+
