@@ -38,10 +38,26 @@ GO
                1 -- State.  
                );  
 	return;
-	end
+	END
+    
+	INSERT INTO lk.Orders
+	(
+	    transactionNumber,
+	    summOrder,
+	    userId,
+	    datePay
+	)
+	VALUES
+	(   @transactionNumber,     -- transactionNumber - uniqueidentifier
+	    @totalSumm,     -- summOrder - decimal(18, 2)
+	    @userId,        -- userId - bigint
+	    GETDATE() -- datePay - datetime
+	)
+	DECLARE @orderId BIGINT = scope_identity()
 	update lk.Basket
-	set datePay = @payDate, transactionNumber = @transactionNumber, status = 2
+	set orderId = @orderId, status = 2
 	where id in (select id from #basket)
  end
+
 
 GO
